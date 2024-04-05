@@ -4,6 +4,7 @@ import com.example.rosaceae.auth.AuthenticationRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
+import com.example.rosaceae.dto.CreateUserRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
         return ResponseEntity.ok(authenticationService.login(authenticationRequest));
     }
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody CreateUserRequest request) {
+        return ResponseEntity.ok(authenticationService.createUser(request));
+    }
+
 
     @PostMapping("/refresh-token")
     public void refreshToken(
