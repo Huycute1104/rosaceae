@@ -7,25 +7,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Rate")
+@Table(name = "UserReport")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Rate {
+public class UserReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RateID")
-    private int rateId;
+    @Column(name = "UserReportID")
+    private Integer userReportId;
 
-    private int rateStar;
+    @Column(name = "Description", length = 50)
+    private String description;
 
     @ManyToOne
-    @JoinColumn(name = "ItemId")
-    private Item item;
+    @JoinColumn(name = "ShopID")
+    private User shop;
 
     @ManyToOne
     @JoinColumn(name = "UsersID")
-    private User customer;
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "ReportId")
+    private Report report;
 }
