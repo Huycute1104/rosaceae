@@ -7,18 +7,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "ItemType")
+@Table(name = "Rate")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ItemType {
+public class Rate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ItemTypeId")
-    private int itemTypeId;
+    private int rateId;
 
-    @Column(name = "ItemTypeName", length = 30)
-    private String itemTypeName;
+    private int rateStar;
+
+    @ManyToOne
+    @JoinColumn(name = "ItemId")
+    private Item item;
+
+    @ManyToOne
+    @JoinColumn(name = "UsersID")
+    private User customer;
 }

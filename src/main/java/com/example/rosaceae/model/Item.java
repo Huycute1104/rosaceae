@@ -16,7 +16,8 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer itemId;
+    @Column(name = "ItemId")
+    private int itemId;
 
     @Column(name = "ItemName", length = 30)
     private String itemName;
@@ -40,6 +41,6 @@ public class Item {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "itemTypeId")
+    @JoinColumn(name = "ItemTypeId")
     private ItemType itemType;
 }
