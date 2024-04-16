@@ -36,4 +36,9 @@ public class Order {
     @JsonIgnore
     @OneToMany(mappedBy = "order")
     private Set<OrderDetail> orderDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "VoucherID", nullable = true)
+    private Voucher voucher;
+
 }

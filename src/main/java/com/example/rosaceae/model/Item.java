@@ -30,11 +30,13 @@ public class Item {
 
     private Float itemRate;
 
-    private Integer commentCount;
+    private int commentCount;
 
-    private Integer countUsage;
+    private int countUsage;
 
-    private Integer quantity;
+    private int quantity;
+
+    private int discount;
 
     @ManyToOne
     @JoinColumn(name = "UsersID")
