@@ -37,6 +37,11 @@ public class User implements UserDetails {
     @Column(name = "Phone", length = 50)
     private String phone;
 
+    private  float rate;
+
+    @Column(name = "UserWallet")
+    private double userWallet;
+
     @Column(name = "UserStatus")
     private boolean userStatus;
 
