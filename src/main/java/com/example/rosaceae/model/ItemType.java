@@ -16,7 +16,7 @@ public class ItemType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer itemTypeId;
+    private int itemTypeId;
 
     @Column(name = "ItemTypeName", length = 30)
     private String itemTypeName;
