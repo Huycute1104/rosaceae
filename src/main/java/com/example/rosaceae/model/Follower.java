@@ -20,10 +20,10 @@ public class Follower {
     private Integer followerId;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID")  // Reference to the User acting as a customer
+    @JoinColumn(name = "CustomerID")
     private User customer;
 
     @ManyToOne
-    @JoinColumn(name = "ShopID")  // Reference to the User acting as a shop
+    @JoinColumn(name = "ShopID")
     private User shop;
 }
