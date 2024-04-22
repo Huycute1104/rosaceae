@@ -5,6 +5,7 @@ import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
 import com.example.rosaceae.dto.CreateUserRequest;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

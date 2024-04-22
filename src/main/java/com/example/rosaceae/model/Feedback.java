@@ -19,8 +19,8 @@ public class Feedback {
     @Column(name = "FeedbackID")
     private Integer feedBackId;
 
-    @Column(name = "Feedback", length = 5000, columnDefinition = "default ''")
-    private String feedback;
+    @Column(name = "Feedback", length = 5000)
+    private String feedback = "";
 
     @Column(name = "Star")
     private int rateStar;
