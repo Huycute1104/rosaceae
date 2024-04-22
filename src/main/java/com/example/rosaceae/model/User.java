@@ -2,6 +2,7 @@ package com.example.rosaceae.model;
 
 import com.example.rosaceae.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "[User]")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -48,9 +49,29 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     @JsonIgnore
-    @OneToMany(mappedBy ="user")
+    @JsonManagedReference
     private List<Token> tokens;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Cart> cart;
+
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<UserReport> userReports;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Follower> customers;
+
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Follower> shops;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

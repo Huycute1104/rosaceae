@@ -25,8 +25,9 @@ public class Token {
 
     private boolean expired;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "UsersID")
+    @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @JsonBackReference
     private User user;
