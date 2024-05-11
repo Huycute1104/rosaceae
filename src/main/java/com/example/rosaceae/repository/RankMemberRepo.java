@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface RankMemberRepo extends JpaRepository<RankMember,Integer> {
 Optional<RankMember> findByRankName(String name);
+Optional<RankMember> findByRankMemberID(int id);
 }

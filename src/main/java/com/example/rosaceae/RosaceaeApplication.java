@@ -30,6 +30,19 @@ public class RosaceaeApplication {
 			RankMemberService memberService
 	) {
 		return args -> {
+			var rank = CreateRankRequet.builder()
+					.rankName("Bronze")
+					.build();
+			var bronze = memberService.createRank(rank);
+
+			var rank2 = CreateRankRequet.builder()
+					.rankName("Silver")
+					.build();
+			memberService.createRank(rank2);
+			var rank3 = CreateRankRequet.builder()
+					.rankName("Gold")
+					.build();
+			memberService.createRank(rank3);
 			//Supper admin
 			var super_admin = RegisterRequest.builder()
 					.name("SuperAdmin")
@@ -71,6 +84,7 @@ public class RosaceaeApplication {
 					.password("123")
 					.phone("0854512367")
 					.role(CUSTOMER)
+					.rankId(1)
 					.build();
 			System.out.println("Customer token :" + service.register(customer).getAccessToken());
 
@@ -81,23 +95,12 @@ public class RosaceaeApplication {
 					.password("123")
 					.phone("0854512367")
 					.role(CUSTOMER)
+					.rankId(1)
 					.build();
 			service.register(customer2);
 			// Rank member
 
-			var rank = CreateRankRequet.builder()
-					.rankName("Bronze")
-					.build();
-			memberService.createRank(rank);
 
-			var rank2 = CreateRankRequet.builder()
-					.rankName("Silver")
-					.build();
-			memberService.createRank(rank2);
-			var rank3 = CreateRankRequet.builder()
-					.rankName("Gold")
-					.build();
-			memberService.createRank(rank3);
 
 
 		};
