@@ -24,6 +24,10 @@ public class RankMember {
 
     @Column(name = "RankName",length = 20,unique = true)
     private String rankName;
+    @Column(name = "RankPoint")
+    private int rankPoint = 0;
+
+
 
 //    @OneToMany(mappedBy = "rankMember", cascade = CascadeType.ALL)
 //    @JsonIgnore
