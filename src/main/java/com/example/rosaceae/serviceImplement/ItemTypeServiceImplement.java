@@ -60,7 +60,30 @@ public class ItemTypeServiceImplement implements ItemTypeService {
 
     @Override
     public ItemTypeResponse updateItemType(ItemTypeRequest request, int ID) {
-        return null;
+        //get  name
+        String name = request.getName();
+        //check exist category
+        var ItemType = itemTypeRepo.findByItemTypeId(ID).orElse(null);
+        if (ItemType != null) {
+            if (isValidName(name)) {
+                ItemType.setItemTypeName(name);
+                itemTypeRepo.save(ItemType);
+                return ItemTypeResponse.builder()
+                        .status("Update category successfully")
+                        .itemType(ItemType)
+                        .build();
+            } else {
+                return ItemTypeResponse.builder()
+                        .status("The ItemType Name must be between 3 and 20 char and should not contain any special characters.")
+                        .itemType(null)
+                        .build();
+            }
+        } else {
+            return ItemTypeResponse.builder()
+                    .status("Category not found")
+                    .itemType(null)
+                    .build();
+        }
     }
 
     @Override

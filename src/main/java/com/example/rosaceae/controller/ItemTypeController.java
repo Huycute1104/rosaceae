@@ -40,14 +40,14 @@ public class ItemTypeController {
     public Optional<ItemType> getCategoryByID(@PathVariable int id) {
         return itemTypeService.getItemTypeByID(id);
     }
-//
-//    @PutMapping("/{id}")
-//    @PreAuthorize("hasAuthority('admin:update')")
-//    public ResponseEntity<ItemTypeResponse> updateUser(
-//            @PathVariable int id,
-//            @RequestBody ItemTypeRequest request) {
-//        return ResponseEntity.ok(itemTypeService.updateItemType(request,id));
-//    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:update')")
+    public ResponseEntity<ItemTypeResponse> updateUser(
+            @PathVariable int id,
+            @RequestBody ItemTypeRequest request) {
+        return ResponseEntity.ok(itemTypeService.updateItemType(request,id));
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<ItemTypeResponse> deleteFood(@PathVariable int id) {
