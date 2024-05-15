@@ -2,6 +2,7 @@ package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.RankMemberRequest.UpdateRankRequest;
+import com.example.rosaceae.dto.Response.RankMemberResponse.RankResponse;
 import com.example.rosaceae.dto.Response.RankMemberResponse.UpdateRankResponse;
 import com.example.rosaceae.dto.Response.UserResponse.CreateRankResponse;
 import com.example.rosaceae.model.RankMember;
@@ -82,6 +83,21 @@ public class RankMemberServiceImplement implements RankMemberService {
     @Override
     public Optional<RankMember> getRankById(int id) {
         return memberRepo.findByRankMemberID(id);
+    }
+
+    @Override
+    public RankResponse deleteRank(int id) {
+        var rank = memberRepo.findByRankMemberID(id).orElse(null);
+        if (rank == null) {
+            return RankResponse.builder()
+                    .status("Rank not found")
+                    .build();
+        }else{
+            memberRepo.delete(rank);
+            return RankResponse.builder()
+                    .status("Rank deleted successfully")
+                    .build();
+        }
     }
 
     private boolean isValidName(String name) {

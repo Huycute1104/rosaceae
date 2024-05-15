@@ -2,6 +2,7 @@ package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.RankMemberRequest.UpdateRankRequest;
+import com.example.rosaceae.dto.Response.RankMemberResponse.RankResponse;
 import com.example.rosaceae.dto.Response.RankMemberResponse.UpdateRankResponse;
 import com.example.rosaceae.dto.Response.UserResponse.CreateRankResponse;
 import com.example.rosaceae.model.RankMember;
@@ -48,4 +49,10 @@ public class RankMemberController {
             @RequestBody UpdateRankRequest request) {
         return ResponseEntity.ok(memberService.updateRank(id, request));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RankResponse> deleteFood(@PathVariable int id) {
+        RankResponse response = memberService.deleteRank(id);
+        return ResponseEntity.ok(response);
+    }
+
 }
