@@ -17,7 +17,6 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/payment")
-@PreAuthorize("hasRole('CUSTOMER')")
 @RequiredArgsConstructor
 public class PaymentController {
 
