@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ItemTypeRepo extends JpaRepository<ItemType, Long> {
     Optional<ItemType> findByItemTypeName(String name);
+    Optional<ItemType> findByItemTypeId(int itemTypeId);
 }

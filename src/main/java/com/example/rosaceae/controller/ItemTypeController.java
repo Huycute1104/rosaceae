@@ -34,12 +34,12 @@ public class ItemTypeController {
     public List<ItemType> getAllUsers() {
         return itemTypeService.findAll();
     }
-//
-//    @GetMapping("/{id}")
-//    @PreAuthorize("hasAuthority('admin:read')")
-//    public Optional<ItemType> getCategoryByID(@PathVariable int id) {
-//        return itemTypeService.getItemTypeByID(id);
-//    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public Optional<ItemType> getCategoryByID(@PathVariable int id) {
+        return itemTypeService.getItemTypeByID(id);
+    }
 //
 //    @PutMapping("/{id}")
 //    @PreAuthorize("hasAuthority('admin:update')")

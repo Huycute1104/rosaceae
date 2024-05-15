@@ -65,7 +65,7 @@ public class ItemTypeServiceImplement implements ItemTypeService {
 
     @Override
     public Optional<ItemType> getItemTypeByID(int id) {
-        return Optional.empty();
+        return itemTypeRepo.findByItemTypeId(id);
     }
 
     @Override
