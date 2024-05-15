@@ -5,10 +5,12 @@ import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
+import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.CategoryService;
 import com.example.rosaceae.service.EmailService;
+import com.example.rosaceae.service.ItemTypeService;
 import com.example.rosaceae.service.RankMemberService;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +52,8 @@ public class RosaceaeApplication {
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service,
 			RankMemberService memberService,
-            CategoryService categoryService
+            CategoryService categoryService,
+			ItemTypeService itemTypeService
 	) {
 		return args -> {
 			var rank = CreateRankRequet.builder()
@@ -145,7 +148,15 @@ public class RosaceaeApplication {
                     .build();
             categoryService.createCategory(category4);
 
-
+			// itemType
+			var itemType = ItemTypeRequest.builder()
+					.name("Service")
+					.build();
+			itemTypeService.createItemType(itemType);
+			var itemType1 = ItemTypeRequest.builder()
+					.name("Product")
+					.build();
+			itemTypeService.createItemType(itemType1);
 
 
 
