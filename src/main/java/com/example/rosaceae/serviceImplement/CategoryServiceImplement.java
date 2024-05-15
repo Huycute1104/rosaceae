@@ -91,6 +91,18 @@ public class CategoryServiceImplement implements CategoryService {
 
     @Override
     public CategoryResponse deleteCategory(int id) {
-        return null;
+        var food = categoryRepo.findCategoriesByCategoryId(id).orElse(null);
+        if (food == null) {
+            return CategoryResponse.builder()
+                    .status("Food not found")
+                    .category(null)
+                    .build();
+        }else{
+            categoryRepo.delete(food);
+            return CategoryResponse.builder()
+                    .status("Food deleted successfully")
+                    .category(null)
+                    .build();
+        }
     }
 }
