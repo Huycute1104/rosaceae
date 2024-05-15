@@ -1,13 +1,11 @@
 package com.example.rosaceae.model;
 
 import com.example.rosaceae.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,6 +35,9 @@ public class User implements UserDetails {
 
     @Column(name = "Phone", length = 50)
     private String phone;
+
+    @Column(name = "Address" , length = 100)
+    private String address;
 
     private  float rate;
 
@@ -72,6 +73,13 @@ public class User implements UserDetails {
     @JsonIgnore
     @JsonManagedReference
     private List<Follower> shops;
+
+    @ManyToOne
+    @JoinColumn(name = "RankMemberID")
+//    @EqualsAndHashCode.Exclude
+//    @ToString.Exclude
+//    @JsonBackReference
+    private RankMember rankMember;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

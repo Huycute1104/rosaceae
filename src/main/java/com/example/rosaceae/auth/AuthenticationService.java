@@ -6,6 +6,7 @@ import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.enums.TokenType;
 import com.example.rosaceae.model.Token;
 import com.example.rosaceae.model.User;
+import com.example.rosaceae.repository.RankMemberRepo;
 import com.example.rosaceae.repository.TokeRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +32,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final TokeRepo tokeRepo;
+    private final RankMemberRepo rankMemberRepo;
 
     public AuthenticationResponse createUser(CreateUserRequest request) {
         String email = request.getEmail();
@@ -81,6 +83,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(RegisterRequest request) {
+        var rank = rankMemberRepo.findByRankMemberID(request.getRankId()).orElse(null);
         var user = User.builder()
                 .email(request.getEmail())
                 .accountName(request.getName())
@@ -88,6 +91,7 @@ public class AuthenticationService {
                 .phone(request.getPhone())
                 .userStatus(request.isStatus())
                 .role(request.getRole())
+                .rankMember(rank)
                 .build();
         var save = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
