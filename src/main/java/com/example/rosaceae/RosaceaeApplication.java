@@ -3,8 +3,11 @@ package com.example.rosaceae;
 import com.example.rosaceae.Format.MailFormat;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
+import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
+import com.example.rosaceae.model.Category;
 import com.example.rosaceae.repository.UserRepo;
+import com.example.rosaceae.service.CategoryService;
 import com.example.rosaceae.service.EmailService;
 import com.example.rosaceae.service.RankMemberService;
 import jakarta.mail.internet.MimeMessage;
@@ -46,7 +49,8 @@ public class RosaceaeApplication {
 //	@Bean
 //	public CommandLineRunner commandLineRunner(
 //			AuthenticationService service,
-//			RankMemberService memberService
+//			RankMemberService memberService,
+//            CategoryService categoryService
 //	) {
 //		return args -> {
 //			var rank = CreateRankRequet.builder()
@@ -117,7 +121,30 @@ public class RosaceaeApplication {
 //					.rankId(1)
 //					.build();
 //			service.register(customer2);
-//			// Rank member
+//            var category = CreateCategoryRequest.builder()
+//                    .categoryName("Facial")
+//                    .build();
+//            categoryService.createCategory(category);
+//
+//            var category1 = CreateCategoryRequest.builder()
+//                    .categoryName("BodyCare")
+//                    .build();
+//            categoryService.createCategory(category1);
+//
+//            var category2 = CreateCategoryRequest.builder()
+//                    .categoryName("Nail")
+//                    .build();
+//            categoryService.createCategory(category2);
+//
+//            var category3 = CreateCategoryRequest.builder()
+//                    .categoryName("HairCare")
+//                    .build();
+//            categoryService.createCategory(category3);
+//            var category4 = CreateCategoryRequest.builder()
+//                    .categoryName("Relaxation")
+//                    .build();
+//            categoryService.createCategory(category4);
+//
 //
 //
 //
