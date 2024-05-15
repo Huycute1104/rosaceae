@@ -4,12 +4,15 @@ import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.RankMemberRequest.UpdateRankRequest;
 import com.example.rosaceae.dto.Response.RankMemberResponse.UpdateRankResponse;
 import com.example.rosaceae.dto.Response.UserResponse.CreateRankResponse;
+import com.example.rosaceae.model.RankMember;
 import com.example.rosaceae.service.RankMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/rankmember")
@@ -18,6 +21,12 @@ public class RankMemberController {
 
     @Autowired
     private RankMemberService memberService;
+
+    @GetMapping("")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public List<RankMember> getAllUsers() {
+        return memberService.getAllRank();
+    }
 
     @PostMapping("")
     @PreAuthorize("hasAuthority('admin:create')")
@@ -30,6 +39,6 @@ public class RankMemberController {
     public ResponseEntity<UpdateRankResponse> updateUser(
             @PathVariable int id,
             @RequestBody UpdateRankRequest request) {
-        return ResponseEntity.ok(memberService.updateRank(id,request));
+        return ResponseEntity.ok(memberService.updateRank(id, request));
     }
 }

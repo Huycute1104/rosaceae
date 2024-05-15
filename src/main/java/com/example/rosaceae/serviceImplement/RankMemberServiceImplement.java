@@ -10,6 +10,8 @@ import com.example.rosaceae.service.RankMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RankMemberServiceImplement implements RankMemberService {
     @Autowired
@@ -69,6 +71,11 @@ public class RankMemberServiceImplement implements RankMemberService {
                     .status("RankMember not found")
                     .build();
         }
+    }
+
+    @Override
+    public List<RankMember> getAllRank() {
+        return memberRepo.findAll();
     }
 
     private boolean isValidName(String name) {
