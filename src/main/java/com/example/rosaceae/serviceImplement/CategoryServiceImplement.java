@@ -94,13 +94,13 @@ public class CategoryServiceImplement implements CategoryService {
         var food = categoryRepo.findCategoriesByCategoryId(id).orElse(null);
         if (food == null) {
             return CategoryResponse.builder()
-                    .status("Food not found")
+                    .status("Category not found")
                     .category(null)
                     .build();
         }else{
             categoryRepo.delete(food);
             return CategoryResponse.builder()
-                    .status("Food deleted successfully")
+                    .status("Category deleted successfully")
                     .category(null)
                     .build();
         }

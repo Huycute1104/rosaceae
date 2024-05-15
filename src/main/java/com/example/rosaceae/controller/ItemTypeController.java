@@ -48,10 +48,10 @@ public class ItemTypeController {
             @RequestBody ItemTypeRequest request) {
         return ResponseEntity.ok(itemTypeService.updateItemType(request,id));
     }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<ItemTypeResponse> deleteFood(@PathVariable int id) {
-//        ItemTypeResponse response = itemTypeService.deleteItemType(id);
-//        return ResponseEntity.ok(response);
-//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ItemTypeResponse> deleteFood(@PathVariable int id) {
+        ItemTypeResponse response = itemTypeService.deleteItemType(id);
+        return ResponseEntity.ok(response);
+    }
 }

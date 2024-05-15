@@ -93,6 +93,18 @@ public class ItemTypeServiceImplement implements ItemTypeService {
 
     @Override
     public ItemTypeResponse deleteItemType(int id) {
-        return null;
+        var itemType = itemTypeRepo.findByItemTypeId(id).orElse(null);
+        if (itemType == null) {
+            return ItemTypeResponse.builder()
+                    .status("ItemType not found")
+                    .itemType(null)
+                    .build();
+        }else{
+            itemTypeRepo.delete(itemType);
+            return ItemTypeResponse.builder()
+                    .status("ItemType deleted successfully")
+                    .itemType(null)
+                    .build();
+        }
     }
 }
