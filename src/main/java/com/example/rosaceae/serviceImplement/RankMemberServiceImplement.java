@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RankMemberServiceImplement implements RankMemberService {
@@ -76,6 +77,11 @@ public class RankMemberServiceImplement implements RankMemberService {
     @Override
     public List<RankMember> getAllRank() {
         return memberRepo.findAll();
+    }
+
+    @Override
+    public Optional<RankMember> getRankById(int id) {
+        return memberRepo.findByRankMemberID(id);
     }
 
     private boolean isValidName(String name) {

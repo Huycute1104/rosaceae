@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/rankmember")
@@ -26,6 +27,12 @@ public class RankMemberController {
     @PreAuthorize("hasAuthority('admin:read')")
     public List<RankMember> getAllUsers() {
         return memberService.getAllRank();
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public Optional<RankMember> getCategoryByID(@PathVariable int id) {
+        return memberService.getRankById(id);
     }
 
     @PostMapping("")
