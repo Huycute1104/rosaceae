@@ -1,33 +1,25 @@
 package com.example.rosaceae;
 
-import com.amazonaws.services.simpleemail.model.*;
 import com.example.rosaceae.Format.MailFormat;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
-import com.example.rosaceae.dto.CreateRankRequet;
-import com.example.rosaceae.enums.Role;
+import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.EmailService;
+import com.example.rosaceae.service.RankMemberService;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import com.example.rosaceae.service.RankMemberService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 import static com.example.rosaceae.enums.Role.*;
 

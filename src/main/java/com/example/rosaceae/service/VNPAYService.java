@@ -1,7 +1,7 @@
 package com.example.rosaceae.service;
 
 import com.example.rosaceae.config.VNPAYConfig;
-import com.example.rosaceae.dto.RefundRequest;
+import com.example.rosaceae.dto.Request.PaymentRequest.RefundRequest;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;

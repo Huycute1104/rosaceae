@@ -1,7 +1,7 @@
 package com.example.rosaceae.auth;
 
 import com.example.rosaceae.config.JwtService;
-import com.example.rosaceae.dto.CreateUserRequest;
+import com.example.rosaceae.dto.Request.UserRequest.CreateUserRequest;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.enums.TokenType;
 import com.example.rosaceae.model.Token;

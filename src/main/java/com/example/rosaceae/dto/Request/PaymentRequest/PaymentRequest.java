@@ -1,4 +1,4 @@
-package com.example.rosaceae.dto;
+package com.example.rosaceae.dto.Request.PaymentRequest;
 
 import lombok.Data;
 

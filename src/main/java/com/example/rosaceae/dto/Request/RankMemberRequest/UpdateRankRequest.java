@@ -1,4 +1,4 @@
-package com.example.rosaceae.dto;
+package com.example.rosaceae.dto.Request.RankMemberRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserRequest {
+public class UpdateRankRequest {
     private String name;
-    private String email;
-    private String password;
-    private String phone;
+    private int point;
 }

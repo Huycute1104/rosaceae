@@ -1,4 +1,4 @@
-package com.example.rosaceae.dto;
+package com.example.rosaceae.dto.Response.RankMemberResponse;
 
 import com.example.rosaceae.model.RankMember;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateRankResponse {
-    private String status;
+public class UpdateRankResponse {
     private RankMember rankMember;
+    private String status;
 }
