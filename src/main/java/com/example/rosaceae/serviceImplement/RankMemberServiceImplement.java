@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,6 +55,13 @@ public class RankMemberServiceImplement implements RankMemberService {
         String rankName = updateRankRequest.getName();
         var rank = memberRepo.findByRankMemberID(id).orElse(null);
         if (rank != null) {
+            var name = memberRepo.findByRankName(rankName).orElse(null);
+            if(name != null){
+                return UpdateRankResponse.builder()
+                        .rankMember(null)
+                        .status("Rank name is exist")
+                        .build();
+            }
             if (isValidName(rankName)) {
                 rank.setRankName(rankName);
                 memberRepo.save(rank);
