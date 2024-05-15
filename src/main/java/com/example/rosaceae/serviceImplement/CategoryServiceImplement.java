@@ -58,7 +58,7 @@ public class CategoryServiceImplement implements CategoryService {
 
     @Override
     public List<Category> getAllCategory() {
-        return List.of();
+        return categoryRepo.findAll();
     }
 
     @Override
