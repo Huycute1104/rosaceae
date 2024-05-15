@@ -36,4 +36,12 @@ public class CategoryController {
     public Optional<Category> getCategoryByID(@PathVariable int id) {
         return categoryService.getCategoryByID(id);
     }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:update')")
+    public ResponseEntity<CategoryResponse> updateUser(
+            @PathVariable int id,
+            @RequestBody CreateCategoryRequest request) {
+        return ResponseEntity.ok(categoryService.updateCategory(request,id));
+    }
 }

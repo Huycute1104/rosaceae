@@ -53,7 +53,30 @@ public class CategoryServiceImplement implements CategoryService {
 
     @Override
     public CategoryResponse updateCategory(CreateCategoryRequest request, int ID) {
-        return null;
+        //get category name
+        String name = request.getCategoryName();
+        //check exist category
+        var category = categoryRepo.findCategoriesByCategoryId(ID).orElse(null);
+        if (category != null) {
+            if (isValidName(name)) {
+                category.setCategoryName(name);
+                categoryRepo.save(category);
+                return CategoryResponse.builder()
+                        .status("Update category successfully")
+                        .category(category)
+                        .build();
+            } else {
+                return CategoryResponse.builder()
+                        .status("The Category Name must be between 3 and 20 char and should not contain any special characters.")
+                        .category(null)
+                        .build();
+            }
+        } else {
+            return CategoryResponse.builder()
+                    .status("Category not found")
+                    .category(null)
+                    .build();
+        }
     }
 
     @Override
