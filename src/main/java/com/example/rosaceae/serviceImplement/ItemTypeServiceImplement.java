@@ -21,7 +21,7 @@ public class ItemTypeServiceImplement implements ItemTypeService {
 
     @Override
     public List<ItemType> findAll() {
-        return List.of();
+        return itemTypeRepo.findAll();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ItemTypeServiceImplement implements ItemTypeService {
     }
 
     @Override
-    public Optional<Category> getItemTypeByID(int id) {
+    public Optional<ItemType> getItemTypeByID(int id) {
         return Optional.empty();
     }
 

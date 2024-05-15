@@ -14,6 +14,6 @@ public interface ItemTypeService {
     public List<ItemType> findAll();
     public ItemTypeResponse createItemType(ItemTypeRequest request);
     public ItemTypeResponse updateItemType(ItemTypeRequest request , int ID);
-    public Optional<Category> getItemTypeByID(int id);
+    public Optional<ItemType> getItemTypeByID(int id);
     public ItemTypeResponse deleteItemType(int id);
 }
