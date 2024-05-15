@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/category")
@@ -29,5 +30,10 @@ public class CategoryController {
     @PreAuthorize("hasAuthority('admin:read')")
     public List<Category> getAllUsers() {
         return categoryService.getAllCategory();
+    }
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public Optional<Category> getCategoryByID(@PathVariable int id) {
+        return categoryService.getCategoryByID(id);
     }
 }

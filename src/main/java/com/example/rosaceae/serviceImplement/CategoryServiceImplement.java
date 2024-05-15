@@ -63,7 +63,7 @@ public class CategoryServiceImplement implements CategoryService {
 
     @Override
     public Optional<Category> getCategoryByID(int id) {
-        return Optional.empty();
+        return categoryRepo.findCategoriesByCategoryId(id);
     }
 
     @Override
