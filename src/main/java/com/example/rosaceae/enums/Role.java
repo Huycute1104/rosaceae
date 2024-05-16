@@ -28,7 +28,9 @@ public enum Role {
                     CUSTOMER_CREATE,
                     CUSTOMER_READ,
                     CUSTOMER_UPDATE,
-                    CUSTOMER_DELETE
+                    CUSTOMER_DELETE,
+
+                    SHOP_READ
             )),
     SHOP(
             Set.of(
