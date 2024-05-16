@@ -1,9 +1,12 @@
 package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
+import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
+import com.example.rosaceae.dto.Request.ItemTypeRequest.ItemTypeResponse;
 import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
+import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.service.ItemService;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +53,26 @@ public class ItemController {
         Pageable pageable = PageRequest.of(page, size);
         return itemService.getAllItems(pageable);
     }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('shop:update')")
+    public ResponseEntity<ItemResponse> updateItem(
+            @PathVariable int id,
+            @RequestBody CreateItemRequest request) {
+        return ResponseEntity.ok(itemService.UpdateItem(request,id));
+    }
+
+//    @GetMapping("")
+//    @PreAuthorize("hasAuthority('admin:read')")
+//    public Page<Item> getAll(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size,
+//            @RequestParam(defaultValue = "itemType") String sortByItemType,
+//            @RequestParam(defaultValue = "category") String sortByCategory,
+//            @RequestParam(defaultValue = "user") String sortByUser) {
+//        Sort sort = Sort.by(sortByItemType).and(Sort.by(sortByCategory)).and(Sort.by(sortByUser));
+//        Pageable pageable = PageRequest.of(page, size, sort);
+//        return itemService.getAllItems(pageable);
+//    }
+
 }

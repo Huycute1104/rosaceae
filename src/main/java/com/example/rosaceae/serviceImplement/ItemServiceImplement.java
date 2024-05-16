@@ -1,5 +1,6 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
 import com.example.rosaceae.enums.Role;
@@ -12,6 +13,7 @@ import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -99,4 +101,45 @@ public class ItemServiceImplement implements ItemService {
     public Page<Item> getAllItems(Pageable pageable) {
         return itemRepo.findAll(pageable);
     }
+
+    @Override
+    public ItemResponse UpdateItem(CreateItemRequest itemRequest, int id) {
+        var item = itemRepo.findByItemId(id).orElse(null);
+        if (item != null) {
+            var itemType = itemTypeRepo.findByItemTypeId(itemRequest.getItemTypeId()).orElse(null);
+            if (itemType != null) {
+                var category = categoryRepo.findCategoriesByCategoryId(itemRequest.getCategoryId()).orElse(null);
+                if (category != null) {
+                    item.setItemName(itemRequest.getItemName());
+                    item.setItemDescription(itemRequest.getDescription());
+                    item.setItemPrice(itemRequest.getPrice());
+                    item.setQuantity(itemRequest.getQuantity());
+                    item.setDiscount(itemRequest.getDiscount());
+                    item.setCategory(category);
+                    item.setItemType(itemType);
+                    itemRepo.save(item);
+                    return ItemResponse.builder()
+                            .item(item)
+                            .status("Update Item Successfully")
+                            .build();
+                }else{
+                    return ItemResponse.builder()
+                            .item(null)
+                            .status("Category Not Found")
+                            .build();
+                }
+            } else {
+                return ItemResponse.builder()
+                        .item(null)
+                        .status("ItemType Not Found")
+                        .build();
+            }
+        } else {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("Item Not Found")
+                    .build();
+        }
+    }
+
 }
