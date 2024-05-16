@@ -10,8 +10,11 @@ import com.example.rosaceae.repository.ItemTypeRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,5 +88,15 @@ public class ItemServiceImplement implements ItemService {
     @Override
     public Optional<Item> GetItemById(int id) {
         return itemRepo.findByItemId(id);
+    }
+
+    @Override
+    public List<Item> GetAllItems() {
+        return itemRepo.findAll();
+    }
+
+    @Override
+    public Page<Item> getAllItems(Pageable pageable) {
+        return itemRepo.findAll(pageable);
     }
 }
