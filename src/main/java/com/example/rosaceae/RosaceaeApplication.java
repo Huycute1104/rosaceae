@@ -4,14 +4,12 @@ import com.example.rosaceae.Format.MailFormat;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
+import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.repository.UserRepo;
-import com.example.rosaceae.service.CategoryService;
-import com.example.rosaceae.service.EmailService;
-import com.example.rosaceae.service.ItemTypeService;
-import com.example.rosaceae.service.RankMemberService;
+import com.example.rosaceae.service.*;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,9 +51,11 @@ public class RosaceaeApplication {
 			AuthenticationService service,
 			RankMemberService memberService,
             CategoryService categoryService,
-			ItemTypeService itemTypeService
+			ItemTypeService itemTypeService,
+			ItemService itemService
 	) {
 		return args -> {
+			// dummy data rank
 			var rank = CreateRankRequet.builder()
 					.rankName("Bronze")
 					.build();
@@ -69,6 +69,7 @@ public class RosaceaeApplication {
 					.rankName("Gold")
 					.build();
 			memberService.createRank(rank3);
+			//dummy data user
 			//Supper admin
 			var super_admin = RegisterRequest.builder()
 					.name("SuperAdmin")
@@ -124,6 +125,8 @@ public class RosaceaeApplication {
 					.rankId(1)
 					.build();
 			service.register(customer2);
+
+			//dummy data category
             var category = CreateCategoryRequest.builder()
                     .categoryName("Facial")
                     .build();
@@ -148,7 +151,7 @@ public class RosaceaeApplication {
                     .build();
             categoryService.createCategory(category4);
 
-			// itemType
+			// dummy data itemType
 			var itemType = ItemTypeRequest.builder()
 					.name("Service")
 					.build();
@@ -158,6 +161,37 @@ public class RosaceaeApplication {
 					.build();
 			itemTypeService.createItemType(itemType1);
 
+			// dummy data Item
+			//service
+			var item = ItemRequest.builder()
+					.itemName("Service")
+					.quantity(0)
+					.price(10f)
+					.description("hihi")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item);
+			//product
+			var item1 = ItemRequest.builder()
+					.itemName("Product")
+					.quantity(0)
+					.price(10f)
+					.description("hihi")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item1);
 
 
 		};
