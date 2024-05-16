@@ -61,6 +61,11 @@ public class ItemController {
             @RequestBody CreateItemRequest request) {
         return ResponseEntity.ok(itemService.UpdateItem(request,id));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ItemResponse> deleteItem(@PathVariable int id) {
+        ItemResponse response = itemService.DeleteItem(id);
+        return ResponseEntity.ok(response);
+    }
 
 //    @GetMapping("")
 //    @PreAuthorize("hasAuthority('admin:read')")

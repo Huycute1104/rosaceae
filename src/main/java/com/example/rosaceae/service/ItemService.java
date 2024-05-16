@@ -19,4 +19,5 @@ public interface ItemService {
     List<Item> GetAllItems();
     Page<Item> getAllItems(Pageable pageable);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
+    public ItemResponse DeleteItem(int id);
 }

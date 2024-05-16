@@ -142,4 +142,21 @@ public class ItemServiceImplement implements ItemService {
         }
     }
 
+    @Override
+    public ItemResponse DeleteItem(int id) {
+        var item = itemRepo.findByItemId(id).orElse(null);
+        if (item != null) {
+            itemRepo.delete(item);
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("Deleted Item Successfully")
+                    .build();
+        }else{
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("Item Not Found")
+                    .build();
+        }
+    }
+
 }
