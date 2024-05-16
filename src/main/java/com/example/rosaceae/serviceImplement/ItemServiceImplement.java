@@ -12,6 +12,8 @@ import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ItemServiceImplement implements ItemService {
     @Autowired
@@ -78,5 +80,10 @@ public class ItemServiceImplement implements ItemService {
                     .status("User Not Found")
                     .build();
         }
+    }
+
+    @Override
+    public Optional<Item> GetItemById(int id) {
+        return itemRepo.findByItemId(id);
     }
 }
