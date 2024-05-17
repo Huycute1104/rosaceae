@@ -1,6 +1,6 @@
 package com.example.rosaceae.Format;
 
-public class MailFormat {
+public class HTMLFormat {
     public static final String MailHtml = """
             <body data-new-gr-c-s-loaded="14.1130.0">
             <div class="es-wrapper-color">
@@ -75,5 +75,23 @@ public class MailFormat {
             </div>
             </body>
             
+            """;
+
+    public static final String ForgotPasswordHTML = """
+            <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; margin: 0; padding: 0;">
+                <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="text-align: center; padding: 20px 0;">
+                        <h1 style="margin: 0; font-size: 24px; color: #333;">Reset Your Password</h1>
+                    </div>
+                    <div style="padding: 20px 0; text-align: center;">
+                        <p style="font-size: 16px; line-height: 1.5; color: #666;">Hello,</p>
+                        <p style="font-size: 16px; line-height: 1.5; color: #666;">We received a request to reset your password. Click the button below to reset it:</p>
+                        <p style="font-size: 16px; line-height: 1.5; color: #666;">Here your temporary password, use it to login and change the password #######</p>
+                    </div>
+                    <div style="text-align: center; padding: 20px 0; font-size: 12px; color: #999;">
+                        <p>&copy; 2024 Your Company. All rights reserved.</p>
+                    </div>
+                </div>
+            </body>
             """;
 }

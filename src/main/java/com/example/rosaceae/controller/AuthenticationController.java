@@ -1,15 +1,19 @@
 package com.example.rosaceae.controller;
 
+import com.example.rosaceae.Format.HTMLFormat;
 import com.example.rosaceae.auth.AuthenticationRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
 import com.example.rosaceae.dto.CreateUserRequest;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +30,10 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final LogoutService logoutService;
     private final PasswordEncoder passwordEncoder;
+    private final JavaMailSender javaMailSender;
+
+    @Value("${spring.mail.username}")
+    private String sender;
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
@@ -34,6 +42,35 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody CreateUserRequest request) {
         return ResponseEntity.ok(authenticationService.createUser(request));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody AuthenticationRequest request){
+        try {
+            String result = "";
+            String[] arr = HTMLFormat.ForgotPasswordHTML.split("#######");
+            if (arr.length == 2) {
+                result = arr[0] + "lmao" + arr[1];
+            }
+            System.out.println(result);
+
+            MimeMessage mimeMessage;
+            mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setTo(request.getEmail());
+            mimeMessageHelper.setSubject("temporary password");
+            mimeMessageHelper.setText(result, true);
+            String message = result;
+            mimeMessage.setContent(message, "text/html; charset=utf-8");
+
+            javaMailSender.send(mimeMessage);
+            return ResponseEntity.ok("a temporary password have been sent to this email, use it to login and change the password");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.internalServerError().body("something in the server went gone");
     }
 
 
