@@ -19,21 +19,30 @@ public enum Role {
                     ADMIN_CREATE,
                     ADMIN_READ,
                     ADMIN_UPDATE,
-                    ADMIN_DELETE
+                    ADMIN_DELETE,
+
+                    SHOP_READ
             )),
     CUSTOMER(
             Set.of(
                     CUSTOMER_CREATE,
                     CUSTOMER_READ,
                     CUSTOMER_UPDATE,
-                    CUSTOMER_DELETE
+                    CUSTOMER_DELETE,
+
+                    SHOP_READ
             )),
     SHOP(
             Set.of(
                     SHOP_CREATE,
                     SHOP_READ,
                     SHOP_UPDATE,
-                    SHOP_DELETE
+                    SHOP_DELETE,
+
+                    CUSTOMER_CREATE,
+                    CUSTOMER_READ,
+                    CUSTOMER_UPDATE,
+                    CUSTOMER_DELETE
             )),
     SUPPER_ADMIN(
             Set.of(

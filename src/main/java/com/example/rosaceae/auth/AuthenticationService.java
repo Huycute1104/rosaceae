@@ -1,7 +1,7 @@
 package com.example.rosaceae.auth;
 
 import com.example.rosaceae.config.JwtService;
-import com.example.rosaceae.dto.CreateUserRequest;
+import com.example.rosaceae.dto.Request.UserRequest.CreateUserRequest;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.enums.TokenType;
 import com.example.rosaceae.model.Token;
@@ -38,14 +38,16 @@ public class AuthenticationService {
         String email = request.getEmail();
         if(!isValidEmail(email)){
             return AuthenticationResponse.builder()
-                    .status("Invalid email format.")
+                    .msg("Invalid email format.")
+                    .status(400)
                     .accessToken(null)
                     .refreshToken(null)
                     .build();
         }
         if (!isValidPassword(request.getPassword())) {
             return AuthenticationResponse.builder()
-                    .status("The password must be at least 6 characters long and should not contain any special characters.")
+                    .msg("The password must be at least 6 characters long and should not contain any special characters.")
+                    .status(400)
                     .accessToken(null)
                     .refreshToken(null)
                     .build();
@@ -55,6 +57,7 @@ public class AuthenticationService {
                 .accountName(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .phone(request.getPhone())
+                .address(request.getAddress())
                 .userStatus(true)
                 .role(Role.CUSTOMER)
                 .build();
@@ -63,7 +66,8 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(save, jwtToken);
         return AuthenticationResponse.builder()
-                .status("You have successfully registered.")
+                .msg("You have successfully registered.")
+                .status(200)
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .userInfo(user)
@@ -98,7 +102,7 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(save, jwtToken);
         return AuthenticationResponse.builder()
-                .status("You have successfully registered.")
+                .msg("You have successfully registered.")
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .build();
@@ -136,7 +140,7 @@ public class AuthenticationService {
         var user = userRepo.findByEmail(request.getEmail()).orElseThrow();
         if (!user.isUserStatus()) {
             return AuthenticationResponse.builder()
-                    .status("User is ban")
+                    .msg("User is ban")
                     .build();
         } else {
             var jwtToken = jwtService.generateToken(user);
@@ -144,7 +148,7 @@ public class AuthenticationService {
             revokeAllUserTokens(user);
             saveUserToken(user, jwtToken);
             return AuthenticationResponse.builder()
-                    .status("Login successfully")
+                    .msg("Login successfully")
 //                .userInfo(userRepo.findUserByEmail(request.getEmail()).orElseThrow())
                     .accessToken(jwtToken)
                     .refreshToken(refreshToken)

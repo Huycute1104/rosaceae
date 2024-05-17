@@ -1,4 +1,4 @@
-package com.example.rosaceae.dto;
+package com.example.rosaceae.dto.Request.CategoryRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateRankRequet {
-    private String rankName;
+public class CreateCategoryRequest {
+    private String categoryName;
 }
+

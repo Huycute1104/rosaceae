@@ -1,6 +1,6 @@
-package com.example.rosaceae.dto;
+package com.example.rosaceae.dto.Request.ItemTypeRequest;
 
-import com.example.rosaceae.model.RankMember;
+import com.example.rosaceae.model.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateRankResponse {
+public class ItemTypeResponse {
+    private ItemType itemType;
     private String status;
-    private RankMember rankMember;
 }
