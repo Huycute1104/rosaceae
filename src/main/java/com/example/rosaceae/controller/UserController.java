@@ -1,10 +1,12 @@
 package com.example.rosaceae.controller;
 
 
+import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,4 +37,11 @@ public class UserController {
     public UserResponse toggleUserStatus(@PathVariable int userId) {
         return userService.toggleUserStatus(userId);
     }
+
+    @PutMapping("/update")
+//    @PreAuthorize("hasAuthority('user:write') or hasAuthority('admin:write')")
+    public UserResponse updateUserDetails(@RequestBody UserRequest updateUserRequest) {
+        return userService.updateUserDetails(updateUserRequest);
+    }
+
 }
