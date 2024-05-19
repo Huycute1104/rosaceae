@@ -2,6 +2,7 @@ package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Response.ItemImageResponse.ItemImageResponse;
+import com.example.rosaceae.model.ItemImages;
 import com.example.rosaceae.service.ItemImageService;
 import com.example.rosaceae.service.ItemTypeService;
 import lombok.RequiredArgsConstructor;
@@ -33,11 +34,22 @@ public class ItemImageController {
 
         ItemImageResponse response = itemImageService.CreateItemImage(request);
         return ResponseEntity.ok(response);
-    }@DeleteMapping("/{id}")
+    }
+
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('shop:delete')")
     public ResponseEntity<ItemImageResponse> deleteItem(@PathVariable int id) {
         ItemImageResponse response = itemImageService.DeleteItemImage(id);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ItemImages>> getAllItemImages(@PathVariable int id) {
+        List<ItemImages> images = itemImageService.getAllItemImages(id);
+        if (images.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(images);
     }
 
 
