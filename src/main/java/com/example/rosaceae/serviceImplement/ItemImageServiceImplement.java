@@ -84,6 +84,18 @@ public class ItemImageServiceImplement implements ItemImageService {
 
     @Override
     public ItemImageResponse DeleteItemImage(int id) {
-        return null;
+        var images = itemImageRepo.findByItemImageId(id).orElse(null);
+        if (images != null) {
+            itemImageRepo.delete(images);
+            return ItemImageResponse.builder()
+                    .images(null)
+                    .status("Delete Image Success")
+                    .build();
+        } else {
+            return ItemImageResponse.builder()
+                    .images(null)
+                    .status("Item Not Found")
+                    .build();
+        }
     }
 }
