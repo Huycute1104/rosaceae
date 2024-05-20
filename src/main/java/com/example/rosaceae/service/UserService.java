@@ -14,4 +14,5 @@ public interface UserService {
     Page<User> getAllUser(Pageable pageable);
     UserResponse toggleUserStatus(int userId);
     UserResponse updateUserDetails(UserRequest updateUserRequest);
+    List<User> searchByAccountNameOrPhone(String keyword);
 }

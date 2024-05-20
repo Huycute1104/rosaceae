@@ -61,4 +61,8 @@ public class UserServiceImplement implements UserService {
 
         return UserResponse.builder().status("Cập nhật thành công").build();
     }
+    @Override
+    public List<User> searchByAccountNameOrPhone(String keyword) {
+        return userRepo.searchByAccountNameOrPhone(keyword);
+    }
 }

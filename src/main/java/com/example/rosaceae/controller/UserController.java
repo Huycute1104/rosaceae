@@ -15,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
@@ -42,6 +44,12 @@ public class UserController {
 //    @PreAuthorize("hasAuthority('user:write') or hasAuthority('admin:write')")
     public UserResponse updateUserDetails(@RequestBody UserRequest updateUserRequest) {
         return userService.updateUserDetails(updateUserRequest);
+    }
+
+    @GetMapping("/search")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public List<User> searchByAccountNameOrPhone(@RequestParam String keyword) {
+        return userService.searchByAccountNameOrPhone(keyword);
     }
 
 }
