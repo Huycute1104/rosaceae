@@ -62,6 +62,7 @@ public class ItemController {
         return ResponseEntity.ok(itemService.UpdateItem(request,id));
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('shop:delete')")
     public ResponseEntity<ItemResponse> deleteItem(@PathVariable int id) {
         ItemResponse response = itemService.DeleteItem(id);
         return ResponseEntity.ok(response);

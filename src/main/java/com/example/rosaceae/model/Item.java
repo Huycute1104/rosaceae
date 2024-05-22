@@ -50,6 +50,11 @@ public class Item {
     @JsonIgnore
     private List<OrderDetail> orderDetails;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<ItemImages> itemImages;
+
     @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "UsersID")
     @EqualsAndHashCode.Exclude

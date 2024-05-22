@@ -1,5 +1,7 @@
 package com.example.rosaceae;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.rosaceae.Format.HTMLFormat;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
@@ -45,6 +47,15 @@ public class RosaceaeApplication {
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	@Bean
+	public Cloudinary cloudinary() {
+		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+				"cloud_name", "dpxs39hkb",
+				"api_key", "679575712278322",
+				"api_secret", "KJfkzpiXRnmkPCeRwH6TUAmFGks"));
+		return cloudinary;
+	}
+
     @GetMapping("")
     public String greeting() {
         try {
