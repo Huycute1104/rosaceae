@@ -50,6 +50,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(length = 64)
+    private String verificationCode;
+
+    private boolean enabled = false;
+
     @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     @JsonIgnore
     @JsonManagedReference
@@ -113,6 +118,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

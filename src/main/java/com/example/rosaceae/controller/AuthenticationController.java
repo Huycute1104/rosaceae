@@ -7,6 +7,7 @@ import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.repository.UserRepo;
+import com.example.rosaceae.service.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.mail.internet.MimeMessage;
 import com.example.rosaceae.dto.Request.UserRequest.CreateUserRequest;
@@ -37,6 +38,7 @@ public class AuthenticationController {
     private final PasswordEncoder passwordEncoder;
     private final JavaMailSender javaMailSender;
     private final UserRepo userRepo;
+    private final UserService userService;
 
     @Value("${spring.mail.username}")
     private String sender;
@@ -56,7 +58,7 @@ public class AuthenticationController {
             User user = userRepo.findUserByEmail(request.get("email").asText()).get();
             String result = "";
             String randomPassword = randomStringGenerator(10);
-            String[] arr = HTMLFormat.ForgotPasswordHTML.split("#######");
+            String[] arr = HTMLFormat.ForgotPasswordHTML.split("######");
             if (arr.length == 2) {
                 result = arr[0] + randomPassword + arr[1];
             }
@@ -73,6 +75,7 @@ public class AuthenticationController {
             String message = result;
             mimeMessage.setContent(message, "text/html; charset=utf-8");
             user.setPassword(passwordEncoder.encode(randomPassword));
+            userRepo.save(user);
 
             javaMailSender.send(mimeMessage);
             return ResponseEntity.ok("a temporary password have been sent to this email, use it to login and change the password");
@@ -82,6 +85,18 @@ public class AuthenticationController {
         return ResponseEntity.internalServerError().body("something in the server went gone");
     }
 
+    @PostMapping("/email-verify")
+    public ResponseEntity<String> emailVerify(@RequestBody JsonNode request){
+        try{
+            String token = request.get("token").asText();
+            if(userService.emailVerify(token)){
+                return ResponseEntity.ok("Email have been verified");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ResponseEntity.badRequest().body("Error while verify email");
+    }
 
     @PostMapping("/refresh-token")
     public void refreshToken(

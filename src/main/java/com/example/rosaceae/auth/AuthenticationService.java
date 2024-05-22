@@ -1,5 +1,6 @@
 package com.example.rosaceae.auth;
 
+import com.example.rosaceae.Format.HTMLFormat;
 import com.example.rosaceae.config.JwtService;
 import com.example.rosaceae.dto.Request.UserRequest.CreateUserRequest;
 import com.example.rosaceae.enums.Role;
@@ -10,10 +11,14 @@ import com.example.rosaceae.repository.RankMemberRepo;
 import com.example.rosaceae.repository.TokeRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +27,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.example.rosaceae.Util.StringHanlder.randomStringGenerator;
 
 @Service
 @RequiredArgsConstructor
@@ -32,13 +39,27 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final TokeRepo tokeRepo;
+    private final JavaMailSender javaMailSender;
     private final RankMemberRepo rankMemberRepo;
+
+    @Value("${spring.mail.username}")
+    private String sender;
 
     public AuthenticationResponse createUser(CreateUserRequest request) {
         String email = request.getEmail();
+        String result = "";
+        String randomEmailToken = randomStringGenerator(64);
         if(!isValidEmail(email)){
             return AuthenticationResponse.builder()
                     .msg("Invalid email format.")
+                    .status(400)
+                    .accessToken(null)
+                    .refreshToken(null)
+                    .build();
+        }
+        if(userRepo.findUserByEmail(request.getEmail()).isPresent()){
+            return AuthenticationResponse.builder()
+                    .msg("There already a user with this email.")
                     .status(400)
                     .accessToken(null)
                     .refreshToken(null)
@@ -60,13 +81,39 @@ public class AuthenticationService {
                 .address(request.getAddress())
                 .userStatus(true)
                 .role(Role.CUSTOMER)
+                .verificationCode(randomEmailToken)
                 .build();
         var save = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(save, jwtToken);
+        try{
+            String[] arr = HTMLFormat.EmailVerificationHTML.split("######");
+            String verificationURL = "http://localhost:5173/verify?token=" + randomEmailToken;
+            if (arr.length == 2) {
+                result = arr[0] + verificationURL + arr[1];
+            }
+            System.out.println(result);
+
+            MimeMessage mimeMessage;
+            mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setTo(user.getEmail());
+            mimeMessageHelper.setSubject("Email Verification");
+            mimeMessageHelper.setText(result, true);
+            String message = result;
+            mimeMessage.setContent(message, "text/html; charset=utf-8");
+
+            javaMailSender.send(mimeMessage);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return AuthenticationResponse.builder()
-                .msg("You have successfully registered.")
+                .msg("You have successfully registered, please check your mail for verification mail.")
                 .status(200)
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -96,6 +143,7 @@ public class AuthenticationService {
                 .userStatus(request.isStatus())
                 .role(request.getRole())
                 .rankMember(rank)
+                .enabled(request.isEnabled())
                 .build();
         var save = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -131,24 +179,35 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(
+//                        request.getEmail(),
+//                        request.getPassword()
+//                )
+//        );
         var user = userRepo.findByEmail(request.getEmail()).orElseThrow();
-        if (!user.isUserStatus()) {
+        System.out.println(user);
+        if (!user.isUserStatus() || !user.isEnabled()) {
             return AuthenticationResponse.builder()
-                    .msg("User is ban")
+                    .msg("User is ban or is not verified")
+                    .status(400)
                     .build();
-        } else {
+        }
+        if(user == null || (user != null && !passwordEncoder.matches(request.getPassword(), user.getPassword()))){
+            System.out.println(passwordEncoder.matches(request.getPassword(), user.getPassword()));
+            return AuthenticationResponse.builder()
+                    .msg("Wrong email or password")
+                    .status(400)
+                    .build();
+        }
+        else {
             var jwtToken = jwtService.generateToken(user);
             var refreshToken = jwtService.generateRefreshToken(user);
             revokeAllUserTokens(user);
             saveUserToken(user, jwtToken);
             return AuthenticationResponse.builder()
                     .msg("Login successfully")
+                    .status(200)
 //                .userInfo(userRepo.findUserByEmail(request.getEmail()).orElseThrow())
                     .accessToken(jwtToken)
                     .refreshToken(refreshToken)

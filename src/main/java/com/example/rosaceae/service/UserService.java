@@ -10,4 +10,6 @@ import java.util.List;
 
 public interface UserService {
     Page<User> getAllUser(Pageable pageable);
+
+    boolean emailVerify(String token);
 }

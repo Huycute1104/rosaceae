@@ -20,4 +20,19 @@ public class UserServiceImplement implements UserService {
     public Page<User> getAllUser(Pageable pageable) {
         return userRepo.findAll(pageable);
     }
+
+    @Override
+    public boolean emailVerify(String token) {
+        User user = userRepo.findUserByVerificationCode(token).get();
+
+        if (user == null || user.isEnabled()) {
+            return false;
+        } else {
+            user.setVerificationCode(null);
+            user.setEnabled(true);
+            userRepo.save(user);
+
+            return true;
+        }
+    }
 }

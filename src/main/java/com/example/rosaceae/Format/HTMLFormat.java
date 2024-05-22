@@ -86,12 +86,46 @@ public class HTMLFormat {
                     <div style="padding: 20px 0; text-align: center;">
                         <p style="font-size: 16px; line-height: 1.5; color: #666;">Hello,</p>
                         <p style="font-size: 16px; line-height: 1.5; color: #666;">We received a request to reset your password. Click the button below to reset it:</p>
-                        <p style="font-size: 16px; line-height: 1.5; color: #666;">Here your temporary password, use it to login and change the password #######</p>
+                        <p style="font-size: 16px; line-height: 1.5; color: #666;">Here your temporary password, use it to login and change the password ######</p>
                     </div>
                     <div style="text-align: center; padding: 20px 0; font-size: 12px; color: #999;">
                         <p>&copy; 2024 Your Company. All rights reserved.</p>
                     </div>
                 </div>
+            </body>
+            """;
+
+    public static final String EmailVerificationHTML = """
+            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 0; padding: 20px; background-color: #f4f4f4;">
+                    <tr>
+                        <td align="center">
+                            <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                                <tr>
+                                    <td align="center" style="padding: 20px; background-color: #4CAF50; color: #ffffff;">
+                                        <h1 style="margin: 0; font-size: 24px;">Verify Your Email Address</h1>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 40px 20px; color: #333333;">
+                                        <p style="margin: 0; font-size: 16px; line-height: 1.5;">Thank you for signing up! Please click the button below to verify your email address.</p>
+                                        <a href="######" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #4CAF50; color: #ffffff; text-decoration: none; font-size: 16px; border-radius: 4px;">Verify Email</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 20px; color: #777777; font-size: 12px;">
+                                        <p style="margin: 0;">If you did not sign up for this account, you can ignore this email.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="padding: 20px; background-color: #616161; color: #777777; font-size: 12px;">
+                                        <p style="margin: 0;">&copy; 2024 Rosaceae. All rights reserved.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </body>
             """;
 }

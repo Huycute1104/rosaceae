@@ -45,11 +45,52 @@ public class RosaceaeApplication {
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+    @GetMapping("")
+    public String greeting() {
+        try {
+            String result = "";
+            String[] arr = HTMLFormat.MailHtml.split("@@@@@@@@######");
+            if (arr.length == 2) {
+                result = arr[0] + "lmao" + arr[1];
+            }
+            System.out.println(result);
+
+            MimeMessage mimeMessage;
+            mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setTo("trihuynh1811@gmail.com");
+            mimeMessageHelper.setSubject("testing sending email");
+            mimeMessageHelper.setText(result, true);
+//
+            String message = result;
+//
+            mimeMessage.setContent(message, "text/html; charset=utf-8");
+
+//            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+//
+//            simpleMailMessage.setFrom("huypt110402@gmail.com");
+//            simpleMailMessage.setTo("trihuynh1811@gmail.com");
+//            simpleMailMessage.setSubject("test send mail ses");
+//            simpleMailMessage.setText(message);
+
+            javaMailSender.send(mimeMessage);
+//            emailService.SendMail(simpleMailMessage);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "Wat sup my nigga !";
+    }
+
+
 //	@Bean
 //	public CommandLineRunner commandLineRunner(
 //			AuthenticationService service,
 //			RankMemberService memberService,
-//            CategoryService categoryService,
+//			CategoryService categoryService,
 //			ItemTypeService itemTypeService,
 //			ItemService itemService
 //	) {
@@ -77,6 +118,7 @@ public class RosaceaeApplication {
 //					.phone("0392272536")
 //					.status(true)
 //					.role(SUPPER_ADMIN)
+//					.enabled(true)
 //					.build();
 //			System.out.println("Super Admin token :" + service.register(super_admin).getAccessToken());
 //
@@ -88,6 +130,7 @@ public class RosaceaeApplication {
 //					.password("123")
 //					.phone("0854512367")
 //					.role(ADMIN)
+//					.enabled(true)
 //					.build();
 //			System.out.println("Admin token :" + service.register(admin).getAccessToken());
 //
@@ -99,6 +142,7 @@ public class RosaceaeApplication {
 //					.password("123")
 //					.phone("0854512367")
 //					.role(SHOP)
+//					.enabled(true)
 //					.build();
 //			System.out.println("Shop token :" + service.register(shop).getAccessToken());
 //
@@ -111,6 +155,7 @@ public class RosaceaeApplication {
 //					.phone("0854512367")
 //					.role(CUSTOMER)
 //					.rankId(1)
+//					.enabled(true)
 //					.build();
 //			System.out.println("Customer token :" + service.register(customer).getAccessToken());
 //
@@ -122,33 +167,34 @@ public class RosaceaeApplication {
 //					.phone("0854512367")
 //					.role(CUSTOMER)
 //					.rankId(1)
+//					.enabled(true)
 //					.build();
 //			service.register(customer2);
 //
 //			//dummy data category
-//            var category = CreateCategoryRequest.builder()
-//                    .categoryName("Facial")
-//                    .build();
-//            categoryService.createCategory(category);
+//			var category = CreateCategoryRequest.builder()
+//					.categoryName("Facial")
+//					.build();
+//			categoryService.createCategory(category);
 //
-//            var category1 = CreateCategoryRequest.builder()
-//                    .categoryName("BodyCare")
-//                    .build();
-//            categoryService.createCategory(category1);
+//			var category1 = CreateCategoryRequest.builder()
+//					.categoryName("BodyCare")
+//					.build();
+//			categoryService.createCategory(category1);
 //
-//            var category2 = CreateCategoryRequest.builder()
-//                    .categoryName("Nail")
-//                    .build();
-//            categoryService.createCategory(category2);
+//			var category2 = CreateCategoryRequest.builder()
+//					.categoryName("Nail")
+//					.build();
+//			categoryService.createCategory(category2);
 //
-//            var category3 = CreateCategoryRequest.builder()
-//                    .categoryName("HairCare")
-//                    .build();
-//            categoryService.createCategory(category3);
-//            var category4 = CreateCategoryRequest.builder()
-//                    .categoryName("Relaxation")
-//                    .build();
-//            categoryService.createCategory(category4);
+//			var category3 = CreateCategoryRequest.builder()
+//					.categoryName("HairCare")
+//					.build();
+//			categoryService.createCategory(category3);
+//			var category4 = CreateCategoryRequest.builder()
+//					.categoryName("Relaxation")
+//					.build();
+//			categoryService.createCategory(category4);
 //
 //			// dummy data itemType
 //			var itemType = ItemTypeRequest.builder()
@@ -195,45 +241,4 @@ public class RosaceaeApplication {
 //
 //		};
 //	}
-
-    @GetMapping("")
-    public String greeting() {
-        try {
-            String result = "";
-            String[] arr = HTMLFormat.MailHtml.split("@@@@@@@@######");
-            if (arr.length == 2) {
-                result = arr[0] + "lmao" + arr[1];
-            }
-            System.out.println(result);
-
-            MimeMessage mimeMessage;
-            mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-
-            mimeMessageHelper.setFrom(sender);
-            mimeMessageHelper.setTo("trihuynh1811@gmail.com");
-            mimeMessageHelper.setSubject("testing sending email");
-            mimeMessageHelper.setText(result, true);
-//
-            String message = result;
-//
-            mimeMessage.setContent(message, "text/html; charset=utf-8");
-
-//            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//
-//            simpleMailMessage.setFrom("huypt110402@gmail.com");
-//            simpleMailMessage.setTo("trihuynh1811@gmail.com");
-//            simpleMailMessage.setSubject("test send mail ses");
-//            simpleMailMessage.setText(message);
-
-            javaMailSender.send(mimeMessage);
-//            emailService.SendMail(simpleMailMessage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "Wat sup my nigga !";
-    }
-
 }
