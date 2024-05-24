@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface ItemTypeRepo extends JpaRepository<ItemType, Long> {
+public interface ItemTypeRepo extends JpaRepository<ItemType, Integer> {
     Optional<ItemType> findByItemTypeName(String name);
     Optional<ItemType> findByItemTypeId(int itemTypeId);
 }
