@@ -9,6 +9,8 @@ import com.example.rosaceae.model.RankMember;
 import com.example.rosaceae.repository.RankMemberRepo;
 import com.example.rosaceae.service.RankMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -86,6 +88,11 @@ public class RankMemberServiceImplement implements RankMemberService {
     @Override
     public List<RankMember> getAllRank() {
         return memberRepo.findAll();
+    }
+
+    @Override
+    public Page<RankMember> getAllRank(Pageable pageable) {
+        return memberRepo.findAll(pageable);
     }
 
     @Override
