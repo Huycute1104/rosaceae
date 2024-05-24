@@ -1,7 +1,10 @@
 package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Request.CartRequest.AddToCartRequest;
+import com.example.rosaceae.dto.Request.CartRequest.UpdateCartItem;
+import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Response.CartResponse.CartResponse;
+import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.model.Cart;
 import com.example.rosaceae.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +55,14 @@ public class CartController {
     @PreAuthorize("hasAnyAuthority('customer:delete')")
     public CartResponse removeFromCart(@PathVariable int id) {
         return cartService.removeCart(id);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('customer:update')")
+    public ResponseEntity<CartResponse> updateUser(
+            @PathVariable int id,
+            @RequestBody UpdateCartItem request) {
+        return ResponseEntity.ok(cartService.updateCartItem(id,request));
     }
 
 

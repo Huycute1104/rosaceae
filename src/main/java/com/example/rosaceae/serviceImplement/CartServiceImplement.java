@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Request.CartRequest.AddToCartRequest;
+import com.example.rosaceae.dto.Request.CartRequest.UpdateCartItem;
 import com.example.rosaceae.dto.Response.CartResponse.CartResponse;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Cart;
@@ -105,10 +106,14 @@ public class CartServiceImplement implements CartService {
     }
 
     @Override
-    public CartResponse updateCartItem(int id, int quantity) {
-        var item = itemRepo.findByItemId(id).orElse(null);
-        if (item == null) {
-
+    public CartResponse updateCartItem(int id , UpdateCartItem item) {
+        var cart = cartRepo.findById(id).orElse(null);
+        if (cart == null) {
+            return CartResponse.builder()
+                    .status("CartItem does not exist").build();
+        }else {
+            cart.setQuantity(item.getQuantity());
+            cartRepo.save(cart);
         }
         return null;
     }
