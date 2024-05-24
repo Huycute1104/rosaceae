@@ -9,6 +9,9 @@ import com.example.rosaceae.model.ItemType;
 import com.example.rosaceae.service.ItemTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +34,11 @@ public class ItemTypeController {
 
     @GetMapping("")
     @PreAuthorize("hasAuthority('admin:read')")
-    public List<ItemType> getAllUsers() {
-        return itemTypeService.findAll();
+    public Page<ItemType> getAllUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return itemTypeService.findAll(pageable);
     }
 
     @GetMapping("/{id}")

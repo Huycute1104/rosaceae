@@ -8,6 +8,8 @@ import com.example.rosaceae.model.ItemType;
 import com.example.rosaceae.repository.ItemTypeRepo;
 import com.example.rosaceae.service.ItemTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,11 @@ public class ItemTypeServiceImplement implements ItemTypeService {
     @Override
     public List<ItemType> findAll() {
         return itemTypeRepo.findAll();
+    }
+
+    @Override
+    public Page<ItemType> findAll(Pageable pageable) {
+        return itemTypeRepo.findAll(pageable);
     }
 
     @Override
