@@ -86,6 +86,11 @@ public class User implements UserDetails {
 //    @JsonBackReference
     private RankMember rankMember;
 
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Voucher> vouchers;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();

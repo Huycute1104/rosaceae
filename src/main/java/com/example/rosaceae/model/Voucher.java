@@ -1,10 +1,8 @@
 package com.example.rosaceae.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -33,5 +31,12 @@ public class Voucher {
 
     @Column(name = "Value")
     private int value;
+
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "UsersID")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonBackReference
+    private User user;
 
 }
