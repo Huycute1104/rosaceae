@@ -56,6 +56,7 @@ public class RankMemberController {
         return ResponseEntity.ok(memberService.updateRank(id, request));
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:delete')")
     public ResponseEntity<RankResponse> deleteFood(@PathVariable int id) {
         RankResponse response = memberService.deleteRank(id);
         return ResponseEntity.ok(response);
