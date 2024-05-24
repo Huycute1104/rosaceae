@@ -3,9 +3,12 @@ package com.example.rosaceae.serviceImplement;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.model.Category;
+import com.example.rosaceae.model.Item;
 import com.example.rosaceae.repository.CategoryRepo;
 import com.example.rosaceae.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -84,6 +87,10 @@ public class CategoryServiceImplement implements CategoryService {
         return categoryRepo.findAll();
     }
 
+    @Override
+    public Page<Category> getAllCategory(Pageable pageable) {
+        return categoryRepo.findAll(pageable);
+    }
     @Override
     public Optional<Category> getCategoryByID(int id) {
         return categoryRepo.findCategoriesByCategoryId(id);
