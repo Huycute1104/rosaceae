@@ -4,7 +4,6 @@ import com.example.rosaceae.dto.Request.CartRequest.AddToCartRequest;
 import com.example.rosaceae.dto.Response.CartResponse.CartResponse;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Cart;
-import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.ItemType;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.repository.CartRepo;
@@ -92,6 +91,18 @@ public class CartServiceImplement implements CartService {
         }
     }
 
+    @Override
+    public CartResponse removeCart(int id) {
+        if (cartRepo.existsById(id)) {
+            cartRepo.deleteById(id);
+            return CartResponse.builder()
+                    .status("Item removed from cart successfully").build();
+        } else {
+            return CartResponse.builder()
+                    .status("Item does not exist").build();
+        }
+
+    }
 
 
 }

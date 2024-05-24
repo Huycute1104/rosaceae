@@ -35,18 +35,25 @@ public class CartController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         if (customerId <= 0 || type <= 0 || page < 0 || size <= 0) {
-            return ResponseEntity.badRequest().build(); // Invalid input parameters
+            return ResponseEntity.badRequest().build();
         }
 
         Pageable pageable = PageRequest.of(page, size);
         Page<Cart> carts = cartService.viewCarOfCustomer(customerId, type, pageable);
 
         if (carts.isEmpty()) {
-            return ResponseEntity.noContent().build(); // No carts found for the customer
+            return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.ok(carts);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('customer:delete')")
+    public CartResponse removeFromCart(@PathVariable int id) {
+        return cartService.removeCart(id);
+    }
+
 
 
 }
