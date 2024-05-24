@@ -21,7 +21,8 @@ public enum Role {
                     ADMIN_UPDATE,
                     ADMIN_DELETE,
 
-                    SHOP_READ
+                    SHOP_READ,
+                    SHOP_CREATE
             )),
     CUSTOMER(
             Set.of(
