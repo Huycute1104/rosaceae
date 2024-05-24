@@ -10,4 +10,5 @@ public interface CartService {
     public CartResponse addToCart(AddToCartRequest request);
     Page<Cart> viewCarOfCustomer(int customerId, int type,Pageable pageable);
     public CartResponse removeCart(int id);
+    public CartResponse updateCartItem(int id, int quantity);
 }

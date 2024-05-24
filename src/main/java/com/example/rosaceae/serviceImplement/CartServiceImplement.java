@@ -104,5 +104,14 @@ public class CartServiceImplement implements CartService {
 
     }
 
+    @Override
+    public CartResponse updateCartItem(int id, int quantity) {
+        var item = itemRepo.findByItemId(id).orElse(null);
+        if (item == null) {
+
+        }
+        return null;
+    }
+
 
 }

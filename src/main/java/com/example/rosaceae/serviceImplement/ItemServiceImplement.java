@@ -55,7 +55,7 @@ public class ItemServiceImplement implements ItemService {
                         .build();
             } else {
                 int quantity = 0;
-                if (category.getCategoryId() == 2) {
+                if (itemTypeId == 2) {
                     quantity = itemRequest.getQuantity();
                 }
                 Item item = Item.builder()
