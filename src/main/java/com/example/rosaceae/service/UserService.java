@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     Page<User> getAllUser(Pageable pageable);
@@ -17,4 +18,5 @@ public interface UserService {
     UserResponse toggleUserStatus(int userId);
     UserResponse updateUserDetails(UserRequest updateUserRequest);
     List<User> searchByAccountNameOrPhone(String keyword);
+    Optional<User> getUserById(int userId);
 }

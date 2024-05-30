@@ -3,6 +3,7 @@ package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
+import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -51,5 +53,11 @@ public class UserController {
     public List<User> searchByAccountNameOrPhone(@RequestParam String keyword) {
         return userService.searchByAccountNameOrPhone(keyword);
     }
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin:read')")
+    public Optional<User> getCategoryByID(@PathVariable int id) {
+        return userService.getUserById(id);
+    }
+
 
 }
