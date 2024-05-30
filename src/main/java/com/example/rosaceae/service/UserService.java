@@ -19,4 +19,5 @@ public interface UserService {
     UserResponse updateUserDetails(UserRequest updateUserRequest);
     List<User> searchByAccountNameOrPhone(String keyword);
     Optional<User> getUserById(int userId);
+    Optional<User> getUserByToken(String token);
 }

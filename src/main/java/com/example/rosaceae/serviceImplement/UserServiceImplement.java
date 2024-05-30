@@ -86,4 +86,9 @@ public class UserServiceImplement implements UserService {
     public Optional<User> getUserById(int userId) {
         return userRepo.findById(userId);
     }
+
+    @Override
+    public Optional<User> getUserByToken(String token) {
+        return userRepo.findUsersByTokensToken(token);
+    }
 }

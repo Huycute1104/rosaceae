@@ -59,5 +59,11 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/getUser/{token}")
+    @PreAuthorize("hasAuthority('shop:read')")
+    public Optional<User> getUserByToken(@PathVariable String token) {
+        return userService.getUserByToken(token);
+    }
+
 
 }

@@ -15,4 +15,5 @@ public interface UserRepo extends JpaRepository<User,Integer> {
     Optional<User> findUserByVerificationCode(String token);
     @Query("SELECT u FROM User u WHERE u.accountName LIKE %:keyword% OR u.phone LIKE %:keyword%")
     List<User> searchByAccountNameOrPhone(@Param("keyword") String keyword);
+    Optional<User> findUsersByTokensToken(String token);
 }
