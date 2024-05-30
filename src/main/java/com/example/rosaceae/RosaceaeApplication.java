@@ -9,6 +9,8 @@ import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
+import com.example.rosaceae.model.Report;
+import com.example.rosaceae.repository.ReportRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.*;
 import jakarta.mail.internet.MimeMessage;
@@ -38,6 +40,7 @@ public class RosaceaeApplication {
     private final EmailService emailService;
 	@Value("${spring.mail.username}")
 	private String sender;
+	private final ReportRepo reportRepo;
 
     public static void main(String[] args) {
         SpringApplication.run(RosaceaeApplication.class, args);
@@ -96,7 +99,18 @@ public class RosaceaeApplication {
         return "Wat sup my nigga !";
     }
 
+	@Bean
+	public CommandLineRunner commandLineRunner2(
 
+	) {
+		return args -> {
+			// Dummy data for reports
+			String[] reportNames = {"Shop fake", "Hàng kém chất lượng", "Lý do khác"};
+			for (String reportName : reportNames) {
+				Report report = Report.builder().reportName(reportName).build();
+				reportRepo.save(report);
+			}
+		};}
 //	@Bean
 //	public CommandLineRunner commandLineRunner(
 //			AuthenticationService service,
