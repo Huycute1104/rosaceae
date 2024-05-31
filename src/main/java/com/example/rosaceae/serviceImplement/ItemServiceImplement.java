@@ -16,6 +16,7 @@ import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -172,10 +173,13 @@ public class ItemServiceImplement implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getItemsByUserId(int userId) {
-        List<Item> items = itemRepo.findByUserUsersID(userId);
-        return items.stream().map(this::convertToDTO).collect(Collectors.toList());
+    public Page<ItemDTO> getItemsByUserId(int userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Item> itemsPage = itemRepo.findByUserUsersID(userId, pageable);
+        return itemsPage.map(this::convertToDTO);
     }
+
+
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
                 .itemId(item.getItemId())

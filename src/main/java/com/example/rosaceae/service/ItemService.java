@@ -21,5 +21,5 @@ public interface ItemService {
     Page<Item> getAllItems(Pageable pageable);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
     public ItemResponse DeleteItem(int id);
-    public List<ItemDTO> getItemsByUserId(int userId);
+    Page<ItemDTO> getItemsByUserId(int userId, int page, int size);
 }

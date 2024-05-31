@@ -39,8 +39,11 @@ public class ItemController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<ItemDTO>> getItemsByUserId(@PathVariable int userId) {
-        List<ItemDTO> items = itemService.getItemsByUserId(userId);
+    public ResponseEntity<Page<ItemDTO>> getItemsByUserId(
+            @PathVariable int userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<ItemDTO> items = itemService.getItemsByUserId(userId, page, size);
         return ResponseEntity.ok(items);
     }
     @PostMapping("")
