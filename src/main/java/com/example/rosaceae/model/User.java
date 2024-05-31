@@ -79,6 +79,11 @@ public class User implements UserDetails {
     @JsonManagedReference
     private List<Follower> shops;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Item> items;
+
     @ManyToOne
     @JoinColumn(name = "RankMemberID")
 //    @EqualsAndHashCode.Exclude
