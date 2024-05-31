@@ -25,13 +25,13 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('customer:create')")
+//    @PreAuthorize("hasAuthority('customer:create')")
     public CartResponse addToCart(@RequestBody AddToCartRequest request) {
         return cartService.addToCart(request);
     }
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('customer:read')")
+//    @PreAuthorize("hasAuthority('customer:read')")
     public ResponseEntity<Page<Cart>> viewCartOfCustomer(
             @RequestParam int customerId,
             @RequestParam int type,
@@ -52,13 +52,13 @@ public class CartController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('customer:delete')")
+//    @PreAuthorize("hasAnyAuthority('customer:delete')")
     public CartResponse removeFromCart(@PathVariable int id) {
         return cartService.removeCart(id);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('customer:update')")
+//    @PreAuthorize("hasAuthority('customer:update')")
     public ResponseEntity<CartResponse> updateUser(
             @PathVariable int id,
             @RequestBody UpdateCartItem request) {

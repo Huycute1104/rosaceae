@@ -28,7 +28,7 @@ public class RankMemberController {
     private RankMemberService memberService;
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Page<RankMember> getAllUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
@@ -37,7 +37,7 @@ public class RankMemberController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Optional<RankMember> getCategoryByID(@PathVariable int id) {
         return memberService.getRankById(id);
     }
@@ -49,14 +49,14 @@ public class RankMemberController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:update')")
+//    @PreAuthorize("hasAuthority('admin:update')")
     public ResponseEntity<UpdateRankResponse> updateUser(
             @PathVariable int id,
             @RequestBody UpdateRankRequest request) {
         return ResponseEntity.ok(memberService.updateRank(id, request));
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:delete')")
+//    @PreAuthorize("hasAuthority('admin:delete')")
     public ResponseEntity<RankResponse> deleteFood(@PathVariable int id) {
         RankResponse response = memberService.deleteRank(id);
         return ResponseEntity.ok(response);

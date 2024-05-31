@@ -32,12 +32,12 @@ public class ItemController {
     private ItemService itemService;
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('shop:read')")
+//    @PreAuthorize("hasAuthority('shop:read')")
     public Optional<Item> geItemByID(@PathVariable int id) {
         return itemService.GetItemById(id);
     }
     @PostMapping("")
-    @PreAuthorize("hasAuthority('shop:create')")
+//    @PreAuthorize("hasAuthority('shop:create')")
     public ResponseEntity<ItemResponse> createCategory(@RequestBody ItemRequest request) {
         return ResponseEntity.ok(itemService.CreateItem(request));
     }
@@ -56,14 +56,14 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('shop:update')")
+//    @PreAuthorize("hasAuthority('shop:update')")
     public ResponseEntity<ItemResponse> updateItem(
             @PathVariable int id,
             @RequestBody CreateItemRequest request) {
         return ResponseEntity.ok(itemService.UpdateItem(request,id));
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('shop:delete')")
+//    @PreAuthorize("hasAuthority('shop:delete')")
     public ResponseEntity<ItemResponse> deleteItem(@PathVariable int id) {
         ItemResponse response = itemService.DeleteItem(id);
         return ResponseEntity.ok(response);
