@@ -99,7 +99,14 @@ public class ItemServiceImplement implements ItemService {
 
     @Override
     public Page<Item> getAllItems(Pageable pageable) {
-        return itemRepo.findAll(pageable);
+        try{
+            return itemRepo.findAll(pageable);
+        }catch (Exception e){
+            e.printStackTrace();
+            return  null;
+        }
+
+
     }
 
     @Override

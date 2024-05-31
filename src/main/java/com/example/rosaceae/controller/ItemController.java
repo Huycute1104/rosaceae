@@ -25,6 +25,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/item")
+//@PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 public class ItemController {
     @Autowired
@@ -46,7 +47,7 @@ public class ItemController {
 //        return itemService.GetAllItems();
 //    }
     @GetMapping("")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Page<Item> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
