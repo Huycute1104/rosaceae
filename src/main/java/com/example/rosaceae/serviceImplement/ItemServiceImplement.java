@@ -1,5 +1,9 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Data.CategoryDTO;
+import com.example.rosaceae.dto.Data.ItemDTO;
+import com.example.rosaceae.dto.Data.ItemImageDTO;
+import com.example.rosaceae.dto.Data.ItemTypeDTO;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
@@ -18,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemServiceImplement implements ItemService {
@@ -164,6 +169,38 @@ public class ItemServiceImplement implements ItemService {
                     .status("Item Not Found")
                     .build();
         }
+    }
+
+    @Override
+    public List<ItemDTO> getItemsByUserId(int userId) {
+        List<Item> items = itemRepo.findByUserUsersID(userId);
+        return items.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+    private ItemDTO convertToDTO(Item item) {
+        return ItemDTO.builder()
+                .itemId(item.getItemId())
+                .itemName(item.getItemName())
+                .itemPrice(item.getItemPrice())
+                .itemDescription(item.getItemDescription())
+                .itemRate(item.getItemRate())
+                .commentCount(item.getCommentCount())
+                .countUsage(item.getCountUsage())
+                .quantity(item.getQuantity())
+                .discount(item.getDiscount())
+                .itemImages(item.getItemImages().stream()
+                        .map(image -> ItemImageDTO.builder()
+                                .imageUrl(image.getImageUrl())
+                                .build())
+                        .collect(Collectors.toList()))
+                .category(CategoryDTO.builder()
+                        .categoryId(item.getCategory().getCategoryId())
+                        .categoryName(item.getCategory().getCategoryName())
+                        .build())
+                .itemType(ItemTypeDTO.builder()
+                        .itemTypeId(item.getItemType().getItemTypeId())
+                        .itemTypeName(item.getItemType().getItemTypeName())
+                        .build())
+                .build();
     }
 
 }

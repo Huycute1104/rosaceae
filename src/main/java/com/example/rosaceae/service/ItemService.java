@@ -1,5 +1,6 @@
 package com.example.rosaceae.service;
 
+import com.example.rosaceae.dto.Data.ItemDTO;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
@@ -20,4 +21,5 @@ public interface ItemService {
     Page<Item> getAllItems(Pageable pageable);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
     public ItemResponse DeleteItem(int id);
+    public List<ItemDTO> getItemsByUserId(int userId);
 }

@@ -1,5 +1,6 @@
 package com.example.rosaceae.controller;
 
+import com.example.rosaceae.dto.Data.ItemDTO;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
@@ -35,6 +36,12 @@ public class ItemController {
 //    @PreAuthorize("hasAuthority('shop:read')")
     public Optional<Item> geItemByID(@PathVariable int id) {
         return itemService.GetItemById(id);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ItemDTO>> getItemsByUserId(@PathVariable int userId) {
+        List<ItemDTO> items = itemService.getItemsByUserId(userId);
+        return ResponseEntity.ok(items);
     }
     @PostMapping("")
 //    @PreAuthorize("hasAuthority('shop:create')")
