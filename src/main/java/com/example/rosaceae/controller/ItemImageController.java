@@ -22,7 +22,7 @@ public class ItemImageController {
     private ItemImageService itemImageService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('shop:create')")
+//    @PreAuthorize("hasAuthority('shop:create')")
     public ResponseEntity<ItemImageResponse> uploadItemImages(
             @RequestParam("itemId") int itemId,
             @RequestParam("files") List<MultipartFile> files) {
@@ -37,7 +37,7 @@ public class ItemImageController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('shop:delete')")
+//    @PreAuthorize("hasAuthority('shop:delete')")
     public ResponseEntity<ItemImageResponse> deleteItem(@PathVariable int id) {
         ItemImageResponse response = itemImageService.DeleteItemImage(id);
         return ResponseEntity.ok(response);

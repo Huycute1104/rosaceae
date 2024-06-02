@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImplement implements UserService {
@@ -79,5 +80,15 @@ public class UserServiceImplement implements UserService {
     @Override
     public List<User> searchByAccountNameOrPhone(String keyword) {
         return userRepo.searchByAccountNameOrPhone(keyword);
+    }
+
+    @Override
+    public Optional<User> getUserById(int userId) {
+        return userRepo.findById(userId);
+    }
+
+    @Override
+    public Optional<User> getUserByToken(String token) {
+        return userRepo.findUsersByTokensToken(token);
     }
 }

@@ -25,13 +25,13 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('admin:create')")
+//    @PreAuthorize("hasAuthority('admin:create')")
     public ResponseEntity<CategoryResponse> createCategory(@RequestBody CreateCategoryRequest request) {
         return ResponseEntity.ok(categoryService.createCategory(request));
     }
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Page<Category> getAllUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
@@ -40,13 +40,13 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Optional<Category> getCategoryByID(@PathVariable int id) {
         return categoryService.getCategoryByID(id);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:update')")
+//    @PreAuthorize("hasAuthority('admin:update')")
     public ResponseEntity<CategoryResponse> updateUser(
             @PathVariable int id,
             @RequestBody CreateCategoryRequest request) {

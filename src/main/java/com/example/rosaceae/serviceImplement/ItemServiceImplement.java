@@ -1,5 +1,9 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Data.CategoryDTO;
+import com.example.rosaceae.dto.Data.ItemDTO;
+import com.example.rosaceae.dto.Data.ItemImageDTO;
+import com.example.rosaceae.dto.Data.ItemTypeDTO;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
@@ -12,12 +16,14 @@ import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemServiceImplement implements ItemService {
@@ -99,7 +105,14 @@ public class ItemServiceImplement implements ItemService {
 
     @Override
     public Page<Item> getAllItems(Pageable pageable) {
-        return itemRepo.findAll(pageable);
+        try{
+            return itemRepo.findAll(pageable);
+        }catch (Exception e){
+            e.printStackTrace();
+            return  null;
+        }
+
+
     }
 
     @Override
@@ -157,6 +170,41 @@ public class ItemServiceImplement implements ItemService {
                     .status("Item Not Found")
                     .build();
         }
+    }
+
+    @Override
+    public Page<ItemDTO> getItemsByUserId(int userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Item> itemsPage = itemRepo.findByUserUsersID(userId, pageable);
+        return itemsPage.map(this::convertToDTO);
+    }
+
+
+    private ItemDTO convertToDTO(Item item) {
+        return ItemDTO.builder()
+                .itemId(item.getItemId())
+                .itemName(item.getItemName())
+                .itemPrice(item.getItemPrice())
+                .itemDescription(item.getItemDescription())
+                .itemRate(item.getItemRate())
+                .commentCount(item.getCommentCount())
+                .countUsage(item.getCountUsage())
+                .quantity(item.getQuantity())
+                .discount(item.getDiscount())
+                .itemImages(item.getItemImages().stream()
+                        .map(image -> ItemImageDTO.builder()
+                                .imageUrl(image.getImageUrl())
+                                .build())
+                        .collect(Collectors.toList()))
+                .category(CategoryDTO.builder()
+                        .categoryId(item.getCategory().getCategoryId())
+                        .categoryName(item.getCategory().getCategoryName())
+                        .build())
+                .itemType(ItemTypeDTO.builder()
+                        .itemTypeId(item.getItemType().getItemTypeId())
+                        .itemTypeName(item.getItemType().getItemTypeName())
+                        .build())
+                .build();
     }
 
 }

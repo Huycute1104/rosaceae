@@ -27,13 +27,13 @@ public class ItemTypeController {
     private ItemTypeService itemTypeService;
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('admin:create')")
+//    @PreAuthorize("hasAuthority('admin:create')")
     public ResponseEntity<ItemTypeResponse> createCategory(@RequestBody ItemTypeRequest request) {
         return ResponseEntity.ok(itemTypeService.createItemType(request));
     }
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Page<ItemType> getAllUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
@@ -42,7 +42,7 @@ public class ItemTypeController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Optional<ItemType> getCategoryByID(@PathVariable int id) {
         return itemTypeService.getItemTypeByID(id);
     }
