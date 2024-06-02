@@ -24,7 +24,7 @@ public class User implements UserDetails {
     @Column(name = "UsersID")
     private int usersID;
 
-    @Column(name = "AccountName", length = 20)
+    @Column(name = "AccountName", length = 50)
     private String accountName;
 
     @Column(name = "Email", length = 50,unique = true)
@@ -54,6 +54,8 @@ public class User implements UserDetails {
     private String verificationCode;
 
     private boolean enabled = false;
+
+    private String coverImages;
 
     @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     @JsonIgnore

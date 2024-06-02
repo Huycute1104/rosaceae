@@ -40,6 +40,8 @@ public class Item {
 
     private int discount;
 
+    private boolean status;
+
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore

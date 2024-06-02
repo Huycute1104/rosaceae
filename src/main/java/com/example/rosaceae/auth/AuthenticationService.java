@@ -144,6 +144,7 @@ public class AuthenticationService {
                 .role(request.getRole())
                 .rankMember(rank)
                 .enabled(request.isEnabled())
+                .coverImages(request.getImages())
                 .build();
         var save = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);

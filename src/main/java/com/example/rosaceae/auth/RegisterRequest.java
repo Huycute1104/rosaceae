@@ -16,6 +16,7 @@ public class RegisterRequest {
     private String email;
     private String password;
     private String phone;
+    private String images;
     private boolean status, enabled;
     private int rankId;
     private Role role;
