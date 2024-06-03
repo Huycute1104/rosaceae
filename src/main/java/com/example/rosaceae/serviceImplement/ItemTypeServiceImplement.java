@@ -62,7 +62,7 @@ public class ItemTypeServiceImplement implements ItemTypeService {
 
     private boolean isValidName(String name) {
         //Check validate
-        return name != null && name.length() <= 20 && name.length() >= 3 && !name.matches(".*[^a-zA-Z0-9].*");
+        return name != null && name.length() <= 20 && name.length() >= 3;
     }
 
     @Override
