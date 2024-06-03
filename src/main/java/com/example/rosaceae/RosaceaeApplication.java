@@ -122,16 +122,19 @@ public class RosaceaeApplication {
 		return args -> {
 			// dummy data rank
 			var rank = CreateRankRequet.builder()
-					.rankName("Bronze")
+					.rankName("Hạng Đồng")
+					.rankPoint(1000)
 					.build();
-			var bronze = memberService.createRank(rank);
+			memberService.createRank(rank);
 
 			var rank2 = CreateRankRequet.builder()
-					.rankName("Silver")
+					.rankName("Hạng Bạc")
+					.rankPoint(5000)
 					.build();
 			memberService.createRank(rank2);
 			var rank3 = CreateRankRequet.builder()
-					.rankName("Gold")
+					.rankName("Hạng Vàng")
+					.rankPoint(10000)
 					.build();
 			memberService.createRank(rank3);
 			//dummy data user
@@ -295,95 +298,94 @@ public class RosaceaeApplication {
 					.images("")
 					.build();
 			service.register(shop12);
-//			var shop8= RegisterRequest.builder()
-//					.name("Lily Nail")
-//					.email("LilyNail@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0938070872")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop8);
-//			var shop9= RegisterRequest.builder()
-//					.name("Chang Beauty")
-//					.email("ChangBeauty@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0935138782")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop9);
-//			var shop10= RegisterRequest.builder()
-//					.name("Shine Nails & Beauty")
-//					.email("ShineNailsBeauty@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0909985329")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop10);
-//			service.register(shop5);
-//			var shop6= RegisterRequest.builder()
-//					.name("Coral Spa")
-//					.email("CoralSpa@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0912268183")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop6);
-//			var shop7= RegisterRequest.builder()
-//					.name("La Belle Vie Spa")
-//					.email("LaBelleVieSpa@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0912268183")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop7);
-//			var shop8= RegisterRequest.builder()
-//					.name("Lily Nail")
-//					.email("LilyNail@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0938070872")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop8);
-//			var shop9= RegisterRequest.builder()
-//					.name("Chang Beauty")
-//					.email("ChangBeauty@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0935138782")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop9);
-//			var shop10= RegisterRequest.builder()
-//					.name("Shine Nails & Beauty")
-//					.email("ShineNailsBeauty@gmail.com")
-//					.status(true)
-//					.password("123")
-//					.phone("0909985329")
-//					.role(SHOP)
-//					.enabled(true)
-//					.images("")
-//					.build();
-//			service.register(shop10);
+			var shop13= RegisterRequest.builder()
+					.name("Lady Mom Spa")
+					.email("LadyMomSpa@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0919856332")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop13);
+			var shop14= RegisterRequest.builder()
+					.name("Spa Ngọc Hân")
+					.email("NgocHanSpa@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0898472108")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop14);
+			var shop15= RegisterRequest.builder()
+					.name("LAN HOUSE SPA")
+					.email("LANHOUSESPA@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0968654977")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop15);
+			var shop16= RegisterRequest.builder()
+					.name("Tana Spa")
+					.email("TanaSpa@gmail.com")
+					.status(true)
+					.password("123")
+					.phone(":0909298492")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop16);
+			var shop17= RegisterRequest.builder()
+					.name("Ngọc Anh Spa")
+					.email("NgocAnhSpa@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0353852208")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop17);
+			var shop18= RegisterRequest.builder()
+					.name("THÚY SPA - MASSAGE KHỎE QUẬN 9 - GỘI ĐẦU DƯỠNG SINH")
+					.email("Thuyspa09@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0938070872")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop18);
+			var shop19= RegisterRequest.builder()
+					.name("Nắng Mai spa")
+					.email("Nangmai@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0962058833")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop19);
+			var shop20= RegisterRequest.builder()
+					.name("LAVENDER MEDICAL SPA")
+					.email("LAVENDERMEDICAL@gmail.com")
+					.status(true)
+					.password("123")
+					.phone("0932699246")
+					.role(SHOP)
+					.enabled(true)
+					.images("")
+					.build();
+			service.register(shop20);
 
 			//Customer
 			var customer = RegisterRequest.builder()

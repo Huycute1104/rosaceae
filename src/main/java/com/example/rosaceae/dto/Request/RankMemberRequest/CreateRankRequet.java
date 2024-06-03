@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateRankRequet {
     private String rankName;
+    private int rankPoint;
 }

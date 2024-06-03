@@ -31,6 +31,7 @@ public class RankMemberServiceImplement implements RankMemberService {
             if (isValidName(name)) {
                 RankMember cate = RankMember.builder()
                         .rankName(name)
+                        .rankPoint(createRankRequet.getRankPoint())
                         .build();
                 memberRepo.save(cate);
                 return CreateRankResponse.builder()
@@ -117,6 +118,6 @@ public class RankMemberServiceImplement implements RankMemberService {
 
     private boolean isValidName(String name) {
         //Check validate rank name
-        return name != null && name.length() <= 20 && name.length() >= 3 && !name.matches(".*[^a-zA-Z0-9].*");
+        return name != null && name.length() <= 20 && name.length() >= 3;
     }
 }
