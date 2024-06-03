@@ -577,7 +577,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-					.shopId(4)
+					.shopId(3)
 					.categoryId(2)
 					.itemTypeId(1)
 					.discount(10)
@@ -723,6 +723,257 @@ public class RosaceaeApplication {
 					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717403332/fccuc8itceb81wuyhddk.jpg")
 					.build();
 			itemImageService.CreateImage(image);
+			var image2 = DummyDataIImages.builder()
+					.itemId(1)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404152/occqnbyew0zbbp4q0qof.jpg")
+					.build();
+			itemImageService.CreateImage(image2);
+			var image3 = DummyDataIImages.builder()
+					.itemId(1)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404220/m1zuiipuz4jiiaa0isp8.jpg")
+					.build();
+			itemImageService.CreateImage(image3);
+			var image4 = DummyDataIImages.builder()
+					.itemId(2)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404321/stmgig7r3r4lxfzqpii2.jpg")
+					.build();
+			itemImageService.CreateImage(image4);
+			var image5 = DummyDataIImages.builder()
+					.itemId(2)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404368/is2upg0xehiuhtqflswa.jpg")
+					.build();
+			itemImageService.CreateImage(image5);
+			var image6 = DummyDataIImages.builder()
+					.itemId(2)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404448/zk2lfxazyya5rxeffmic.jpg")
+					.build();
+			itemImageService.CreateImage(image6);
+			var image7 = DummyDataIImages.builder()
+					.itemId(3)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404518/fdcngdp2pkebjsqj3cve.jpg")
+					.build();
+			itemImageService.CreateImage(image7);
+			var image8 = DummyDataIImages.builder()
+					.itemId(3)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404519/e3k7cn3v2tnazds3iqm8.jpg")
+					.build();
+			itemImageService.CreateImage(image8);
+
+			var image9 = DummyDataIImages.builder()
+					.itemId(3)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404730/gdlcwbp6sznt26f84hpg.jpg")
+					.build();
+			itemImageService.CreateImage(image9);
+
+			var image10 = DummyDataIImages.builder()
+					.itemId(16)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405874/axg6kguzesa08uy8nno0.jpg")
+					.build();
+			itemImageService.CreateImage(image10);
+			var image11 = DummyDataIImages.builder()
+					.itemId(16)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405875/ezagnxvayoxzqidzqcgl.jpg")
+					.build();
+			itemImageService.CreateImage(image11);
+			var image12 = DummyDataIImages.builder()
+					.itemId(16)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405876/tc0ya3zt13ytgzg8iuc9.jpg")
+					.build();
+			itemImageService.CreateImage(image12);
+
+			var image13 = DummyDataIImages.builder()
+					.itemId(15)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406038/ef2a7zbfvrycu7hvkdab.jpg")
+					.build();
+			itemImageService.CreateImage(image13);
+			var image14 = DummyDataIImages.builder()
+					.itemId(15)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406039/owbchzs8fvctz0sfg86r.jpg")
+					.build();
+			itemImageService.CreateImage(image14);
+			var image15 = DummyDataIImages.builder()
+					.itemId(15)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406040/seuob8pbnuh2zvqedim8.jpg")
+					.build();
+			itemImageService.CreateImage(image15);
+
+			var image16 = DummyDataIImages.builder()
+					.itemId(14)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406182/cvnjvugpp8h7uwf1wutg.jpg")
+					.build();
+			itemImageService.CreateImage(image16);
+			var image17 = DummyDataIImages.builder()
+					.itemId(14)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406183/t7zzoernv9rj10d95y3c.jpg")
+					.build();
+			itemImageService.CreateImage(image17);
+			var image18 = DummyDataIImages.builder()
+					.itemId(14)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406185/tkl5uifbtxwgxiwwoh8v.jpg")
+					.build();
+			itemImageService.CreateImage(image18);
+
+			var image19 = DummyDataIImages.builder()
+					.itemId(13)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407449/myu5soyzf4dzkzhzobpm.jpg")
+					.build();
+			itemImageService.CreateImage(image19);
+			var image20 = DummyDataIImages.builder()
+					.itemId(13)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407450/vauykv2hwfhxwbzfqnt8.jpg")
+					.build();
+			itemImageService.CreateImage(image20);
+			var image21 = DummyDataIImages.builder()
+					.itemId(13)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407451/u1n7zcciljozymfinjgs.jpg")
+					.build();
+			itemImageService.CreateImage(image21);
+
+			var image22 = DummyDataIImages.builder()
+					.itemId(12)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407584/yt3hzmncu9vsxphbowus.jpg")
+					.build();
+			itemImageService.CreateImage(image22);
+			var image23 = DummyDataIImages.builder()
+					.itemId(12)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407583/rgwbol6p9hlmlyy9yipm.jpg")
+					.build();
+			itemImageService.CreateImage(image23);
+			var image24 = DummyDataIImages.builder()
+					.itemId(12)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407581/zbjbqrxgbcamfr7kkewb.jpg")
+					.build();
+			itemImageService.CreateImage(image24);
+
+			var image25 = DummyDataIImages.builder()
+					.itemId(11)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407641/rvjbd8mxvcoulnqgpura.jpg")
+					.build();
+			itemImageService.CreateImage(image25);
+			var image26 = DummyDataIImages.builder()
+					.itemId(11)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407643/u5ppburzgfjoujbrfqbe.jpg")
+					.build();
+			itemImageService.CreateImage(image26);
+			var image27 = DummyDataIImages.builder()
+					.itemId(11)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407645/hgavl24cypkurmx8yg0j.jpg")
+					.build();
+			itemImageService.CreateImage(image27);
+
+			var image28 = DummyDataIImages.builder()
+					.itemId(10)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407914/h0k0sqmzuqppu3n35hrc.jpg")
+					.build();
+			itemImageService.CreateImage(image28);
+			var image29 = DummyDataIImages.builder()
+					.itemId(10)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407916/d3a7q9psyt6xpyhzf10h.jpg")
+					.build();
+			itemImageService.CreateImage(image29);
+			var image30 = DummyDataIImages.builder()
+					.itemId(10)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407918/ystsi2mpkx6g15kvaz39.webp")
+					.build();
+			itemImageService.CreateImage(image30);
+
+			var image31 = DummyDataIImages.builder()
+					.itemId(9)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408282/cayn8wyo8njiqmzkgoxd.jpg")
+					.build();
+			itemImageService.CreateImage(image31);
+			var image32 = DummyDataIImages.builder()
+					.itemId(9)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408286/os2wouvnawsunvxl73nx.jpg")
+					.build();
+			itemImageService.CreateImage(image32);
+			var image33 = DummyDataIImages.builder()
+					.itemId(9)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408289/szfpklbfaytwr31ymnbo.jpg")
+					.build();
+			itemImageService.CreateImage(image33);
+
+			var image34 = DummyDataIImages.builder()
+					.itemId(8)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408363/b9r1vyzallw5n8vhuvot.jpg")
+					.build();
+			itemImageService.CreateImage(image34);
+			var image35 = DummyDataIImages.builder()
+					.itemId(8)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408367/e3thzlxppovudvpbsv86.webp")
+					.build();
+			itemImageService.CreateImage(image35);
+			var image36 = DummyDataIImages.builder()
+					.itemId(8)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408370/ezeeydkwyraikjluqfq1.jpg")
+					.build();
+			itemImageService.CreateImage(image36);
+			var image37 = DummyDataIImages.builder()
+					.itemId(7)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408506/i6gs63l3vstdfyrfnw7o.jpg")
+					.build();
+			itemImageService.CreateImage(image37);
+			var image38 = DummyDataIImages.builder()
+					.itemId(7)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408509/nobkks3stb136ydtym1s.jpg")
+					.build();
+			itemImageService.CreateImage(image38);
+			var image39 = DummyDataIImages.builder()
+					.itemId(7)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408513/vz5zm3bedq6birscplaf.webp")
+					.build();
+			itemImageService.CreateImage(image39);
+			var image40 = DummyDataIImages.builder()
+					.itemId(6)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408604/biiypkrvaz0tt0mv0g4s.jpg")
+					.build();
+			itemImageService.CreateImage(image40);
+			var image41 = DummyDataIImages.builder()
+					.itemId(6)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408607/w3atftgeh1gxiotiqdia.jp")
+					.build();
+			itemImageService.CreateImage(image41);
+			var image42 = DummyDataIImages.builder()
+					.itemId(6)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408612/k8pfq970we0y8nsphdhe.jpg")
+					.build();
+			itemImageService.CreateImage(image42);
+			var image43 = DummyDataIImages.builder()
+					.itemId(5)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408680/mudj9a9wczteonfvdl82.png")
+					.build();
+			itemImageService.CreateImage(image43);
+			var image44 = DummyDataIImages.builder()
+					.itemId(5)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408683/v02cb5higxe7mkz36rim.jpg")
+					.build();
+			itemImageService.CreateImage(image44);
+			var image45 = DummyDataIImages.builder()
+					.itemId(5)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408685/ajpkkwrjylpgdixmxrch.jpg")
+					.build();
+			itemImageService.CreateImage(image45);
+			var image46 = DummyDataIImages.builder()
+					.itemId(4)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408766/xtruyz145i0dprcqeux2.jpg")
+					.build();
+			itemImageService.CreateImage(image46);
+			var image47 = DummyDataIImages.builder()
+					.itemId(4)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408769/xixzy0md10mwrnwtdnin.jpg")
+					.build();
+			itemImageService.CreateImage(image47);
+			var image48 = DummyDataIImages.builder()
+					.itemId(4)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408771/r3auog8egqaihujnl7r4.jpg")
+					.build();
+			itemImageService.CreateImage(image48);
+
+
+
+
+
+
 
 
 		};
