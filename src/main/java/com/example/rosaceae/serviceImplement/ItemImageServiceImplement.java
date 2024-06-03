@@ -2,6 +2,7 @@ package com.example.rosaceae.serviceImplement;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.example.rosaceae.dto.Data.DummyDataIImages;
 import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Response.ItemImageResponse.ItemImageResponse;
 import com.example.rosaceae.model.ItemImages;
@@ -106,6 +107,27 @@ public class ItemImageServiceImplement implements ItemImageService {
             return Collections.emptyList();
         }
         return itemImageRepo.findByItem(item);
+    }
+
+    @Override
+    public ItemImageResponse CreateImage(DummyDataIImages images) {
+        var item = itemRepo.findByItemId(images.getItemId()).orElse(null);
+        if (item != null) {
+            ItemImages itemImages = ItemImages.builder()
+                    .item(item)
+                    .imageUrl(images.getLink())
+                    .build();
+            itemImageRepo.save(itemImages);
+            return ItemImageResponse.builder()
+                    .status("Success")
+                    .build();
+
+        }else{
+            return ItemImageResponse.builder()
+                    .images(null)
+                    .status("Item Not Found")
+                    .build();
+        }
     }
 
 }

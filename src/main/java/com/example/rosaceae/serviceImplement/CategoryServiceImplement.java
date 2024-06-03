@@ -51,7 +51,7 @@ public class CategoryServiceImplement implements CategoryService {
 
     private boolean isValidName(String name) {
         //Check validate category name
-        return name != null && name.length() <= 20 && name.length() >= 3 && !name.matches(".*[^a-zA-Z0-9].*");
+        return name != null && name.length() <= 20 && name.length() >= 3;
     }
 
     @Override

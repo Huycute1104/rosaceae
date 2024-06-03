@@ -21,13 +21,13 @@ public class Item {
     @Column(name = "ItemId")
     private int itemId;
 
-    @Column(name = "ItemName", length = 30)
+    @Column(name = "ItemName", length = 100)
     private String itemName;
 
     @Column(name = "ItemPrice")
     private Float itemPrice;
 
-    @Column(name = "ItemDescription", length = 300)
+    @Column(name = "ItemDescription", length = 500)
     private String itemDescription;
 
     private Float itemRate;

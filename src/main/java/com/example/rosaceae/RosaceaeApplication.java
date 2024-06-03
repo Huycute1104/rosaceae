@@ -5,10 +5,13 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.rosaceae.Format.HTMLFormat;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.auth.RegisterRequest;
+import com.example.rosaceae.dto.Data.DummyDataIImages;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
+import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
+import com.example.rosaceae.model.ItemImages;
 import com.example.rosaceae.model.Report;
 import com.example.rosaceae.repository.ReportRepo;
 import com.example.rosaceae.repository.UserRepo;
@@ -117,7 +120,8 @@ public class RosaceaeApplication {
 			RankMemberService memberService,
 			CategoryService categoryService,
 			ItemTypeService itemTypeService,
-			ItemService itemService
+			ItemService itemService,
+			ItemImageService itemImageService
 	) {
 		return args -> {
 			// dummy data rank
@@ -472,27 +476,27 @@ public class RosaceaeApplication {
 			itemTypeService.createItemType(itemType1);
 
 			// dummy data Item
-			//service
+			//Shop gaspa
+			// dịch vụ
 			var item = ItemRequest.builder()
-					.itemName("Service")
+						.itemName("Liệu trình da nhiễm Corticoid")
 					.quantity(0)
-					.price(10f)
-					.description("hihi")
+					.price(1000000f)
+					.description("Da nhiễm Corticoid là một tình trạng xảy ra khá phổ biến hiện nay, để điều trị dứt điểm vấn đề này không hề dễ dàng và nhanh chóng được. Bạn phải cần thời gian kiên trì điều trị để lấy lại làn da tươi khỏe. Hãy cùng tham khảo qua liệu trình điều trị da nhiễm Corticoid tại Gà Spa nhé!")
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
 					.shopId(3)
 					.categoryId(1)
 					.itemTypeId(1)
-					.discount(10)
+					.discount(13)
 					.build();
 			itemService.CreateItem(item);
-			//product
-			var item1 = ItemRequest.builder()
-					.itemName("Product")
+			var item2 = ItemRequest.builder()
+					.itemName("Công nghệ điều trị nám sạm Laser Toning")
 					.quantity(0)
-					.price(10f)
-					.description("hihi")
+					.price(500000f)
+					.description("Laser Toning là một công nghệ hàng đầu với độ an toàn cao, đã được FDA (Cục quản lý Thực phẩm – Dược phẩm Hoa Kỳ – US Food and Drug Administration) kiểm duyệt và chứng nhận. Laser Toning được biết đến là công nghệ điều trị nám da sâu và nám hỗn hợp, đặc biệt là nám da sâu rất hiệu quả")
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
@@ -501,7 +505,224 @@ public class RosaceaeApplication {
 					.itemTypeId(1)
 					.discount(10)
 					.build();
-			itemService.CreateItem(item1);
+			itemService.CreateItem(item2);
+			var item3 = ItemRequest.builder()
+					.itemName("Liệu trình điều trị Mụn lưng – viêm nang lông với công nghệ IPL")
+					.quantity(0)
+					.price(300000f)
+					.description("IPL là tên đầy đủ của nó là Intense Pulsed Light hay gọi theo tiếng Việt là  “máy ánh sáng xung nhiệt”. Đây là một thiết bị này sử dụng xung động ánh sáng với bước sóng phù hợp để giúp điều trị một số bệnh về da. Trong đó, IPL được áp dụng phổ biến trong điều trị mụn lưng, viêm nang lông, da nhờn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(2)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item3);
+			var item4 = ItemRequest.builder()
+					.itemName("Dịch vụ cắt móng và chăm sóc cơ bản")
+					.quantity(0)
+					.price(150000f)
+					.description("Cắt, dũa móng tay/móng chân.\n" +
+							"Làm sạch lớp biểu bì.\n" +
+							"Massage tay/chân.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(3)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item4);
+			var item5 = ItemRequest.builder()
+					.itemName("Sơn móng tay/móng chân")
+					.quantity(0)
+					.price(130000f)
+					.description("Sơn bóng.\n" +
+							"Sơn màu.\n" +
+							"Sơn gel (gel polish).")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(3)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item5);
+
+			var item6 = ItemRequest.builder()
+					.itemName("Gội đầu dưỡng sinh")
+					.quantity(0)
+					.price(100000f)
+					.description("Kết hợp các kỹ thuật massage trị liệu.\n" +
+							"Sử dụng các sản phẩm thảo dược hoặc tinh dầu để dưỡng tóc và da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(4)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item6);
+			var item7 = ItemRequest.builder()
+					.itemName("Gội đầu trị liệu")
+					.quantity(0)
+					.price(200000f)
+					.description("Sử dụng các sản phẩm đặc trị cho các vấn đề về tóc và da đầu như gàu, tóc dầu, tóc khô, và tóc hư tổn.\n" +
+							"Kết hợp các phương pháp trị liệu da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(4)
+					.categoryId(2)
+					.itemTypeId(1)
+					.discount(10)
+					.build();
+			itemService.CreateItem(item7);
+			//product
+			var product1 = ItemRequest.builder()
+					.itemName("Dầu dưỡng móng")
+					.quantity(0)
+					.price(100000f)
+					.description("Giúp làm mềm và dưỡng ẩm vùng da quanh móng.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(3)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product1);
+
+			var product2 = ItemRequest.builder()
+					.itemName("Kem dưỡng da tay/móng")
+					.quantity(0)
+					.price(150000f)
+					.description("Giúp da tay và móng mềm mại hơn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(3)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product2);
+
+			var product3 = ItemRequest.builder()
+					.itemName("Sơn gel")
+					.quantity(0)
+					.price(150000f)
+					.description("Giữ màu lâu, cần đèn UV hoặc LED để khô.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(3)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product3);
+			var product4 = ItemRequest.builder()
+					.itemName("Neutrogena Oil-Free Acne Wash")
+					.quantity(0)
+					.price(250000f)
+					.description("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product4);
+			var product5 = ItemRequest.builder()
+					.itemName("La Roche-Posay Effaclar")
+					.quantity(0)
+					.price(350000f)
+					.description("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product5);
+			var product6 = ItemRequest.builder()
+					.itemName("Cetaphil Gentle Skin Cleanser")
+					.quantity(0)
+					.price(300000f)
+					.description("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product6);
+
+			var product7 = ItemRequest.builder()
+					.itemName("Thayers Witch Hazel Toner")
+					.quantity(0)
+					.price(350000f)
+					.description("Giúp cân bằng độ pH cho da và làm sạch sâu hơn sau khi rửa mặt")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product7);
+
+			var product8 = ItemRequest.builder()
+					.itemName("Kiehl’s Calendula Herbal Extract Toner")
+					.quantity(0)
+					.price(800000f)
+					.description("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product8);
+			var product9 = ItemRequest.builder()
+					.itemName("Simple Soothing Facial Toner")
+					.quantity(0)
+					.price(250000f)
+					.description("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+					.shopId(3)
+					.categoryId(1)
+					.itemTypeId(2)
+					.discount(10)
+					.build();
+			itemService.CreateItem(product9);
+
+
+
+			//Dummy data for item Images
+			var image = DummyDataIImages.builder()
+					.itemId(1)
+					.link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717403332/fccuc8itceb81wuyhddk.jpg")
+					.build();
+			itemImageService.CreateImage(image);
 
 
 		};
