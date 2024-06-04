@@ -36,7 +36,7 @@ public class ItemController {
 //  GetByID
     @GetMapping("/{id}")
 //    @PreAuthorize("hasAuthority('shop:read')")
-    public Optional<Item> geItemByID(@PathVariable int id) {
+    public Optional<ItemDTO> geItemByID(@PathVariable int id) {
         return itemService.GetItemById(id);
     }
 

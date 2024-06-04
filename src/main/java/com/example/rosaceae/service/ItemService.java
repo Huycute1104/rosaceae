@@ -16,10 +16,7 @@ import java.util.Optional;
 
 public interface ItemService {
     public ItemResponse CreateItem(ItemRequest itemRequest);
-
-    Optional<Item> GetItemById(int id);
-    List<Item> GetAllItems();
-    Page<Item> getAllItems(Pageable pageable);
+    Optional<ItemDTO> GetItemById(int id);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
     public ItemResponse DeleteItem(int id);
     Page<ItemDTO> getItemsByUserId(int userId, int page, int size);

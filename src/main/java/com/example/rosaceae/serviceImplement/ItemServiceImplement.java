@@ -92,26 +92,10 @@ public class ItemServiceImplement implements ItemService {
     }
 
     @Override
-    public Optional<Item> GetItemById(int id) {
-        return itemRepo.findByItemId(id);
+    public Optional<ItemDTO> GetItemById(int id) {
+        return itemRepo.findByItemId(id).map(this::convertToDTO);
     }
 
-    @Override
-    public List<Item> GetAllItems() {
-        return itemRepo.findAll();
-    }
-
-    @Override
-    public Page<Item> getAllItems(Pageable pageable) {
-        try{
-            return itemRepo.findAll(pageable);
-        }catch (Exception e){
-            e.printStackTrace();
-            return  null;
-        }
-
-
-    }
 
     @Override
     public ItemResponse UpdateItem(CreateItemRequest itemRequest, int id) {
