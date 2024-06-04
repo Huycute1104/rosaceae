@@ -112,6 +112,13 @@
             <artifactId>cloudinary-http44</artifactId>
             <version>1.17.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>6.0.0.Final</version>
+        </dependency>
+
     </dependencies>
 
 

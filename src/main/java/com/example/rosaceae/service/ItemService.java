@@ -8,6 +8,7 @@ import com.example.rosaceae.model.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ItemService {
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
     public ItemResponse DeleteItem(int id);
     Page<ItemDTO> getItemsByUserId(int userId, int page, int size);
+    public Page<ItemDTO> getItems(Specification<Item> spec, Pageable pageable);
+
 }

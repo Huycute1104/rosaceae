@@ -1,9 +1,6 @@
 package com.example.rosaceae.serviceImplement;
 
-import com.example.rosaceae.dto.Data.CategoryDTO;
-import com.example.rosaceae.dto.Data.ItemDTO;
-import com.example.rosaceae.dto.Data.ItemImageDTO;
-import com.example.rosaceae.dto.Data.ItemTypeDTO;
+import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
@@ -19,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -179,6 +177,10 @@ public class ItemServiceImplement implements ItemService {
         return itemsPage.map(this::convertToDTO);
     }
 
+    @Override
+    public Page<ItemDTO> getItems(Specification<Item> spec, Pageable pageable)  {
+        return itemRepo.findAll(spec, pageable).map(this::convertToDTO);
+    }
 
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
