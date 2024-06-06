@@ -21,6 +21,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -81,8 +82,39 @@ public class ItemController {
 //  CreateItem
     @PostMapping("")
 //    @PreAuthorize("hasAuthority('shop:create')")
-    public ResponseEntity<ItemResponse> createCategory(@RequestBody ItemRequest request) {
-        return ResponseEntity.ok(itemService.CreateItem(request));
+//    public ResponseEntity<ItemResponse> createCategory(@RequestBody ItemRequest request) {
+//        return ResponseEntity.ok(itemService.CreateItem(request));
+//    }
+    public ResponseEntity<ItemResponse> createItemWithImages(
+            @RequestParam("itemName") String itemName,
+            @RequestParam("quantity") int quantity,
+            @RequestParam("price") Float price,
+            @RequestParam("description") String description,
+            @RequestParam("rate") Float rate,
+            @RequestParam("commentCount") int commentCount,
+            @RequestParam("countUsage") int countUsage,
+            @RequestParam("discount") int discount,
+            @RequestParam("shopId") int shopId,
+            @RequestParam("itemTypeId") int itemTypeId,
+            @RequestParam("categoryId") int categoryId,
+            @RequestParam("files") List<MultipartFile> files) {
+
+        ItemRequest request = ItemRequest.builder()
+                .itemName(itemName)
+                .quantity(quantity)
+                .price(price)
+                .description(description)
+                .rate(rate)
+                .commentCount(commentCount)
+                .countUsage(countUsage)
+                .discount(discount)
+                .shopId(shopId)
+                .itemTypeId(itemTypeId)
+                .categoryId(categoryId)
+                .files(files)
+                .build();
+
+        return ResponseEntity.ok(itemService.createItemWithImages(request));
     }
 
 //  Update Item

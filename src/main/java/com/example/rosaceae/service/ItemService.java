@@ -16,6 +16,7 @@ import java.util.Optional;
 
 public interface ItemService {
     public ItemResponse CreateItem(ItemRequest itemRequest);
+ItemResponse createItemWithImages(ItemRequest itemRequest);
     Optional<ItemDTO> GetItemById(int id);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
     public ItemResponse DeleteItem(int id);

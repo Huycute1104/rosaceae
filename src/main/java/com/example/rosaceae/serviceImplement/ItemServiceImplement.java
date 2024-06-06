@@ -1,15 +1,15 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Item;
-import com.example.rosaceae.repository.CategoryRepo;
-import com.example.rosaceae.repository.ItemRepo;
-import com.example.rosaceae.repository.ItemTypeRepo;
-import com.example.rosaceae.repository.UserRepo;
+import com.example.rosaceae.model.ItemImages;
+import com.example.rosaceae.repository.*;
 import com.example.rosaceae.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,8 +18,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,6 +37,10 @@ public class ItemServiceImplement implements ItemService {
     private UserRepo userRepo;
     @Autowired
     CategoryRepo categoryRepo;
+    @Autowired
+    private Cloudinary cloudinary;
+    @Autowired
+    private ItemImageRepo itemImageRepo;
 
     @Override
     public ItemResponse CreateItem(ItemRequest itemRequest) {
@@ -90,6 +98,87 @@ public class ItemServiceImplement implements ItemService {
                     .build();
         }
     }
+private String uploadImageToCloudinary(MultipartFile file) {
+    try {
+        Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+        return (String) uploadResult.get("url");
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+    @Override
+    public ItemResponse createItemWithImages(ItemRequest itemRequest) {
+        int itemTypeId = itemRequest.getItemTypeId();
+        var itemType = itemTypeRepo.findByItemTypeId(itemTypeId).orElse(null);
+        if (itemType == null) {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("ItemType Not Found")
+                    .build();
+        }
+
+        int userId = itemRequest.getShopId();
+        var shop = userRepo.findUserByUsersID(userId).orElse(null);
+        if (shop != null && shop.getRole() == Role.SHOP) {
+            int categoryID = itemRequest.getCategoryId();
+            var category = categoryRepo.findCategoriesByCategoryId(categoryID).orElse(null);
+            if (category == null) {
+                return ItemResponse.builder()
+                        .item(null)
+                        .status("Category Not Found")
+                        .build();
+            } else {
+                int quantity = 0;
+                if (itemTypeId == 2) {
+                    quantity = itemRequest.getQuantity();
+                }
+                Item item = Item.builder()
+                        .itemName(itemRequest.getItemName())
+                        .itemDescription(itemRequest.getDescription())
+                        .itemPrice(itemRequest.getPrice())
+                        .quantity(quantity)
+                        .itemRate(0f)
+                        .commentCount(0)
+                        .countUsage(0)
+                        .discount(itemRequest.getDiscount())
+                        .user(shop)
+                        .category(category)
+                        .itemType(itemType)
+                        .build();
+                itemRepo.save(item);
+
+                List<MultipartFile> files = itemRequest.getFiles();
+                List<ItemImages> imagesList = new ArrayList<>();
+
+                for (MultipartFile file : files) {
+                    String url = uploadImageToCloudinary(file);
+                    if (url != null) {
+                        ItemImages images = ItemImages.builder()
+                                .imageUrl(url)
+                                .item(item)
+                                .build();
+                        imagesList.add(images);
+                    }
+                }
+
+                if (!imagesList.isEmpty()) {
+                    itemImageRepo.saveAll(imagesList);
+                }
+
+                return ItemResponse.builder()
+                        .item(item)
+                        .status("Created Item and Images Successfully")
+                        .build();
+            }
+        } else {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("User Not Found")
+                    .build();
+        }
+    }
+
 
     @Override
     public Optional<ItemDTO> GetItemById(int id) {
