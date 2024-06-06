@@ -114,24 +114,4 @@ public class AuthenticationController {
 
     }
 
-    @GetMapping("")
-    public Page<User> getAllUser(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String role
-    ) {
-        Specification<User> spec = Specification.where(null);
-        if (role != null) {
-            spec = spec.and((root, query, cb) -> cb.equal(root.get("role"), role));
-        }
-
-        Pageable pageable = PageRequest.of(page, size);
-        return userService.getUser(spec, pageable);
-    }
-
-    @GetMapping("/{id}")
-    public Optional<UserDTO> getUserByID(@PathVariable int id) {
-        return userService.getUserDTO(id);
-    }
-
 }
