@@ -5,6 +5,7 @@ import com.example.rosaceae.auth.AuthenticationRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
+import com.example.rosaceae.dto.Data.UserDTO;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
@@ -30,6 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.example.rosaceae.Util.StringHanlder.randomStringGenerator;
 
@@ -127,5 +129,9 @@ public class AuthenticationController {
         return userService.getUser(spec, pageable);
     }
 
+    @GetMapping("/{id}")
+    public Optional<UserDTO> getUserByID(@PathVariable int id) {
+        return userService.getUserDTO(id);
+    }
 
 }

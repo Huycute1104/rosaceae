@@ -1,10 +1,14 @@
 package com.example.rosaceae.serviceImplement;
 
 
+import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
+import com.example.rosaceae.repository.CategoryRepo;
+import com.example.rosaceae.repository.ItemRepo;
+import com.example.rosaceae.repository.ItemTypeRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +19,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplement implements UserService {
+    @Autowired
+    private ItemRepo itemRepo;
+    @Autowired
+    private ItemTypeRepo itemTypeRepo;
+    @Autowired
+    CategoryRepo categoryRepo;
     @Autowired
     private UserRepo userRepo;
     @Override
@@ -96,5 +107,46 @@ public class UserServiceImplement implements UserService {
     @Override
     public Page<User> getUser(Specification<User> spec, Pageable pageable) {
         return userRepo.findAll(spec, pageable);
+    }
+
+    @Override
+    public Optional<UserDTO> getUserDTO(int userId) {
+        Optional<User> userOpt = userRepo.findById(userId);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            var userDTO = UserDTO.builder()
+                    .user(user)
+                    .items(user.getItems().stream().map(this::convertToDTO).collect(Collectors.toList()))
+                    .build();
+            return Optional.of(userDTO);
+        } else {
+            return Optional.empty();
+        }
+    }
+    private ItemDTO convertToDTO(Item item) {
+        return ItemDTO.builder()
+                .itemId(item.getItemId())
+                .itemName(item.getItemName())
+                .itemPrice(item.getItemPrice())
+                .itemDescription(item.getItemDescription())
+                .itemRate(item.getItemRate())
+                .commentCount(item.getCommentCount())
+                .countUsage(item.getCountUsage())
+                .quantity(item.getQuantity())
+                .discount(item.getDiscount())
+                .itemImages(item.getItemImages().stream()
+                        .map(image -> ItemImageDTO.builder()
+                                .imageUrl(image.getImageUrl())
+                                .build())
+                        .collect(Collectors.toList()))
+                .category(CategoryDTO.builder()
+                        .categoryId(item.getCategory().getCategoryId())
+                        .categoryName(item.getCategory().getCategoryName())
+                        .build())
+                .itemType(ItemTypeDTO.builder()
+                        .itemTypeId(item.getItemType().getItemTypeId())
+                        .itemTypeName(item.getItemType().getItemTypeName())
+                        .build())
+                .build();
     }
 }

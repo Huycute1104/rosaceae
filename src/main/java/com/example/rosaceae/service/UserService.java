@@ -1,6 +1,7 @@
 package com.example.rosaceae.service;
 
 
+import com.example.rosaceae.dto.Data.UserDTO;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Item;
@@ -21,4 +22,5 @@ public interface UserService {
     Optional<User> getUserById(int userId);
     Optional<User> getUserByToken(String token);
     Page<User> getUser(Specification<User> spec, Pageable pageable);
+    Optional<UserDTO> getUserDTO(int userId);
 }
