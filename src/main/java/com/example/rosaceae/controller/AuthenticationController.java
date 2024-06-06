@@ -5,24 +5,29 @@ import com.example.rosaceae.auth.AuthenticationRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.auth.AuthenticationService;
 import com.example.rosaceae.config.LogoutService;
+import com.example.rosaceae.enums.Role;
+import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.mail.internet.MimeMessage;
 import com.example.rosaceae.dto.Request.UserRequest.CreateUserRequest;
+import jakarta.persistence.criteria.Join;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -106,5 +111,21 @@ public class AuthenticationController {
         authenticationService.refreshToken(request,response);
 
     }
+
+    @GetMapping("")
+    public Page<User> getAllUser(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String role
+    ) {
+        Specification<User> spec = Specification.where(null);
+        if (role != null) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("role"), role));
+        }
+
+        Pageable pageable = PageRequest.of(page, size);
+        return userService.getUser(spec, pageable);
+    }
+
 
 }

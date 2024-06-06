@@ -10,6 +10,7 @@ import com.example.rosaceae.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -90,5 +91,10 @@ public class UserServiceImplement implements UserService {
     @Override
     public Optional<User> getUserByToken(String token) {
         return userRepo.findUsersByTokensToken(token);
+    }
+
+    @Override
+    public Page<User> getUser(Specification<User> spec, Pageable pageable) {
+        return userRepo.findAll(spec, pageable);
     }
 }
