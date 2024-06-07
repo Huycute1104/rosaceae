@@ -18,9 +18,9 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
     Optional<Cart> findByUserAndItem(User user, Item item);
 
     @Query("SELECT c FROM Cart c " +
+            "JOIN FETCH c.item i " +
+            "JOIN FETCH i.itemType it " +
             "JOIN c.user u " +
-            "JOIN c.item i " +
-            "JOIN i.itemType it " +
             "WHERE u.usersID = :customerId AND it.itemTypeId = :type")
     Page<Cart> findByUserIdAndItemTypeId(@Param("customerId") int customerId, @Param("type") int type, Pageable pageable);
 }
