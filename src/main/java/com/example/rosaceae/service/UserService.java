@@ -22,5 +22,5 @@ public interface UserService {
     Optional<User> getUserById(int userId);
     Optional<User> getUserByToken(String token);
     Page<User> getUser(Specification<User> spec, Pageable pageable);
-    public Optional<UserDTO> getUserDTO(int userId, int page, int size);
+    public Optional<UserDTO> getUserDTO(int userId, int page, int size, Double minPrice, Double maxPrice, String categoryName, String itemTypeName) ;
 }

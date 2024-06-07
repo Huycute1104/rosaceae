@@ -111,13 +111,13 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public Optional<UserDTO> getUserDTO(int userId, int page, int size) {
+    public Optional<UserDTO> getUserDTO(int userId, int page, int size, Double minPrice, Double maxPrice, String categoryName, String itemTypeName) {
         Optional<User> userOpt = userRepo.findById(userId);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
 
             Pageable pageable = PageRequest.of(page, size);
-            Page<Item> itemPage = itemRepo.findByUserUsersID(userId, pageable);
+            Page<Item> itemPage = itemRepo.findByUserAndFilters(userId, minPrice, maxPrice, categoryName, itemTypeName, pageable);
             Page<ItemDTO> itemDTOPage = itemPage.map(this::convertToDTO);
 
             var userDTO = UserDTO.builder()
@@ -139,6 +139,7 @@ public class UserServiceImplement implements UserService {
             return Optional.empty();
         }
     }
+
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
                 .itemId(item.getItemId())
@@ -165,4 +166,5 @@ public class UserServiceImplement implements UserService {
                         .build())
                 .build();
     }
+
 }

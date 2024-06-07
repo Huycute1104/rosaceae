@@ -42,8 +42,12 @@ public class ShopController {
     @GetMapping("/{id}")
     public Optional<UserDTO> getUserByID(@PathVariable int id,
                                          @RequestParam(defaultValue = "0") int page,
-                                         @RequestParam(defaultValue = "10") int size) {
-        return userService.getUserDTO(id, page, size);
+                                         @RequestParam(defaultValue = "10") int size,
+                                         @RequestParam(required = false) Double minPrice,
+                                         @RequestParam(required = false) Double maxPrice,
+                                         @RequestParam(required = false) String categoryName,
+                                         @RequestParam(required = false) String itemTypeName) {
+        return userService.getUserDTO(id, page, size, minPrice, maxPrice, categoryName, itemTypeName);
     }
 
     @GetMapping("")
