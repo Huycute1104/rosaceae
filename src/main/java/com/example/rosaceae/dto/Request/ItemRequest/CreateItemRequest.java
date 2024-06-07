@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class CreateItemRequest {
     private String itemName;
     private int quantity;
-    private Float price;
-    private String description;
+    private Float itemPrice;
+    private String itemDescription;
     private int discount;
     private int itemTypeId;
     private int categoryId;

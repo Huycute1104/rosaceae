@@ -1,6 +1,7 @@
 package com.example.rosaceae.service;
 
 
+import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Data.UserDTO;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
+    AuthenticationResponse getUserByEmail(String email);
     Page<User> getAllUser(Pageable pageable);
     boolean emailVerify(String token);
     UserResponse toggleUserStatus(int userId);

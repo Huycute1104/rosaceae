@@ -2,6 +2,7 @@ package com.example.rosaceae.controller;
 
 
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
+import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
@@ -65,5 +66,8 @@ public class UserController {
         return userService.getUserByToken(token);
     }
 
-
+    @GetMapping("/get-user-by-email")
+    public AuthenticationResponse getUserByEmail(@RequestParam(name = "email") String email) {
+        return userService.getUserByEmail(email);
+    }
 }

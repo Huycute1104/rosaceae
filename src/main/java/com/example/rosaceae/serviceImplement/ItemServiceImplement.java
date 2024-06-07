@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -195,8 +194,8 @@ private String uploadImageToCloudinary(MultipartFile file) {
                 var category = categoryRepo.findCategoriesByCategoryId(itemRequest.getCategoryId()).orElse(null);
                 if (category != null) {
                     item.setItemName(itemRequest.getItemName());
-                    item.setItemDescription(itemRequest.getDescription());
-                    item.setItemPrice(itemRequest.getPrice());
+                    item.setItemDescription(itemRequest.getItemDescription());
+                    item.setItemPrice(itemRequest.getItemPrice());
                     item.setQuantity(itemRequest.getQuantity());
                     item.setDiscount(itemRequest.getDiscount());
                     item.setCategory(category);

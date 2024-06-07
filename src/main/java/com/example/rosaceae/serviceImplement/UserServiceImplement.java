@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 
+import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
@@ -166,5 +167,25 @@ public class UserServiceImplement implements UserService {
                         .build())
                 .build();
     }
-
+    public AuthenticationResponse getUserByEmail(String email) {
+        // TODO Auto-generated method stub
+        var user = userRepo.findByEmail(email).orElseThrow();
+        System.out.println(user);
+        if(user == null){
+            return AuthenticationResponse.builder()
+                    .msg("No user found")
+                    .status(400)
+                    .build();
+        }
+        else {
+            return AuthenticationResponse.builder()
+                    .msg("Login successfully")
+                    .status(200)
+//                .userInfo(userRepo.findUserByEmail(request.getEmail()).orElseThrow())
+                    .accessToken("")
+                    .refreshToken("")
+                    .userInfo(user)
+                    .build();
+        }
+    }
 }
