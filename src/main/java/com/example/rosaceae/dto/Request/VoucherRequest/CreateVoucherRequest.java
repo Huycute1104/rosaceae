@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,5 +17,5 @@ public class CreateVoucherRequest {
     private Date startDate;
     private Date endDate;
     private int value;
-    private int userid = 2;
+    private int userid;
 }
