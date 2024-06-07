@@ -13,6 +13,7 @@ import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -110,14 +111,29 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public Optional<UserDTO> getUserDTO(int userId) {
+    public Optional<UserDTO> getUserDTO(int userId, int page, int size) {
         Optional<User> userOpt = userRepo.findById(userId);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
+
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Item> itemPage = itemRepo.findByUserUsersID(userId, pageable);
+            Page<ItemDTO> itemDTOPage = itemPage.map(this::convertToDTO);
+
             var userDTO = UserDTO.builder()
-                    .user(user)
-                    .items(user.getItems().stream().map(this::convertToDTO).collect(Collectors.toList()))
+                    .usersID(user.getUsersID())
+                    .accountName(user.getAccountName())
+                    .email(user.getEmail())
+                    .userStatus(user.isUserStatus())
+                    .phone(user.getPhone())
+                    .address(user.getAddress())
+                    .rate(user.getRate())
+                    .userWallet(user.getUserWallet())
+                    .role(user.getRole().name())
+                    .coverImages(user.getCoverImages())
+                    .items(itemDTOPage)
                     .build();
+
             return Optional.of(userDTO);
         } else {
             return Optional.empty();

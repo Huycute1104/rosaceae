@@ -40,8 +40,10 @@ public class ShopController {
 //    }
 
     @GetMapping("/{id}")
-    public Optional<UserDTO> getUserByID(@PathVariable int id) {
-        return userService.getUserDTO(id);
+    public Optional<UserDTO> getUserByID(@PathVariable int id,
+                                         @RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "10") int size) {
+        return userService.getUserDTO(id, page, size);
     }
 
     @GetMapping("")
