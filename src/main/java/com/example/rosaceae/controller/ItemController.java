@@ -117,13 +117,15 @@ public class ItemController {
         return ResponseEntity.ok(itemService.createItemWithImages(request));
     }
 
+
 //  Update Item
     @PutMapping("/{id}")
 //    @PreAuthorize("hasAuthority('shop:update')")
-    public ResponseEntity<ItemResponse> updateItem(
+    public ResponseEntity<ItemResponse> updateItemWithImages(
             @PathVariable int id,
-            @RequestBody CreateItemRequest request) {
-        return ResponseEntity.ok(itemService.UpdateItem(request, id));
+            @ModelAttribute CreateItemRequest createItemRequest) {
+
+        return ResponseEntity.ok(itemService.updateItemWithImages(id, createItemRequest));
     }
 
 //  DeleteItem

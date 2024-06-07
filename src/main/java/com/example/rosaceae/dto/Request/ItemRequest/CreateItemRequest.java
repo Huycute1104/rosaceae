@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -17,4 +20,5 @@ public class CreateItemRequest {
     private int discount;
     private int itemTypeId;
     private int categoryId;
+    private List<MultipartFile> files;
 }

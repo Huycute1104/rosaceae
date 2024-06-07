@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface ItemImageRepo extends JpaRepository<ItemImages,Integer> {
     Optional<ItemImages> findByItemImageId(int id);
     List<ItemImages> findByItem(Item item);
+
 }

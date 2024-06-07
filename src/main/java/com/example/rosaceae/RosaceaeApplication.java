@@ -114,7 +114,7 @@ public class RosaceaeApplication {
 				reportRepo.save(report);
 			}
 		};}
-	/*@Bean
+	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service,
 			RankMemberService memberService,
@@ -1367,5 +1367,5 @@ public class RosaceaeApplication {
 
 
 		};
-	}*/
+	}
 }

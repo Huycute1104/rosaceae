@@ -177,6 +177,75 @@ private String uploadImageToCloudinary(MultipartFile file) {
                     .build();
         }
     }
+    @Override
+    public ItemResponse updateItemWithImages(int itemId, CreateItemRequest createItemRequest) {
+        Optional<Item> optionalItem = itemRepo.findById(itemId);
+        if (!optionalItem.isPresent()) {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("Item Not Found")
+                    .build();
+        }
+
+        Item item = optionalItem.get();
+        item.setItemName(createItemRequest.getItemName());
+        item.setItemDescription(createItemRequest.getItemDescription());
+        item.setItemPrice(createItemRequest.getItemPrice());
+        item.setQuantity(createItemRequest.getQuantity());
+        item.setDiscount(createItemRequest.getDiscount());
+
+        var itemType = itemTypeRepo.findByItemTypeId(createItemRequest.getItemTypeId()).orElse(null);
+        if (itemType == null) {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("ItemType Not Found")
+                    .build();
+        }
+        item.setItemType(itemType);
+
+        var category = categoryRepo.findCategoriesByCategoryId(createItemRequest.getCategoryId()).orElse(null);
+        if (category == null) {
+            return ItemResponse.builder()
+                    .item(null)
+                    .status("Category Not Found")
+                    .build();
+        }
+        item.setCategory(category);
+
+        // Save updated item details
+        itemRepo.save(item);
+
+        // Delete existing images
+        List<ItemImages> existingImages = itemImageRepo.findByItem(item);
+        if (existingImages != null && !existingImages.isEmpty()) {
+            itemImageRepo.deleteAll(existingImages);
+        }
+
+        // Upload and save new images
+        List<MultipartFile> files = createItemRequest.getFiles();
+        if (files != null && !files.isEmpty()) {
+            List<ItemImages> imagesList = new ArrayList<>();
+            for (MultipartFile file : files) {
+                String url = uploadImageToCloudinary(file);
+                if (url != null) {
+                    ItemImages images = ItemImages.builder()
+                            .imageUrl(url)
+                            .item(item)
+                            .build();
+                    imagesList.add(images);
+                }
+            }
+            itemImageRepo.saveAll(imagesList);
+        }
+
+        return ItemResponse.builder()
+                .item(item)
+                .status("Updated Item and Images Successfully")
+                .build();
+    }
+
+
+
 
 
     @Override

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CreateUserReportRequest {
     private Integer usersId;
     private Integer shopId;
-    private Long itemId;
+    private int itemId;
     private Integer reportId;
     private String description;
 }
