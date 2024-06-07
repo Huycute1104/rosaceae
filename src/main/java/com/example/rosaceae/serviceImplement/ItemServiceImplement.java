@@ -71,8 +71,8 @@ public class ItemServiceImplement implements ItemService {
                 }
                 Item item = Item.builder()
                         .itemName(itemRequest.getItemName())
-                        .itemDescription(itemRequest.getDescription())
-                        .itemPrice(itemRequest.getPrice())
+                        .itemDescription(itemRequest.getItemDescription())
+                        .itemPrice(itemRequest.getItemPrice())
                         .quantity(quantity)
                         .itemRate(0f)
                         .commentCount(0)
@@ -134,8 +134,8 @@ private String uploadImageToCloudinary(MultipartFile file) {
                 }
                 Item item = Item.builder()
                         .itemName(itemRequest.getItemName())
-                        .itemDescription(itemRequest.getDescription())
-                        .itemPrice(itemRequest.getPrice())
+                        .itemDescription(itemRequest.getItemDescription())
+                        .itemPrice(itemRequest.getItemPrice())
                         .quantity(quantity)
                         .itemRate(0f)
                         .commentCount(0)

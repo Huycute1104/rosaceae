@@ -1,14 +1,9 @@
 package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Data.ItemDTO;
-import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.CreateItemRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
-import com.example.rosaceae.dto.Request.ItemTypeRequest.ItemTypeResponse;
-import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.dto.Response.ItemResponse.ItemResponse;
-import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
-import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,8 +95,8 @@ public class ItemController {
         ItemRequest request = ItemRequest.builder()
                 .itemName(itemName)
                 .quantity(quantity)
-                .price(price)
-                .description(description)
+                .itemPrice(price)
+                .itemDescription(description)
                 .rate(rate)
                 .commentCount(commentCount)
                 .countUsage(countUsage)

@@ -26,8 +26,8 @@ public class ItemRequest {
 //    private int categoryId;
 private String itemName;
     private int quantity;
-    private Float price;
-    private String description;
+    private Float itemPrice;
+    private String itemDescription;
     private Float rate = 0.0f;
     private int commentCount = 0;
     private int countUsage = 0;
