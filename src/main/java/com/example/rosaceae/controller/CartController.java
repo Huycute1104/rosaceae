@@ -1,5 +1,6 @@
 package com.example.rosaceae.controller;
 
+import com.example.rosaceae.dto.Data.CartDTO;
 import com.example.rosaceae.dto.Request.CartRequest.AddToCartRequest;
 import com.example.rosaceae.dto.Request.CartRequest.UpdateCartItem;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
@@ -16,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/cart")
 @RequiredArgsConstructor
@@ -30,26 +33,26 @@ public class CartController {
         return cartService.addToCart(request);
     }
 
-    @GetMapping("")
-//    @PreAuthorize("hasAuthority('customer:read')")
-    public ResponseEntity<Page<Cart>> viewCartOfCustomer(
-            @RequestParam int customerId,
-            @RequestParam int type,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        if (customerId <= 0 || type <= 0 || page < 0 || size <= 0) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Cart> carts = cartService.viewCarOfCustomer(customerId, type, pageable);
-
-        if (carts.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(carts);
-    }
+//    @GetMapping("")
+////    @PreAuthorize("hasAuthority('customer:read')")
+//    public ResponseEntity<Page<Cart>> viewCartOfCustomer(
+//            @RequestParam int customerId,
+//            @RequestParam int type,
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size) {
+//        if (customerId <= 0 || type <= 0 || page < 0 || size <= 0) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//        Pageable pageable = PageRequest.of(page, size);
+//        Page<Cart> carts = cartService.viewCarOfCustomer(customerId, type, pageable);
+//
+//        if (carts.isEmpty()) {
+//            return ResponseEntity.noContent().build();
+//        }
+//
+//        return ResponseEntity.ok(carts);
+//    }
 
     @DeleteMapping("/{id}")
 //    @PreAuthorize("hasAnyAuthority('customer:delete')")
@@ -63,6 +66,11 @@ public class CartController {
             @PathVariable int id,
             @RequestBody UpdateCartItem request) {
         return ResponseEntity.ok(cartService.updateCartItem(id,request));
+    }
+
+    @GetMapping("{userId}")
+    public List<CartDTO> getCartsByUserIdAndItemTypeId(@PathVariable int userId, @RequestParam int itemTypeId) {
+        return cartService.getCartsByUserId(userId, itemTypeId);
     }
 
 

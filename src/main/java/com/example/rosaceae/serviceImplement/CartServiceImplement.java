@@ -1,10 +1,12 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.CartRequest.AddToCartRequest;
 import com.example.rosaceae.dto.Request.CartRequest.UpdateCartItem;
 import com.example.rosaceae.dto.Response.CartResponse.CartResponse;
 import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Cart;
+import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.ItemType;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.repository.CartRepo;
@@ -17,7 +19,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CartServiceImplement implements CartService {
@@ -116,6 +120,49 @@ public class CartServiceImplement implements CartService {
             cartRepo.save(cart);
         }
         return null;
+    }
+
+    @Override
+    public List<CartDTO> getCartsByUserId(int userId, int itemTypeId) {
+        List<Cart> carts = cartRepo.findByUserUsersID(userId);
+        return carts.stream()
+                .filter(cart -> cart.getItem().getItemType().getItemTypeId() == itemTypeId)
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+    private CartDTO convertToDto(Cart cart) {
+        List<ItemDTO> items = List.of(convertToDTO(cart.getItem()));
+        return CartDTO.builder()
+                .cartId(cart.getCartId())
+                .quantity(cart.getQuantity())
+                .items(items)
+                .build();
+    }
+    private ItemDTO convertToDTO(Item item) {
+        return ItemDTO.builder()
+                .itemId(item.getItemId())
+                .itemName(item.getItemName())
+                .itemPrice(item.getItemPrice())
+                .itemDescription(item.getItemDescription())
+                .itemRate(item.getItemRate())
+                .commentCount(item.getCommentCount())
+                .countUsage(item.getCountUsage())
+                .quantity(item.getQuantity())
+                .discount(item.getDiscount())
+                .itemImages(item.getItemImages().stream()
+                        .map(image -> ItemImageDTO.builder()
+                                .imageUrl(image.getImageUrl())
+                                .build())
+                        .collect(Collectors.toList()))
+                .category(CategoryDTO.builder()
+                        .categoryId(item.getCategory().getCategoryId())
+                        .categoryName(item.getCategory().getCategoryName())
+                        .build())
+                .itemType(ItemTypeDTO.builder()
+                        .itemTypeId(item.getItemType().getItemTypeId())
+                        .itemTypeName(item.getItemType().getItemTypeName())
+                        .build())
+                .build();
     }
 
 
