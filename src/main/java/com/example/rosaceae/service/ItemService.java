@@ -19,6 +19,7 @@ public interface ItemService {
 ItemResponse createItemWithImages(ItemRequest itemRequest);
     Optional<ItemDTO> GetItemById(int id);
     public ItemResponse UpdateItem(CreateItemRequest itemRequest,int id);
+    ItemResponse updateItemWithImages(int itemId, CreateItemRequest createItemRequest);
     public ItemResponse DeleteItem(int id);
     Page<ItemDTO> getItemsByUserId(int userId, int page, int size);
     public Page<ItemDTO> getItems(Specification<Item> spec, Pageable pageable);

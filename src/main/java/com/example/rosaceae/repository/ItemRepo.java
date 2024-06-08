@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ItemRepo extends JpaRepository<Item, Long>, JpaSpecificationExecutor<Item> {
+public interface ItemRepo extends JpaRepository<Item, Integer>, JpaSpecificationExecutor<Item> {
     Optional<Item> findByItemId(int id);
     List<Item> findByUserUsersID(int id);
     Page<Item> findByUserUsersID(int userId, Pageable pageable);
