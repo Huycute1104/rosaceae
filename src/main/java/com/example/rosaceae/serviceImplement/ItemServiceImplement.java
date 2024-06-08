@@ -137,9 +137,6 @@ private String uploadImageToCloudinary(MultipartFile file) {
                         .itemDescription(itemRequest.getItemDescription())
                         .itemPrice(itemRequest.getItemPrice())
                         .quantity(quantity)
-                        .itemRate(0f)
-                        .commentCount(0)
-                        .countUsage(0)
                         .discount(itemRequest.getDiscount())
                         .user(shop)
                         .category(category)
@@ -147,22 +144,24 @@ private String uploadImageToCloudinary(MultipartFile file) {
                         .build();
                 itemRepo.save(item);
 
-                List<MultipartFile> files = itemRequest.getFiles();
-                List<ItemImages> imagesList = new ArrayList<>();
+                if(!itemRequest.getFiles().isEmpty() && itemRequest.getFiles() != null){
+                    List<MultipartFile> files = itemRequest.getFiles();
+                    List<ItemImages> imagesList = new ArrayList<>();
 
-                for (MultipartFile file : files) {
-                    String url = uploadImageToCloudinary(file);
-                    if (url != null) {
-                        ItemImages images = ItemImages.builder()
-                                .imageUrl(url)
-                                .item(item)
-                                .build();
-                        imagesList.add(images);
+                    for (MultipartFile file : files) {
+                        String url = uploadImageToCloudinary(file);
+                        if (url != null) {
+                            ItemImages images = ItemImages.builder()
+                                    .imageUrl(url)
+                                    .item(item)
+                                    .build();
+                            imagesList.add(images);
+                        }
                     }
-                }
 
-                if (!imagesList.isEmpty()) {
-                    itemImageRepo.saveAll(imagesList);
+                    if (!imagesList.isEmpty()) {
+                        itemImageRepo.saveAll(imagesList);
+                    }
                 }
 
                 return ItemResponse.builder()
@@ -246,6 +245,7 @@ private String uploadImageToCloudinary(MultipartFile file) {
     public Page<ItemDTO> getItemsByUserId(int userId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Item> itemsPage = itemRepo.findByUserUsersID(userId, pageable);
+        System.out.println(itemRepo.findByUserUsersID(userId, pageable));
         return itemsPage.map(this::convertToDTO);
     }
 

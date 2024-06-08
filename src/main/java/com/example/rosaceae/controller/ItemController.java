@@ -44,7 +44,7 @@ public class ItemController {
             @RequestParam(required = false) String itemTypeName,
             @RequestParam(required = false) Integer userId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "100") int size) {
 
         Specification<Item> spec = Specification.where(null);
 
@@ -81,11 +81,8 @@ public class ItemController {
     public ResponseEntity<ItemResponse> createItemWithImages(
             @RequestParam("itemName") String itemName,
             @RequestParam("quantity") int quantity,
-            @RequestParam("price") Float price,
-            @RequestParam("description") String description,
-            @RequestParam("rate") Float rate,
-            @RequestParam("commentCount") int commentCount,
-            @RequestParam("countUsage") int countUsage,
+            @RequestParam("itemPrice") Float price,
+            @RequestParam("itemDescription") String description,
             @RequestParam("discount") int discount,
             @RequestParam("shopId") int shopId,
             @RequestParam("itemTypeId") int itemTypeId,
@@ -97,9 +94,6 @@ public class ItemController {
                 .quantity(quantity)
                 .itemPrice(price)
                 .itemDescription(description)
-                .rate(rate)
-                .commentCount(commentCount)
-                .countUsage(countUsage)
                 .discount(discount)
                 .shopId(shopId)
                 .itemTypeId(itemTypeId)
@@ -131,7 +125,7 @@ public class ItemController {
     public ResponseEntity<Page<ItemDTO>> getItemsByUserId(
             @PathVariable int userId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "100") int size) {
         Page<ItemDTO> items = itemService.getItemsByUserId(userId, page, size);
         return ResponseEntity.ok(items);
     }
