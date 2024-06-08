@@ -214,27 +214,30 @@ private String uploadImageToCloudinary(MultipartFile file) {
         // Save updated item details
         itemRepo.save(item);
 
-        // Delete existing images
-        List<ItemImages> existingImages = itemImageRepo.findByItem(item);
-        if (existingImages != null && !existingImages.isEmpty()) {
-            itemImageRepo.deleteAll(existingImages);
-        }
-
-        // Upload and save new images
-        List<MultipartFile> files = createItemRequest.getFiles();
-        if (files != null && !files.isEmpty()) {
-            List<ItemImages> imagesList = new ArrayList<>();
-            for (MultipartFile file : files) {
-                String url = uploadImageToCloudinary(file);
-                if (url != null) {
-                    ItemImages images = ItemImages.builder()
-                            .imageUrl(url)
-                            .item(item)
-                            .build();
-                    imagesList.add(images);
-                }
+        if(createItemRequest.getFiles() != null && !createItemRequest.getFiles().isEmpty()){
+            // Delete existing images
+            List<ItemImages> existingImages = itemImageRepo.findByItem(item);
+            if (existingImages != null && !existingImages.isEmpty()) {
+                itemImageRepo.deleteAll(existingImages);
             }
-            itemImageRepo.saveAll(imagesList);
+
+            // Upload and save new images
+            List<MultipartFile> files = createItemRequest.getFiles();
+            if (files != null && !files.isEmpty()) {
+                List<ItemImages> imagesList = new ArrayList<>();
+                for (MultipartFile file : files) {
+                    String url = uploadImageToCloudinary(file);
+                    if (url != null) {
+                        ItemImages images = ItemImages.builder()
+                                .imageUrl(url)
+                                .item(item)
+                                .build();
+                        imagesList.add(images);
+                    }
+                }
+                itemImageRepo.saveAll(imagesList);
+            }
+
         }
 
         return ItemResponse.builder()

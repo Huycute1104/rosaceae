@@ -110,7 +110,7 @@ public class ItemController {
 //    @PreAuthorize("hasAuthority('shop:update')")
     public ResponseEntity<ItemResponse> updateItemWithImages(
             @PathVariable int id,
-            @ModelAttribute CreateItemRequest createItemRequest) {
+            @RequestBody CreateItemRequest createItemRequest) {
 
         return ResponseEntity.ok(itemService.updateItemWithImages(id, createItemRequest));
     }
