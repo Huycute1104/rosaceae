@@ -102,19 +102,19 @@ public class RosaceaeApplication {
         return "Wat sup my nigga !";
     }
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner2(
-//
-//	) {
-//		return args -> {
-//			// Dummy data for reports
-//			String[] reportNames = {"Shop fake", "Hàng kém chất lượng", "Lý do khác"};
-//			for (String reportName : reportNames) {
-//				Report report = Report.builder().reportName(reportName).build();
-//				reportRepo.save(report);
-//			}
-//		};}
-	/*@Bean
+	@Bean
+	public CommandLineRunner commandLineRunner2(
+
+	) {
+		return args -> {
+			// Dummy data for reports
+			String[] reportNames = {"Shop fake", "Hàng kém chất lượng", "Lý do khác"};
+			for (String reportName : reportNames) {
+				Report report = Report.builder().reportName(reportName).build();
+				reportRepo.save(report);
+			}
+		};}
+	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service,
 			RankMemberService memberService,
@@ -199,7 +199,7 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810522/wjwijr686epskqqfqamp.jpg")
 					.build();
 			service.register(shop3);
 
@@ -211,7 +211,7 @@ public class RosaceaeApplication {
 					.phone("0254859865")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810654/giy29isjrk6hhtg3skaq.jpg")
 					.build();
 			service.register(shop4);
 			var shop5= RegisterRequest.builder()
@@ -222,7 +222,7 @@ public class RosaceaeApplication {
 					.phone("0365412478")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810701/etfgdgqaan5pargu3iey.png")
 					.build();
 			service.register(shop5);
 			var shop6= RegisterRequest.builder()
@@ -233,7 +233,7 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811792/pjlybbvwtrpyp2pqntlp.png")
 					.build();
 			service.register(shop6);
 			var shop7= RegisterRequest.builder()
@@ -244,7 +244,7 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810756/qff61icaqlxci1xvmddr.png")
 					.build();
 			service.register(shop7);
 			var shop8= RegisterRequest.builder()
@@ -255,7 +255,7 @@ public class RosaceaeApplication {
 					.phone("0938070872")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810925/w0nt15j2xmpbsyeng4p3.jpg")
 					.build();
 			service.register(shop8);
 			var shop9= RegisterRequest.builder()
@@ -266,7 +266,7 @@ public class RosaceaeApplication {
 					.phone("0935138782")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810988/ga0fd6zu5xyeqfh2dvrw.png")
 					.build();
 			service.register(shop9);
 			var shop10= RegisterRequest.builder()
@@ -277,7 +277,7 @@ public class RosaceaeApplication {
 					.phone("0909985329")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811027/ch70tcxyg83ajddmxwuz.jpg")
 					.build();
 			service.register(shop10);
 			var shop11= RegisterRequest.builder()
@@ -288,7 +288,7 @@ public class RosaceaeApplication {
 					.phone(" 0906234226")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811097/znlmr5zfbn3bdggqptox.png")
 					.build();
 			service.register(shop11);
 			var shop12= RegisterRequest.builder()
@@ -299,7 +299,7 @@ public class RosaceaeApplication {
 					.phone("0906234226")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811176/hvd3du9g3p0m7tcjxppf.jpg")
 					.build();
 			service.register(shop12);
 			var shop13= RegisterRequest.builder()
@@ -310,7 +310,7 @@ public class RosaceaeApplication {
 					.phone("0919856332")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811212/on3mohvszw3mmrehht4z.png")
 					.build();
 			service.register(shop13);
 			var shop14= RegisterRequest.builder()
@@ -321,7 +321,7 @@ public class RosaceaeApplication {
 					.phone("0898472108")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811231/rohvlm9sr0hvrjldxcik.png")
 					.build();
 			service.register(shop14);
 			var shop15= RegisterRequest.builder()
@@ -332,7 +332,7 @@ public class RosaceaeApplication {
 					.phone("0968654977")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811292/s3ionuxnaupmpee3yfwr.jpg")
 					.build();
 			service.register(shop15);
 			var shop16= RegisterRequest.builder()
@@ -343,29 +343,29 @@ public class RosaceaeApplication {
 					.phone(":0909298492")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811348/yajg4phpfvxzvkiouelg.jpg")
 					.build();
 			service.register(shop16);
 			var shop17= RegisterRequest.builder()
-					.name("Ngọc Anh Spa")
-					.email("NgocAnhSpa@gmail.com")
+					.name("Mỹ Ngọc  Spa")
+					.email("MyNgocSpa@gmail.com")
 					.status(true)
 					.password("123")
 					.phone("0353852208")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811398/ffytdr6bkqvveuhj3wxp.jpg")
 					.build();
 			service.register(shop17);
 			var shop18= RegisterRequest.builder()
-					.name("THÚY SPA - MASSAGE KHỎE QUẬN 9 - GỘI ĐẦU DƯỠNG SINH")
-					.email("Thuyspa09@gmail.com")
+					.name("LiDoSpa")
+					.email("LiDoSpa@gmail.com")
 					.status(true)
 					.password("123")
 					.phone("0938070872")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811495/ehfg6krfimwqhhjmltzc.jpg")
 					.build();
 			service.register(shop18);
 			var shop19= RegisterRequest.builder()
@@ -376,7 +376,7 @@ public class RosaceaeApplication {
 					.phone("0962058833")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811579/crjtbxqbl5z4jvr3vau6.jpg")
 					.build();
 			service.register(shop19);
 			var shop20= RegisterRequest.builder()
@@ -387,7 +387,7 @@ public class RosaceaeApplication {
 					.phone("0932699246")
 					.role(SHOP)
 					.enabled(true)
-					.images("")
+					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811615/sjtjwvqowqiu86wksxby.jpg")
 					.build();
 			service.register(shop20);
 
@@ -1367,5 +1367,5 @@ public class RosaceaeApplication {
 
 
 		};
-	}*/
+	}
 }
