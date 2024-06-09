@@ -12,4 +12,5 @@ public interface FeedbackService {
     Feedback createFeedback(CreateFeedbackRequest request);
     Feedback updateFeedback(UpdateFeedbackRequest request);
     Page<Feedback> getFeedbackByItemId(int itemId, Pageable pageable);
+    Page<Feedback> getFeedbackByItemIdAndUserId(int itemId, int userId, Pageable pageable);
 }

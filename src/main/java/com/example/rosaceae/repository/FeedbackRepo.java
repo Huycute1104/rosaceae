@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FeedbackRepo extends JpaRepository<Feedback, Integer> {
     Page<Feedback> findByItem_ItemId(int itemId, Pageable pageable);
+    Page<Feedback> findByItem_ItemIdAndUser_UsersID(int itemId, int userId, Pageable pageable);
 }

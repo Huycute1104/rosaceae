@@ -40,5 +40,15 @@ public class FeedbackController {
         Page<Feedback> feedbackPage = feedbackService.getFeedbackByItemId(itemId, pageable);
         return ResponseEntity.ok(feedbackPage);
     }
+    @GetMapping("/item/{itemId}/user/{userId}")
+    public ResponseEntity<Page<Feedback>> getFeedbackByItemIdAndUserId(
+            @PathVariable int itemId,
+            @PathVariable int userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Feedback> feedbackPage = feedbackService.getFeedbackByItemIdAndUserId(itemId, userId, pageable);
+        return ResponseEntity.ok(feedbackPage);
+    }
 
 }

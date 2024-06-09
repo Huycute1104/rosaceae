@@ -56,4 +56,8 @@ public class FeedbackServiceImplement implements FeedbackService {
     public Page<Feedback> getFeedbackByItemId(int itemId, Pageable pageable) {
         return feedbackRepo.findByItem_ItemId(itemId, pageable);
     }
+    @Override
+    public Page<Feedback> getFeedbackByItemIdAndUserId(int itemId, int userId, Pageable pageable) {
+        return feedbackRepo.findByItem_ItemIdAndUser_UsersID(itemId, userId, pageable);
+    }
 }
