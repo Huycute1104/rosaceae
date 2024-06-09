@@ -5,8 +5,13 @@ import com.example.rosaceae.dto.Request.FeedbackRequest.UpdateFeedbackRequest;
 import com.example.rosaceae.model.Feedback;
 import com.example.rosaceae.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/feedback")
@@ -26,4 +31,14 @@ public class FeedbackController {
         Feedback feedback = feedbackService.updateFeedback(request);
         return ResponseEntity.ok(feedback);
     }
+    @GetMapping("/item/{itemId}")
+    public ResponseEntity<Page<Feedback>> getFeedbackByItemId(
+            @PathVariable int itemId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Feedback> feedbackPage = feedbackService.getFeedbackByItemId(itemId, pageable);
+        return ResponseEntity.ok(feedbackPage);
+    }
+
 }

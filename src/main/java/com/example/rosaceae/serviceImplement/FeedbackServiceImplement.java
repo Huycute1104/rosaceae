@@ -10,9 +10,12 @@ import com.example.rosaceae.repository.ItemRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class FeedbackServiceImplement implements FeedbackService {
@@ -48,5 +51,9 @@ public class FeedbackServiceImplement implements FeedbackService {
         feedback.setRateStar(request.getRateStar());
         feedback.setFeedBackAt(new Date());
         return feedbackRepo.save(feedback);
+    }
+    @Override
+    public Page<Feedback> getFeedbackByItemId(int itemId, Pageable pageable) {
+        return feedbackRepo.findByItem_ItemId(itemId, pageable);
     }
 }
