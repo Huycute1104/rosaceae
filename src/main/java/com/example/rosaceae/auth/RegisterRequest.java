@@ -20,4 +20,6 @@ public class RegisterRequest {
     private boolean status, enabled;
     private int rankId;
     private Role role;
+    private String locationUrl;
+    private String address;
 }

@@ -24,4 +24,6 @@ public class LocationDTO {
     private float rate;
     private boolean userStatus;
     private String coverImages;
+    private double distance;
+    private String locationUrl;
 }

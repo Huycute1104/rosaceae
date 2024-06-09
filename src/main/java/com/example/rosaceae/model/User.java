@@ -38,6 +38,7 @@ public class User implements UserDetails {
 
     @Column(name = "Address" , length = 100)
     private String address;
+    private String locationUrl;
 
     private  float rate;
 
