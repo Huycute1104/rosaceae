@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Request.FeedbackRequest.CreateFeedbackRequest;
+import com.example.rosaceae.dto.Request.FeedbackRequest.UpdateFeedbackRequest;
 import com.example.rosaceae.model.Feedback;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
@@ -38,6 +39,14 @@ public class FeedbackServiceImplement implements FeedbackService {
                 .item(item)
                 .build();
 
+        return feedbackRepo.save(feedback);
+    }
+    @Override
+    public Feedback updateFeedback(UpdateFeedbackRequest request) {
+        Feedback feedback = feedbackRepo.findById(request.getFeedbackId()).orElseThrow(() -> new RuntimeException("Feedback not found"));
+        feedback.setFeedback(request.getFeedback());
+        feedback.setRateStar(request.getRateStar());
+        feedback.setFeedBackAt(new Date());
         return feedbackRepo.save(feedback);
     }
 }
