@@ -9,6 +9,7 @@ import com.example.rosaceae.dto.Data.DummyDataIImages;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
+import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.ItemImages;
@@ -114,7 +115,56 @@ public class RosaceaeApplication {
 				reportRepo.save(report);
 			}
 		};}
-	/*@Bean
+	@Bean
+	public CommandLineRunner commandLineRunner3(
+			LocationService service
+	) {
+		return args -> {
+			var location = LocationRequest.builder()
+					.latitude("10.8390398")
+					.longitude("106.791937")
+					.shopID(3)
+					.build();
+			service.createLocation(location);
+			var location1 = LocationRequest.builder()
+					.latitude("10.819901820327")
+					.longitude("106.7705655098")
+					.shopID(4)
+					.build();
+			service.createLocation(location1);
+			var location2 = LocationRequest.builder()
+					.latitude("10.8224164")
+					.longitude("106.763273")
+					.shopID(5)
+					.build();
+			service.createLocation(location2);
+			var location3 = LocationRequest.builder()
+					.latitude("10.8136653")
+					.longitude("106.7777557")
+					.shopID(6)
+					.build();
+			service.createLocation(location3);
+			var location4 = LocationRequest.builder()
+					.latitude("10.8072885")
+					.longitude("106.7777221")
+					.shopID(7)
+					.build();
+			service.createLocation(location4);
+			var location5 = LocationRequest.builder()
+					.latitude("10.84405765283")
+					.longitude("106.799")
+					.shopID(8)
+					.build();
+			service.createLocation(location5);
+			var location6 = LocationRequest.builder()
+					.latitude("10.84353")
+					.longitude("106.78124")
+					.shopID(9)
+					.build();
+			service.createLocation(location6);
+
+		};}
+	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service,
 			RankMemberService memberService,
@@ -1367,5 +1417,5 @@ public class RosaceaeApplication {
 
 
 		};
-	}*/
+	}
 }

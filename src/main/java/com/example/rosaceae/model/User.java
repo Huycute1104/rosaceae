@@ -98,6 +98,12 @@ public class User implements UserDetails {
     @JsonManagedReference
     private List<Voucher> vouchers;
 
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Location> locations;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();
