@@ -66,7 +66,20 @@ public class LocationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @PutMapping("/{userId}")
+    public ResponseEntity<LocationResponse> updateLocationForShop(@PathVariable int userId, @RequestParam String url) {
+        try {
+            LocationResponse response = service.UpdateLocationForShop(url, userId);
+            return ResponseEntity.ok(response);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body(LocationResponse.builder()
+                    .status("Error: " + e.getMessage())
+                    .location(null)
+                    .build());
+        }
+    }
 
+    //API test
     @GetMapping("/get-coordinates")
     public String getCoordinates(@RequestParam String url) throws IOException {
         String fullUrl = isShortenedUrl(url) ? followRedirect(url) : url;

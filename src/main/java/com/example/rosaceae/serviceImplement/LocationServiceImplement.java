@@ -155,6 +155,44 @@ public class LocationServiceImplement implements LocationService {
                 .build();
     }
 
+    @Override
+    public LocationResponse UpdateLocationForShop(String url, int userId) throws IOException {
+        var user = userRepo.findUserByUsersID(userId).orElse(null);
+        if (user == null) {
+            return LocationResponse.builder()
+                    .status("User Not Found")
+                    .location(null)
+                    .build();
+        }
+
+        var location = locationRepo.findByUserUsersID(userId).orElse(null);
+        if (location == null) {
+            return LocationResponse.builder()
+                    .status("User Don't Have Location")
+                    .location(null)
+                    .build();
+        }
+
+        String fullUrl = isShortenedUrl(url) ? followRedirect(url) : url;
+        if (StringUtils.hasText(fullUrl)) {
+            Pattern pattern = Pattern.compile("@(-?\\d+\\.\\d+),(-?\\d+\\.\\d+)");
+            Matcher matcher = pattern.matcher(fullUrl);
+            if (matcher.find()) {
+                String latitude = matcher.group(1);
+                String longitude = matcher.group(2);
+                location.setLatitude(latitude);
+                location.setLongitude(longitude);
+                locationRepo.save(location);
+            }
+        }
+
+        return LocationResponse.builder()
+                .status("Update Location Successful")
+                .location(location)
+                .build();
+    }
+
+
     private boolean isShortenedUrl(String url) {
         return url.contains("goo.gl");
     }

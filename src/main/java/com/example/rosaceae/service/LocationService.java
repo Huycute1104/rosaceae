@@ -13,4 +13,5 @@ public interface LocationService {
     public void createLocation(LocationRequest locationRequest);
     public List<LocationDTO> findUsersNearby(double currentLat, double currentLon, double radiusKm);
     public LocationResponse AddCoordinates(String url, int userId) throws IOException;
+    public LocationResponse UpdateLocationForShop(String url, int userId) throws IOException;
 }
