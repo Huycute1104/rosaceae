@@ -38,6 +38,7 @@ public class User implements UserDetails {
 
     @Column(name = "Address" , length = 100)
     private String address;
+    private String locationUrl;
 
     private  float rate;
 
@@ -97,6 +98,12 @@ public class User implements UserDetails {
     @JsonIgnore
     @JsonManagedReference
     private List<Voucher> vouchers;
+
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<Location> locations;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -9,6 +9,7 @@ import com.example.rosaceae.dto.Data.DummyDataIImages;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
+import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.ItemImages;
@@ -199,6 +200,8 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/7dSVtVgQR1B4f5cd9")
+					.address("79 Đ Làng Tăng Phú, Tăng Nhơn Phú A, Quận 9, Thành phố Hồ Chí Minh 700000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810522/wjwijr686epskqqfqamp.jpg")
 					.build();
 			service.register(shop3);
@@ -211,6 +214,8 @@ public class RosaceaeApplication {
 					.phone("0254859865")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/V1oHMj1uK3dJRyUh6")
+					.address("7A/87, Thành Thái, Phường 14, Quận 10, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810654/giy29isjrk6hhtg3skaq.jpg")
 					.build();
 			service.register(shop4);
@@ -222,6 +227,8 @@ public class RosaceaeApplication {
 					.phone("0365412478")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/qsPRzH4KPTaLYK7s5")
+					.address("421/20 Đ. Sư Vạn Hạnh, Phường 12, Quận 10, Thành phố Hồ Chí Minh 12345, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810701/etfgdgqaan5pargu3iey.png")
 					.build();
 			service.register(shop5);
@@ -233,6 +240,8 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/NioPqppHv9bkYQyL8")
+					.address("69 Nguyễn Phúc Tần, Phường Minh An, Hội An, Quảng Nam, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811792/pjlybbvwtrpyp2pqntlp.png")
 					.build();
 			service.register(shop6);
@@ -244,6 +253,8 @@ public class RosaceaeApplication {
 					.phone("0912268183")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/3ZA3Uf5yAgUGaczK6")
+					.address("258 Võ Nguyên Giáp, Phước Mỹ, Sơn Trà, Đà Nẵng 550000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810756/qff61icaqlxci1xvmddr.png")
 					.build();
 			service.register(shop7);
@@ -255,6 +266,8 @@ public class RosaceaeApplication {
 					.phone("0938070872")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/6Py4NFKCxZf8NhZe7")
+					.address("377 Đ. Man Thiện, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh 71010, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810925/w0nt15j2xmpbsyeng4p3.jpg")
 					.build();
 			service.register(shop8);
@@ -266,6 +279,8 @@ public class RosaceaeApplication {
 					.phone("0935138782")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/Vhxp2MFRRBzyVtPu6")
+					.address("13K1 Đường số 40, Tân Phong, Quận 7, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810988/ga0fd6zu5xyeqfh2dvrw.png")
 					.build();
 			service.register(shop9);
@@ -277,6 +292,8 @@ public class RosaceaeApplication {
 					.phone("0909985329")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/8n7W23y1YBmZSwmW8")
+					.address("264 Lê Văn Việt, Tăng Nhơn Phú B, Quận 9, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811027/ch70tcxyg83ajddmxwuz.jpg")
 					.build();
 			service.register(shop10);
@@ -288,6 +305,8 @@ public class RosaceaeApplication {
 					.phone(" 0906234226")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/67bzyJvRmNQkfdwN9")
+					.address("166/2 Đ. Nguyễn Hữu Cảnh, Phường 22, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811097/znlmr5zfbn3bdggqptox.png")
 					.build();
 			service.register(shop11);
@@ -299,6 +318,8 @@ public class RosaceaeApplication {
 					.phone("0906234226")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/cFELDNEotW7jkqd2A")
+					.address("108 đường D3 phường Phước Long B Quận 9, Thủ Đức, Thành phố Hồ Chí Minh 71210, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811176/hvd3du9g3p0m7tcjxppf.jpg")
 					.build();
 			service.register(shop12);
@@ -310,6 +331,8 @@ public class RosaceaeApplication {
 					.phone("0919856332")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/1iDxAALiV2UVretw9")
+					.address("11A Đ. 339, Phước Long B, TP. Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811212/on3mohvszw3mmrehht4z.png")
 					.build();
 			service.register(shop13);
@@ -321,6 +344,8 @@ public class RosaceaeApplication {
 					.phone("0898472108")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/XyEGVDqUYyWK8sAv5")
+					.address("Hẻm 115 Đường số 39, Phường Bình Trưng Tây, Quận 2, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811231/rohvlm9sr0hvrjldxcik.png")
 					.build();
 			service.register(shop14);
@@ -332,6 +357,8 @@ public class RosaceaeApplication {
 					.phone("0968654977")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/QwnhQPewHL7ixuVz9")
+					.address("131 Đ Làng Tăng Phú, QUAN 9, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811292/s3ionuxnaupmpee3yfwr.jpg")
 					.build();
 			service.register(shop15);
@@ -343,6 +370,8 @@ public class RosaceaeApplication {
 					.phone(":0909298492")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/FVXch5p1fa8dJB2GA")
+					.address("43 Đường Số 1, Bình Trưng Đông, Thủ Đức, Thành phố Hồ Chí Minh 700000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811348/yajg4phpfvxzvkiouelg.jpg")
 					.build();
 			service.register(shop16);
@@ -354,6 +383,8 @@ public class RosaceaeApplication {
 					.phone("0353852208")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/dcPSt4USnWLfPky27")
+					.address("38 Dương Đình Hội, Phước Long B, Quận 9, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811398/ffytdr6bkqvveuhj3wxp.jpg")
 					.build();
 			service.register(shop17);
@@ -365,6 +396,8 @@ public class RosaceaeApplication {
 					.phone("0938070872")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/wedkZjxxbDxZRDw9A")
+					.address("424 Lê Văn Việt, Tăng Nhơn Phú A, Thủ Đức, Thành phố Hồ Chí Minh 70000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811495/ehfg6krfimwqhhjmltzc.jpg")
 					.build();
 			service.register(shop18);
@@ -376,6 +409,8 @@ public class RosaceaeApplication {
 					.phone("0962058833")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/wedkZjxxbDxZRDw9A")
+					.address("424 Lê Văn Việt, Tăng Nhơn Phú A, Thủ Đức, Thành phố Hồ Chí Minh 70000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811579/crjtbxqbl5z4jvr3vau6.jpg")
 					.build();
 			service.register(shop19);
@@ -387,6 +422,8 @@ public class RosaceaeApplication {
 					.phone("0932699246")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/ioGjn47ow5ASHeAz7")
+					.address("424 Lê Văn Việt, Tăng Nhơn Phú A, Thủ Đức, Thành phố Hồ Chí Minh 70000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811615/sjtjwvqowqiu86wksxby.jpg")
 					.build();
 			service.register(shop20);
@@ -1363,9 +1400,52 @@ public class RosaceaeApplication {
 					.build();
 			itemImageService.CreateImage(image87);
 
+			var location = LocationRequest.builder()
+					.latitude("10.8618393")
+					.longitude("106.7580455")
+					.shopID(3)
+					.build();
+			locationService.createLocation(location);
+			var location1 = LocationRequest.builder()
+					.latitude("10.8312034")
+					.longitude("106.7025974")
+					.shopID(4)
+					.build();
+			locationService.createLocation(location1);
+			var location2 = LocationRequest.builder()
+					.latitude("10.8595319")
+					.longitude("106.7648504")
+					.shopID(5)
+					.build();
+			locationService.createLocation(location2);
+			var location3 = LocationRequest.builder()
+					.latitude("10.8136653")
+					.longitude("106.6547022")
+					.shopID(6)
+					.build();
+			locationService.createLocation(location3);
+			var location4 = LocationRequest.builder()
+					.latitude("10.8143615")
+					.longitude("106.655274")
+					.shopID(7)
+					.build();
+			locationService.createLocation(location4);
+			var location5 = LocationRequest.builder()
+					.latitude("13.3096391")
+					.longitude("105.4040519")
+					.shopID(8)
+					.build();
+			locationService.createLocation(location5);
+			var location6 = LocationRequest.builder()
+					.latitude("13.4029018")
+					.longitude("105.439347")
+					.shopID(9)
+					.build();
+			locationService.createLocation(location6);
 
 
 
 		};
-	}*/
+	}
+
 }

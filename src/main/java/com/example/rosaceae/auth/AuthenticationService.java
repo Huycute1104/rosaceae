@@ -145,6 +145,8 @@ public class AuthenticationService {
                 .rankMember(rank)
                 .enabled(request.isEnabled())
                 .coverImages(request.getImages())
+                .locationUrl(request.getLocationUrl())
+                .address(request.getAddress())
                 .build();
         var save = userRepo.save(user);
         var jwtToken = jwtService.generateToken(user);
