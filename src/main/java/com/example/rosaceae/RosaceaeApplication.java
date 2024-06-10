@@ -103,7 +103,7 @@ public class RosaceaeApplication {
         return "Wat sup my nigga !";
     }
 
-	/*@Bean
+	@Bean
 	public CommandLineRunner commandLineRunner2(
 
 	) {
@@ -115,6 +115,7 @@ public class RosaceaeApplication {
 				reportRepo.save(report);
 			}
 		};}
+
 	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service,
@@ -122,7 +123,8 @@ public class RosaceaeApplication {
 			CategoryService categoryService,
 			ItemTypeService itemTypeService,
 			ItemService itemService,
-			ItemImageService itemImageService
+			ItemImageService itemImageService,
+			LocationService locationService
 	) {
 		return args -> {
 			// dummy data rank
@@ -188,12 +190,14 @@ public class RosaceaeApplication {
 					.phone("0326541287")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/8ZdDUkDrpkqBnSVcA")
+					.address("375 Đ. Nguyễn Thượng Hiền, Phường 11, Quận 10, Thành phố Hồ Chí Minh 700000, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717326881/qxlbkep8pol7eb8w833i.png")
 					.build();
 			service.register(shop2);
 
 			var shop3= RegisterRequest.builder()
-					.name("Ocean Nail Quận 9")
+					.name("Hơ-nie Nails & Eyelash")
 					.email("oceannail@gmail.com")
 					.status(true)
 					.password("123")
