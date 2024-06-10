@@ -3,15 +3,23 @@ package com.example.rosaceae.serviceImplement;
 import com.example.rosaceae.dto.Data.LocationDTO;
 import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Response.LocationResponse.LocationResponse;
+
 import com.example.rosaceae.model.Location;
 import com.example.rosaceae.repository.LocationRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +28,11 @@ public class LocationServiceImplement implements LocationService {
     private UserRepo userRepo;
     @Autowired
     private LocationRepo locationRepo;
+
+
+    @Value("${google.api.key}")
+    private String googleApiKey;
+
 
     @Override
     public List<LocationDTO> findAll() {
@@ -32,12 +45,12 @@ public class LocationServiceImplement implements LocationService {
     @Override
     public void createLocation(LocationRequest locationRequest) {
         var shop = userRepo.findUserByUsersID(locationRequest.getShopID()).orElse(null);
-        if(shop == null) {
+        if (shop == null) {
             LocationResponse.builder()
                     .location(null)
                     .status("Shop Not Found")
                     .build();
-        }else {
+        } else {
             Location location = Location.builder()
                     .user(shop)
                     .latitude(locationRequest.getLatitude())
@@ -101,5 +114,53 @@ public class LocationServiceImplement implements LocationService {
         }
     }
 
+    @Override
+    public LocationResponse AddCoordinates(String url, int userId) throws IOException {
+        var user = userRepo.findUserByUsersID(userId).orElse(null);
+        if (user == null) {
+            return LocationResponse.builder()
+                    .status("User Not Found")
+                    .location(null)
+                    .build();
+        }
+        String fullUrl = isShortenedUrl(url) ? followRedirect(url) : url;
+        if (StringUtils.hasText(fullUrl)) {
+            Pattern pattern = Pattern.compile("@(-?\\d+\\.\\d+),(-?\\d+\\.\\d+)");
+            Matcher matcher = pattern.matcher(fullUrl);
+            if (matcher.find()) {
+                String latitude = matcher.group(1);
+                String longitude = matcher.group(2);
+                Location location = Location.builder()
+                        .user(user)
+                        .latitude(latitude)
+                        .longitude(longitude)
+                        .build();
+                locationRepo.save(location);
+                return LocationResponse.builder()
+                        .status("Create Location Successful")
+                        .location(location)
+                        .build();
+            }
+        }
+        return LocationResponse.builder()
+                .status("Create Location Fail")
+                .location(null)
+                .build();
+    }
 
+    private boolean isShortenedUrl(String url) {
+        return url.contains("goo.gl");
+    }
+
+    private String followRedirect(String url) throws IOException {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setInstanceFollowRedirects(false);
+        String redirectUrl = connection.getHeaderField("Location");
+        connection.disconnect();
+
+        if (redirectUrl != null) {
+            return redirectUrl;
+        }
+        return url;
+    }
 }

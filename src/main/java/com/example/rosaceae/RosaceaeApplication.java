@@ -1407,47 +1407,48 @@ public class RosaceaeApplication {
 			itemImageService.CreateImage(image87);
 
 			var location = LocationRequest.builder()
-					.latitude("10.8504544")
-					.longitude("106.8111476")
+					.latitude("10.8618393")
+					.longitude("106.7580455")
 					.shopID(3)
 					.build();
 			locationService.createLocation(location);
 			var location1 = LocationRequest.builder()
-					.latitude("10.819901820327")
-					.longitude("106.7705655098")
+					.latitude("10.8312034")
+					.longitude("106.7025974")
 					.shopID(4)
 					.build();
 			locationService.createLocation(location1);
 			var location2 = LocationRequest.builder()
-					.latitude("10.8224164")
-					.longitude("106.763273")
+					.latitude("10.8595319")
+					.longitude("106.7648504")
 					.shopID(5)
 					.build();
 			locationService.createLocation(location2);
 			var location3 = LocationRequest.builder()
 					.latitude("10.8136653")
-					.longitude("106.7777557")
+					.longitude("106.6547022")
 					.shopID(6)
 					.build();
 			locationService.createLocation(location3);
 			var location4 = LocationRequest.builder()
-					.latitude("10.8072885")
-					.longitude("106.7777221")
+					.latitude("10.8143615")
+					.longitude("106.655274")
 					.shopID(7)
 					.build();
 			locationService.createLocation(location4);
 			var location5 = LocationRequest.builder()
-					.latitude("10.84405765283")
-					.longitude("106.799")
+					.latitude("13.3096391")
+					.longitude("105.4040519")
 					.shopID(8)
 					.build();
 			locationService.createLocation(location5);
 			var location6 = LocationRequest.builder()
-					.latitude("10.84353")
-					.longitude("106.78124")
+					.latitude("13.4029018")
+					.longitude("105.439347")
 					.shopID(9)
 					.build();
 			locationService.createLocation(location6);
+
 
 
 		};
