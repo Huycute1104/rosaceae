@@ -123,6 +123,13 @@ public class LocationServiceImplement implements LocationService {
                     .location(null)
                     .build();
         }
+        var check = locationRepo.findLocationsByUserUsersID(userId);
+        if(check != null){
+            return LocationResponse.builder()
+                    .status("Location Already Exists For This Shop")
+                    .location(null)
+                    .build();
+        }
         String fullUrl = isShortenedUrl(url) ? followRedirect(url) : url;
         if (StringUtils.hasText(fullUrl)) {
             Pattern pattern = Pattern.compile("@(-?\\d+\\.\\d+),(-?\\d+\\.\\d+)");
