@@ -11,6 +11,7 @@ import com.example.rosaceae.dto.Request.ItemImageRequest;
 import com.example.rosaceae.dto.Request.ItemRequest.ItemRequest;
 import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
+import com.example.rosaceae.dto.Request.TimeBookingRequest.TimeBookingRequest;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.model.ItemImages;
 import com.example.rosaceae.model.Report;
@@ -124,7 +125,8 @@ public class RosaceaeApplication {
 			ItemTypeService itemTypeService,
 			ItemService itemService,
 			ItemImageService itemImageService,
-			LocationService locationService
+			LocationService locationService,
+			TimeBookingService timeBookingService
 	) {
 		return args -> {
 			// dummy data rank
@@ -1449,6 +1451,64 @@ public class RosaceaeApplication {
 
 
 
+			//timebooking
+
+			var timeBooking = TimeBookingRequest.builder()
+					.time("7h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking);
+			var timeBooking1 = TimeBookingRequest.builder()
+					.time("8h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking1);
+			var timeBooking2 = TimeBookingRequest.builder()
+					.time("9h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking2);
+			var timeBooking3 = TimeBookingRequest.builder()
+					.time("10h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking3);
+			var timeBooking4 = TimeBookingRequest.builder()
+					.time("11h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking4);
+			var timeBooking5 = TimeBookingRequest.builder()
+					.time("12h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking5);
+			var timeBooking6 = TimeBookingRequest.builder()
+					.time("13h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking6);
+			var timeBooking7 = TimeBookingRequest.builder()
+					.time("14h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking7);
+			var timeBooking8 = TimeBookingRequest.builder()
+					.time("15h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking8);
+			var timeBooking9 = TimeBookingRequest.builder()
+					.time("16h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking9);
+			var timeBooking10 = TimeBookingRequest.builder()
+					.time("17h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking10);
+			var timeBooking11 = TimeBookingRequest.builder()
+					.time("18h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking11);
+			var timeBooking12 = TimeBookingRequest.builder()
+					.time("19h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking12);
+			var timeBooking13 = TimeBookingRequest.builder()
+					.time("20h00")
+					.build();
+			timeBookingService.createBookingTime(timeBooking13);
 		};
 	}
 
