@@ -1,5 +1,6 @@
 package com.example.rosaceae.model;
 
+import com.example.rosaceae.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,6 +28,10 @@ public class Order {
 
     @Column(name = "Total")
     private float total;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "OrderStatus", nullable = false)
+    private OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonManagedReference
