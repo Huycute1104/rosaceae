@@ -135,6 +135,14 @@
             <artifactId>google-maps-services</artifactId>
             <version>0.18.0</version>
         </dependency>
+        <!--Pay OS-->
+        <dependency>
+            <groupId>io.github</groupId>
+            <artifactId>payoshq</artifactId>
+            <version>0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/payos.jar</systemPath>
+        </dependency>
 
 
     </dependencies>
