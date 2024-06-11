@@ -38,7 +38,7 @@ public class Order {
     @JsonIgnore
     private Set<OrderDetail> orderDetails;
 
-    @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "VoucherID", nullable = true)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
