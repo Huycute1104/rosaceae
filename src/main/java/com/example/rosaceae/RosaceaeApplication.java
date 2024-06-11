@@ -127,6 +127,7 @@ public class RosaceaeApplication {
 			ItemImageService itemImageService,
 			LocationService locationService,
 			TimeBookingService timeBookingService
+//			FeeService feeService
 	) {
 		return args -> {
 			// dummy data rank
@@ -180,6 +181,8 @@ public class RosaceaeApplication {
 					.phone("0854512367")
 					.role(SHOP)
 					.enabled(true)
+					.locationUrl("https://maps.app.goo.gl/FTWtDaEja8t9DnQs6")
+					.address("1 Đ. Hoàng Diệu 2, Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam")
 					.images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717326740/uvojrs42h2rtw4lpkkiy.jpg")
 					.build();
 			System.out.println("Shop token :" + service.register(shop).getAccessToken());
@@ -1509,6 +1512,8 @@ public class RosaceaeApplication {
 					.time("20h00")
 					.build();
 			timeBookingService.createBookingTime(timeBooking13);
+
+//			feeService.createFee(3);
 		};
 	}
 

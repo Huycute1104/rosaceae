@@ -23,6 +23,9 @@ public class OrderDetail {
     @Column(name = "Price")
     private float price;
 
+    @Column(name = "PriceforShop")
+    private float priceForShop;
+
     @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "ItemID")
     @EqualsAndHashCode.Exclude

@@ -38,6 +38,8 @@ public class Item {
 
     private int quantity;
 
+    private Integer  quantityCount;
+
     private int discount;
 
     private boolean status;
