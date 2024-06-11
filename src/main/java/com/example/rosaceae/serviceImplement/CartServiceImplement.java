@@ -61,15 +61,23 @@ public class CartServiceImplement implements CartService {
                         .cart(existingCart.get())
                         .build();
             } else {
-                Cart cart = new Cart();
-                cart.setUser(user);
-                cart.setItem(item);
-                cart.setQuantity(1);
-                cartRepo.save(cart);
-                return CartResponse.builder()
-                        .status("Add to cart successfully")
-                        .cart(cart)
-                        .build();
+                if (item.getItemType().getItemTypeId() == 1) {
+                    return CartResponse.builder()
+                            .status("This Item Not A Product")
+                            .cart(null)
+                            .build();
+                } else {
+                    Cart cart = new Cart();
+                    cart.setUser(user);
+                    cart.setItem(item);
+                    cart.setQuantity(1);
+                    cartRepo.save(cart);
+                    return CartResponse.builder()
+                            .status("Add to cart successfully")
+                            .cart(cart)
+                            .build();
+                }
+
             }
         } else {
             return CartResponse.builder()
@@ -110,12 +118,12 @@ public class CartServiceImplement implements CartService {
     }
 
     @Override
-    public CartResponse updateCartItem(int id , UpdateCartItem item) {
+    public CartResponse updateCartItem(int id, UpdateCartItem item) {
         var cart = cartRepo.findById(id).orElse(null);
         if (cart == null) {
             return CartResponse.builder()
                     .status("CartItem does not exist").build();
-        }else {
+        } else {
             cart.setQuantity(item.getQuantity());
             cartRepo.save(cart);
         }
@@ -130,6 +138,7 @@ public class CartServiceImplement implements CartService {
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
     private CartDTO convertToDto(Cart cart) {
         List<ItemDTO> items = List.of(convertToDTO(cart.getItem()));
         return CartDTO.builder()
@@ -138,6 +147,7 @@ public class CartServiceImplement implements CartService {
                 .items(items)
                 .build();
     }
+
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
                 .itemId(item.getItemId())
