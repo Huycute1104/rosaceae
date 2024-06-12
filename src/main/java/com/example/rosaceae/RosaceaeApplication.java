@@ -526,7 +526,7 @@ public class RosaceaeApplication {
 			// dịch vụ
 			var item = ItemRequest.builder()
 						.itemName("Liệu trình da nhiễm Corticoid")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(1000000f)
 					.itemDescription("Da nhiễm Corticoid là một tình trạng xảy ra khá phổ biến hiện nay, để điều trị dứt điểm vấn đề này không hề dễ dàng và nhanh chóng được. Bạn phải cần thời gian kiên trì điều trị để lấy lại làn da tươi khỏe. Hãy cùng tham khảo qua liệu trình điều trị da nhiễm Corticoid tại Gà Spa nhé!")
 //					.commentCount(0)
@@ -540,7 +540,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(item);
 			var item2 = ItemRequest.builder()
 					.itemName("Công nghệ điều trị nám sạm Laser Toning")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(500000f)
 					.itemDescription("Laser Toning là một công nghệ hàng đầu với độ an toàn cao, đã được FDA (Cục quản lý Thực phẩm – Dược phẩm Hoa Kỳ – US Food and Drug Administration) kiểm duyệt và chứng nhận. Laser Toning được biết đến là công nghệ điều trị nám da sâu và nám hỗn hợp, đặc biệt là nám da sâu rất hiệu quả")
 //					.commentCount(0)
@@ -554,7 +554,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(item2);
 			var item3 = ItemRequest.builder()
 					.itemName("Liệu trình điều trị Mụn lưng – viêm nang lông với công nghệ IPL")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(300000f)
 					.itemDescription("IPL là tên đầy đủ của nó là Intense Pulsed Light hay gọi theo tiếng Việt là  “máy ánh sáng xung nhiệt”. Đây là một thiết bị này sử dụng xung động ánh sáng với bước sóng phù hợp để giúp điều trị một số bệnh về da. Trong đó, IPL được áp dụng phổ biến trong điều trị mụn lưng, viêm nang lông, da nhờn.")
 //					.commentCount(0)
@@ -568,7 +568,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(item3);
 			var item4 = ItemRequest.builder()
 					.itemName("Dịch vụ cắt móng và chăm sóc cơ bản")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(150000f)
 					.itemDescription("Cắt, dũa móng tay/móng chân.\n" +
 							"Làm sạch lớp biểu bì.\n" +
@@ -584,7 +584,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(item4);
 			var item5 = ItemRequest.builder()
 					.itemName("Sơn móng tay/móng chân")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(130000f)
 					.itemDescription("Sơn bóng.\n" +
 							"Sơn màu.\n" +
@@ -601,7 +601,7 @@ public class RosaceaeApplication {
 
 			var item6 = ItemRequest.builder()
 					.itemName("Gội đầu dưỡng sinh")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(100000f)
 					.itemDescription("Kết hợp các kỹ thuật massage trị liệu.\n" +
 							"Sử dụng các sản phẩm thảo dược hoặc tinh dầu để dưỡng tóc và da đầu.")
@@ -616,7 +616,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(item6);
 			var item7 = ItemRequest.builder()
 					.itemName("Gội đầu trị liệu")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(200000f)
 					.itemDescription("Sử dụng các sản phẩm đặc trị cho các vấn đề về tóc và da đầu như gàu, tóc dầu, tóc khô, và tóc hư tổn.\n" +
 							"Kết hợp các phương pháp trị liệu da đầu.")
@@ -632,7 +632,7 @@ public class RosaceaeApplication {
 			//product
 			var product1 = ItemRequest.builder()
 					.itemName("Dầu dưỡng móng")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(100000f)
 					.itemDescription("Giúp làm mềm và dưỡng ẩm vùng da quanh móng.")
 //					.commentCount(0)
@@ -647,7 +647,7 @@ public class RosaceaeApplication {
 
 			var product2 = ItemRequest.builder()
 					.itemName("Kem dưỡng da tay/móng")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(150000f)
 					.itemDescription("Giúp da tay và móng mềm mại hơn.")
 //					.commentCount(0)
@@ -662,7 +662,7 @@ public class RosaceaeApplication {
 
 			var product3 = ItemRequest.builder()
 					.itemName("Sơn gel")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(150000f)
 					.itemDescription("Giữ màu lâu, cần đèn UV hoặc LED để khô.")
 //					.commentCount(0)
@@ -676,7 +676,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(product3);
 			var product4 = ItemRequest.builder()
 					.itemName("Neutrogena Oil-Free Acne Wash")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(250000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
@@ -690,7 +690,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(product4);
 			var product5 = ItemRequest.builder()
 					.itemName("La Roche-Posay Effaclar")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(350000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
@@ -704,7 +704,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(product5);
 			var product6 = ItemRequest.builder()
 					.itemName("Cetaphil Gentle Skin Cleanser")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(300000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
@@ -719,7 +719,7 @@ public class RosaceaeApplication {
 
 			var product7 = ItemRequest.builder()
 					.itemName("Thayers Witch Hazel Toner")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(350000f)
 					.itemDescription("Giúp cân bằng độ pH cho da và làm sạch sâu hơn sau khi rửa mặt")
 //					.commentCount(0)
@@ -734,7 +734,7 @@ public class RosaceaeApplication {
 
 			var product8 = ItemRequest.builder()
 					.itemName("Kiehl’s Calendula Herbal Extract Toner")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(800000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
@@ -748,7 +748,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(product8);
 			var product9 = ItemRequest.builder()
 					.itemName("Simple Soothing Facial Toner")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(250000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
@@ -1020,7 +1020,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_service = ItemRequest.builder()
 					.itemName("Vẽ gel nổi Loang")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(50000f)
 					.itemDescription("Vẽ gel nổi Loang là một kỹ thuật tạo ra hiệu ứng gradient màu độc đáo trên móng tay")
 //					.commentCount(0)
@@ -1034,7 +1034,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(shop2_Item_service);
 			var shop2_Item_service1 = ItemRequest.builder()
 					.itemName("Úp Móng")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(120000f)
 					.itemDescription("Kết quả là một bộ móng độc đáo, với phần đầu móng và thân móng mang hai màu sắc khác nhau. Hiệu ứng này tạo nên sự ấn tượng và thu hút.")
 //					.commentCount(0)
@@ -1048,7 +1048,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(shop2_Item_service1);
 			var shop2_Item_service2 = ItemRequest.builder()
 					.itemName("Tháo móng")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(40000f)
 					.itemDescription("Làm sạch móng và dưỡng ẩm móng")
 //					.commentCount(0)
@@ -1063,7 +1063,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_service3 = ItemRequest.builder()
 					.itemName("Tráng gương")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(20000f)
 					.itemDescription("Khi hoàn thành, bề mặt móng sẽ tạo ra một lớp bóng loáng, phản chiếu ánh sáng như một tấm gương thật. Kỹ thuật này đòi hỏi cẩn thận trong thao tác để đạt được hiệu quả tối ưu.")
 //					.commentCount(0)
@@ -1143,7 +1143,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product = ItemRequest.builder()
 					.itemName("Cetaphil Gentle Skin Cleansee")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(260000f)
 					.itemDescription("Sữa tắm dịu nhẹ, không gây kích ứng da, giúp làm sạch và giữ ẩm da.")
 //					.commentCount(0)
@@ -1158,7 +1158,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product1 = ItemRequest.builder()
 					.itemName("Dove Sensitive Skin Beauty Cream Bar")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(40000f)
 					.itemDescription("Thanh xà bông dưỡng ẩm, dịu nhẹ cho da nhạy cảm.")
 //					.commentCount(0)
@@ -1172,7 +1172,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(shop2_Item_product1);
 			var shop2_Item_product2 = ItemRequest.builder()
 					.itemName("L'Occitane Shea Butter Extra-Gentle Vegetable-Based Soap")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(190000f)
 					.itemDescription("Thanh xà bông chứa 5% bơ hạt mỡ, làm sạch và dưỡng ẩm da.")
 //					.commentCount(0)
@@ -1187,7 +1187,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product3 = ItemRequest.builder()
 					.itemName("The Body Shop Shea Body Butter")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(360000f)
 					.itemDescription("Kem dưỡng giàu bơ hạt mỡ, nuôi dưỡng và làm mềm da.")
 //					.commentCount(0)
@@ -1202,7 +1202,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product4 = ItemRequest.builder()
 					.itemName("Aveeno Daily Moisturizing Lotion")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(280000f)
 					.itemDescription("Kem dưỡng chứa yến mạch tự nhiên, giúp cấp ẩm sâu cho da.")
 //					.commentCount(0)
@@ -1217,7 +1217,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product5 = ItemRequest.builder()
 					.itemName("Nivea Soft Moisturizing Cream")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(260000f)
 					.itemDescription("Kem dưỡng ẩm, làm mềm mịn da toàn thân.")
 //					.commentCount(0)
@@ -1232,7 +1232,7 @@ public class RosaceaeApplication {
 
 			var shop2_Item_product6 = ItemRequest.builder()
 					.itemName("Scrub Love Sugar Scrub")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(280000f)
 					.itemDescription("Tẩy tế bào chết dạng hạt với đường và tinh dầu, làm sáng và mịn da.")
 //					.commentCount(0)
@@ -1246,7 +1246,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(shop2_Item_product6);
 			var shop2_Item_product7 = ItemRequest.builder()
 					.itemName("Frank Body Original Coffee Scrub")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(390000f)
 					.itemDescription("Tẩy tế bào chết với cà phê, giúp cải thiện lưu thông máu và làm săn chắc da.")
 //					.commentCount(0)
@@ -1260,7 +1260,7 @@ public class RosaceaeApplication {
 			itemService.CreateItem(shop2_Item_product7);
 			var shop2_Item_product8 = ItemRequest.builder()
 					.itemName("The Body Shop Spa of the World")
-					.quantity(0)
+					.quantity(100)
 					.itemPrice(510000f)
 					.itemDescription("Scrub chứa sữa dừa, làm sạch và dưỡng ẩm da sâu.")
 //					.commentCount(0)

@@ -28,7 +28,7 @@ public class OrderController {
     @PostMapping("")
 //    @PreAuthorize("hasAuthority('customer:create')")
     public ResponseEntity<OrderResponse> createOrder(@RequestBody CreateOrderRequest request ){
-        return ResponseEntity.ok(orderService.CreateOrder(request));
+        return ResponseEntity.ok(orderService.createOrderWithDetails(request));
     }
 
     @PostMapping("/orderdetail")

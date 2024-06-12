@@ -11,4 +11,5 @@ import java.util.List;
 public interface OrderService {
     public Page<Order> findAll(Pageable pageable);
     public OrderResponse CreateOrder(CreateOrderRequest request);
+    public OrderResponse createOrderWithDetails(CreateOrderRequest request);
 }
