@@ -85,6 +85,15 @@ public class OrderServiceImplement implements OrderService {
                     .build();
         }
 
+        List<Cart> cartItems1 = cartRepository.findByUser(user);
+        if(cartItems1 == null|| cartItems1.isEmpty()){
+            return OrderResponse.builder()
+                    .status("Cart is empty")
+                    .order(null)
+                    .orderDetails(null)
+                    .build();
+        }
+
         // Calculate total
         float total = request.getTotal();
         if (total <= 0) {

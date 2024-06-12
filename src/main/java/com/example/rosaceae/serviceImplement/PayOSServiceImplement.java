@@ -1,6 +1,11 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.PayOS.CreatePaymentLinkRequestBody;
+import com.example.rosaceae.dto.PayOS.PayOSCancel;
+import com.example.rosaceae.dto.PayOS.PayOSSuccess;
+import com.example.rosaceae.enums.OrderStatus;
+import com.example.rosaceae.model.Order;
+import com.example.rosaceae.repository.OrderRepo;
 import com.example.rosaceae.service.PayOSService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +26,8 @@ public class PayOSServiceImplement implements PayOSService {
 
     @Autowired
     private PayOS payOS;
+    @Autowired
+    private OrderRepo orderRepo;
 
     @Override
     public ResponseEntity<ObjectNode> createOrderQR(CreatePaymentLinkRequestBody body) {
@@ -58,6 +65,28 @@ public class PayOSServiceImplement implements PayOSService {
             response.put("message", "fail");
             response.set("data", null);
             return ResponseEntity.status(500).body(response);
+        }
+    }
+
+    @Override
+    public ResponseEntity<PayOSSuccess> Success(int orderId) {
+        var order = orderRepo.findById(orderId).orElse(null);
+        if (order == null) {
+            return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found"));
+        }else {
+            order.setOrderStatus(OrderStatus.SHIPPED);
+            return ResponseEntity.ok(new PayOSSuccess("Conform Order Success"));
+        }
+    }
+
+    @Override
+    public ResponseEntity<PayOSCancel> Cancel(int orderId) {
+        var order = orderRepo.findById(orderId).orElse(null);
+        if (order == null) {
+            return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found"));
+        }else {
+            order.setOrderStatus(OrderStatus.CANCELLED);
+            return ResponseEntity.ok(new PayOSCancel("Cancel Order Success"));
         }
     }
 }
