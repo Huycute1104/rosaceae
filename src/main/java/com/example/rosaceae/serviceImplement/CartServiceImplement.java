@@ -54,12 +54,20 @@ public class CartServiceImplement implements CartService {
         } else if (user != null && (user.getRole() == Role.CUSTOMER)) {
             Optional<Cart> existingCart = cartRepo.findByUserAndItem(user, item);
             if (existingCart.isPresent()) {
-                existingCart.get().setQuantity(existingCart.get().getQuantity() + 1);
-                cartRepo.save(existingCart.get());
-                return CartResponse.builder()
-                        .status("Add to cart successfully.")
-                        .cart(existingCart.get())
-                        .build();
+                if(existingCart.get().getQuantity()<item.getQuantity()){
+                    existingCart.get().setQuantity(existingCart.get().getQuantity() + 1);
+                    cartRepo.save(existingCart.get());
+                    return CartResponse.builder()
+                            .status("Add to cart successfully.")
+                            .cart(existingCart.get())
+                            .build();
+                }else {
+                    return CartResponse.builder()
+                            .status("Item don't have enough quantity.")
+                            .cart(null)
+                            .build();
+                }
+
             } else {
                 if (item.getItemType().getItemTypeId() == 1) {
                     return CartResponse.builder()
@@ -124,10 +132,21 @@ public class CartServiceImplement implements CartService {
             return CartResponse.builder()
                     .status("CartItem does not exist").build();
         } else {
-            cart.setQuantity(item.getQuantity());
-            cartRepo.save(cart);
+            int itemId = cart.getItem().getItemId();
+            var itemObject = itemRepo.findByItemId(itemId).orElse(null);
+            assert itemObject != null;
+            if(item.getQuantity()> itemObject.getQuantity()){
+                return CartResponse.builder()
+                        .status("Item don't have enough quantity.").build();
+            }else {
+                cart.setQuantity(item.getQuantity());
+                cartRepo.save(cart);
+                return CartResponse.builder()
+                        .status("Update cart successfully")
+                        .cart(cart)
+                        .build();
+            }
         }
-        return null;
     }
 
     @Override
