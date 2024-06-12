@@ -735,7 +735,7 @@ public class RosaceaeApplication {
 			var product8 = ItemRequest.builder()
 					.itemName("Kiehl’s Calendula Herbal Extract Toner")
 					.quantity(100)
-					.itemPrice(2000f)
+					.itemPrice(10000f)
 					.itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
 //					.commentCount(0)
 //					.rate(0f)

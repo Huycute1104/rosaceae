@@ -108,6 +108,21 @@ public class PayOSServiceImplement implements PayOSService {
                             .build();
                     orderDetailRepo.save(orderDetail);
 
+                    // Update item buy count
+                    Item item = cartItem.getItem();
+                    int currentBuyCount = (item.getQuantityCount() == null) ? 0 : item.getQuantityCount();
+                    item.setQuantityCount(currentBuyCount + cartItem.getQuantity());
+                    item.setQuantity(item.getQuantity() - cartItem.getQuantity());
+                    itemRepo.save(item);
+
+                    // Update shop wallet
+                    User shop = orderDetail.getItem().getUser();
+                    shop.setUserWallet(shop.getUserWallet() + orderDetail.getPriceForShop());
+                    userRepo.save(shop);
+
+                    // Clear cart item
+                    cartRepository.delete(cartItem);
+
                     return orderDetail;
                 }).collect(Collectors.toList());
 
