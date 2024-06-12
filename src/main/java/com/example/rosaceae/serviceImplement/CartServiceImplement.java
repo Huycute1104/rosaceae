@@ -150,13 +150,13 @@ public class CartServiceImplement implements CartService {
     }
 
     @Override
-    public List<CartDTO> getCartsByUserId(int userId, int itemTypeId) {
+    public List<CartDTO> getCartsByUserId(int userId) {
         List<Cart> carts = cartRepo.findByUserUsersID(userId);
         return carts.stream()
-                .filter(cart -> cart.getItem().getItemType().getItemTypeId() == itemTypeId)
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
 
     private CartDTO convertToDto(Cart cart) {
         List<ItemDTO> items = List.of(convertToDTO(cart.getItem()));

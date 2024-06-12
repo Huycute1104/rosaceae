@@ -69,9 +69,10 @@ public class CartController {
     }
 
     @GetMapping("{userId}")
-    public List<CartDTO> getCartsByUserIdAndItemTypeId(@PathVariable int userId, @RequestParam int itemTypeId) {
-        return cartService.getCartsByUserId(userId, itemTypeId);
+    public List<CartDTO> getCartsByUserId(@PathVariable int userId) {
+        return cartService.getCartsByUserId(userId);
     }
+
 
 
 

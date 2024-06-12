@@ -15,5 +15,5 @@ public interface CartService {
     Page<Cart> viewCarOfCustomer(int customerId, int type,Pageable pageable);
     public CartResponse removeCart(int id);
     public CartResponse updateCartItem(int id , UpdateCartItem item);
-    public List<CartDTO> getCartsByUserId(int userId, int itemTypeId) ;
+    public List<CartDTO> getCartsByUserId(int userId) ;
 }
