@@ -8,10 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreatePaymentLinkRequestBody {
-  private String productName;
   private String description;
   private String returnUrl;
-  private int price;
   private String cancelUrl;
+  private float total;
+  private int voucherId;
+  private int customerId;
+
 
 }
