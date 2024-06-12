@@ -81,6 +81,7 @@ public class OrderServiceImplement implements OrderService {
             return OrderResponse.builder()
                     .status("User Not Found")
                     .order(null)
+                    .orderDetails(null)
                     .build();
         }
 
@@ -90,6 +91,7 @@ public class OrderServiceImplement implements OrderService {
             return OrderResponse.builder()
                     .status("Total must be a positive value.")
                     .order(null)
+                    .orderDetails(null)
                     .build();
         }
 
@@ -113,7 +115,7 @@ public class OrderServiceImplement implements OrderService {
         float fee = Fee.SHOP_FEE.getFee() / 100;
         List<Cart> cartItems = cartRepository.findByUser(user);
         if (!cartItems.isEmpty()) {
-            for (Cart cartItem : cartItems) {
+            List<OrderDetail> orderDetails = cartItems.stream().map(cartItem -> {
                 OrderDetail orderDetail = OrderDetail.builder()
                         .item(cartItem.getItem())
                         .quantity(cartItem.getQuantity())
@@ -127,6 +129,7 @@ public class OrderServiceImplement implements OrderService {
                 Item item = cartItem.getItem();
                 int currentBuyCount = (item.getQuantityCount() == null) ? 0 : item.getQuantityCount();
                 item.setQuantityCount(currentBuyCount + cartItem.getQuantity());
+                item.setQuantity(item.getQuantity() - cartItem.getQuantity());
                 itemRepo.save(item);
 
                 // Update shop wallet
@@ -136,16 +139,20 @@ public class OrderServiceImplement implements OrderService {
 
                 // Clear cart item
                 cartRepository.delete(cartItem);
-            }
+
+                return orderDetail;
+            }).collect(Collectors.toList());
 
             return OrderResponse.builder()
                     .status("Order Created Successfully with Order Details")
                     .order(order)
+                    .orderDetails(orderDetails)
                     .build();
         } else {
             return OrderResponse.builder()
                     .status("Cart is empty")
                     .order(order)
+                    .orderDetails(null)
                     .build();
         }
     }
