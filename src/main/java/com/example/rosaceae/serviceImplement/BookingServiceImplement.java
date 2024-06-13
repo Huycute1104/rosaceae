@@ -13,6 +13,8 @@ import com.example.rosaceae.repository.TimeBookingRepo;
 import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -99,5 +101,9 @@ public class BookingServiceImplement implements BookingService {
                 .booking(booking)
                 .status("Booking Created Successfully")
                 .build();
+    }
+    @Override
+    public Page<Booking> getBookings(Pageable pageable) {
+        return bookingRepo.findAll(pageable);
     }
 }
