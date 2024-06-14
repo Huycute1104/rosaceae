@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Data.BookingDTO;
+import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.enums.OrderStatus;
@@ -115,4 +116,24 @@ public class BookingServiceImplement implements BookingService {
             return new BookingDTO(booking);
         });
     }
+
+    @Override
+    public String changeBookingStatus(ChangeBookingStatusRequest changeBookingStatusRequest) {
+        Optional<Booking> optionalBooking = bookingRepo.findById(changeBookingStatusRequest.getBookingId());
+
+        if (optionalBooking.isPresent()) {
+            Booking booking = optionalBooking.get();
+            try {
+                OrderStatus status = OrderStatus.valueOf(changeBookingStatusRequest.getStatus().toUpperCase());
+                booking.setStatus(status);
+                bookingRepo.save(booking);
+                return "Booking status updated successfully";
+            } catch (IllegalArgumentException e) {
+                return "Invalid status value";
+            }
+        } else {
+            return "Booking not found";
+        }
+    }
+
 }
