@@ -1,6 +1,7 @@
 package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Data.OrderDTO;
+import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.OrderDetailRequest.OrderDetailRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
@@ -49,5 +50,14 @@ public class OrderController {
 
         Pageable pageable = PageRequest.of(page, size);
         return orderService.getOrderForCustomer(id, pageable);
+    }
+    @GetMapping("/shop/{userId}")
+    public Page<OrderDetailDTO> getOrderDetailsByItemUserId(
+            @PathVariable int userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        return orderService.getOrderDetailsByItemUserId(userId, pageable);
     }
 }

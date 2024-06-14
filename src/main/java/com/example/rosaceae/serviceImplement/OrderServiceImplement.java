@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Data.OrderDTO;
+import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
@@ -169,8 +170,9 @@ public class OrderServiceImplement implements OrderService {
     }
 
     @Override
-    public Order getOrderForShop(int id) {
-        return null;
+    public Page<OrderDetailDTO> getOrderDetailsByItemUserId(int userId, Pageable pageable) {
+        return orderDetailRepo.findByItemUserId(userId, pageable)
+                .map(OrderMapper::toOrderDetailDTO);
     }
 
     @Override
