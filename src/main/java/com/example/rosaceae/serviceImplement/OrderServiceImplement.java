@@ -1,5 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Data.OrderDTO;
+import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.enums.Fee;
@@ -164,5 +166,16 @@ public class OrderServiceImplement implements OrderService {
                     .orderDetails(null)
                     .build();
         }
+    }
+
+    @Override
+    public Order getOrderForShop(int id) {
+        return null;
+    }
+
+    @Override
+    public Page<OrderDTO> getOrderForCustomer(int id, Pageable pageable) {
+        return orderRepo.findByCustomerUsersID(id, pageable)
+                .map(OrderMapper::toOrderDTO);
     }
 }

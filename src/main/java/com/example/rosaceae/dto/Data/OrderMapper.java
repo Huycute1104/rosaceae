@@ -26,7 +26,6 @@ public class OrderMapper {
                 .orderDetailId(orderDetail.getOrderDetailId())
                 .quantity(orderDetail.getQuantity())
                 .price(orderDetail.getPrice())
-                .priceForShop(orderDetail.getPriceForShop())
                 .itemId(orderDetail.getItem().getItemId())
                 .itemName(orderDetail.getItem().getItemName())
                 .build();
