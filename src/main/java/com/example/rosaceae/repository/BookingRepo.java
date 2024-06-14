@@ -11,4 +11,5 @@ import java.util.Date;
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
     boolean existsByTimeBookingAndBookingDateBetween(TimeBooking timeBooking, Date startOfDay, Date endOfDay);
     Page<Booking> findAll(Pageable pageable);
+    Page<Booking> findByService_User_UsersID(int userId, Pageable pageable);
 }

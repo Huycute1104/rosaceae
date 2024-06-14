@@ -1,5 +1,6 @@
 package com.example.rosaceae.controller;
 
+import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.model.Booking;
@@ -30,5 +31,12 @@ public class BookingController {
             @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return bookingService.getBookings(pageable);
+    }
+    @GetMapping("/user/{userId}")
+    public Page<BookingDTO> getBookingsByUser(@PathVariable int userId,
+                                              @RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookingService.getBookingsByUser(userId, pageable);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rosaceae.serviceImplement;
 
+import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.enums.OrderStatus;
@@ -14,6 +15,7 @@ import com.example.rosaceae.repository.UserRepo;
 import com.example.rosaceae.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -105,5 +107,12 @@ public class BookingServiceImplement implements BookingService {
     @Override
     public Page<Booking> getBookings(Pageable pageable) {
         return bookingRepo.findAll(pageable);
+    }
+    @Override
+    public Page<BookingDTO> getBookingsByUser(int userId, Pageable pageable) {
+        return bookingRepo.findByService_User_UsersID(userId, pageable).map(booking -> {
+            // Map Booking entity to BookingDTO
+            return new BookingDTO(booking);
+        });
     }
 }
