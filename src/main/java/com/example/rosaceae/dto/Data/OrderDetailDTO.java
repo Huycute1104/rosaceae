@@ -12,4 +12,5 @@ public class OrderDetailDTO {
     private float price;
     private int itemId;
     private String itemName;
+    private String CustomerName;
 }

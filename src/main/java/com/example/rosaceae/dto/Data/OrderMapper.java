@@ -18,6 +18,7 @@ public class OrderMapper {
                 .total(order.getTotal())
                 .orderStatus(order.getOrderStatus().name())
                 .orderDetails(orderDetailDTOs)
+                .CustomerName(order.getCustomer().getAccountName())
                 .build();
     }
 
@@ -28,6 +29,7 @@ public class OrderMapper {
                 .price(orderDetail.getPrice())
                 .itemId(orderDetail.getItem().getItemId())
                 .itemName(orderDetail.getItem().getItemName())
+                .CustomerName(orderDetail.getOrder().getCustomer().getAccountName())
                 .build();
     }
 }
