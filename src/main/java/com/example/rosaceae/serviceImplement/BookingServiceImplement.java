@@ -134,6 +134,12 @@ public class BookingServiceImplement implements BookingService {
         } else {
             return "Booking not found";
         }
+
+    }
+    @Override
+    public Page<Booking> getBookingsByUserId(int userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookingRepo.findByCustomer_UsersID(userId, pageable);
     }
 
 }

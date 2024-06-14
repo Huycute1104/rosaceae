@@ -45,4 +45,12 @@ public class BookingController {
     public String changeBookingStatus(@RequestBody ChangeBookingStatusRequest changeBookingStatusRequest) {
         return bookingService.changeBookingStatus(changeBookingStatusRequest);
     }
+    @GetMapping("/customer/{userId}")
+    public ResponseEntity<Page<Booking>> getBookingsByUserId(
+            @PathVariable int userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<Booking> bookings = bookingService.getBookingsByUserId(userId, page, size);
+        return ResponseEntity.ok(bookings);
+    }
 }

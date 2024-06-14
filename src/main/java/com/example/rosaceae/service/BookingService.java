@@ -13,4 +13,5 @@ public interface BookingService {
     Page<Booking> getBookings(Pageable pageable);
     Page<BookingDTO> getBookingsByUser(int userId, Pageable pageable);
     String changeBookingStatus(ChangeBookingStatusRequest changeBookingStatusRequest);
+    Page<Booking> getBookingsByUserId(int userId, int page, int size);
 }
