@@ -3,6 +3,7 @@ package com.example.rosaceae.serviceImplement;
 import com.example.rosaceae.dto.PayOS.CreatePaymentLinkRequestBody;
 import com.example.rosaceae.dto.PayOS.PayOSCancel;
 import com.example.rosaceae.dto.PayOS.PayOSSuccess;
+import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.enums.Fee;
 import com.example.rosaceae.enums.OrderStatus;
@@ -61,12 +62,11 @@ public class PayOSServiceImplement implements PayOSService {
                 return ResponseEntity.status(404).body(response);
             }
 
-            List<Cart> cartItems1 = cartRepository.findByUser(user);
-            if (cartItems1 == null || cartItems1.isEmpty()) {
+            if (body.getItems() == null || body.getItems().isEmpty()) {
                 response.put("error", -1);
-                response.put("message", "Cart is empty");
+                response.put("message", "No items provided");
                 response.set("data", null);
-                return ResponseEntity.status(404).body(response);
+                return ResponseEntity.status(400).body(response);
             }
 
             // Calculate total
@@ -96,61 +96,67 @@ public class PayOSServiceImplement implements PayOSService {
 
             // Handle order details
             float fee = Fee.SHOP_FEE.getFee() / 100;
-            List<Cart> cartItems = cartRepository.findByUser(user);
-            if (!cartItems.isEmpty()) {
-                List<OrderDetail> orderDetails = cartItems.stream().map(cartItem -> {
-                    OrderDetail orderDetail = OrderDetail.builder()
-                            .item(cartItem.getItem())
-                            .quantity(cartItem.getQuantity())
-                            .price(cartItem.getItem().getItemPrice() * cartItem.getQuantity())
-                            .priceForShop(cartItem.getItem().getItemPrice() * cartItem.getQuantity() - (cartItem.getItem().getItemPrice() * cartItem.getQuantity() * fee))
-                            .order(order)
-                            .build();
-                    orderDetailRepo.save(orderDetail);
+            List<OrderDetail> orderDetails = new ArrayList<>();
 
-                    // Update item buy count
-                    Item item = cartItem.getItem();
-                    int currentBuyCount = (item.getQuantityCount() == null) ? 0 : item.getQuantityCount();
-                    item.setQuantityCount(currentBuyCount + cartItem.getQuantity());
-                    item.setQuantity(item.getQuantity() - cartItem.getQuantity());
-                    itemRepo.save(item);
+            for (CreateOrderRequest.OrderItemRequest itemRequest : body.getItems()) {
+                var item = itemRepo.findById(itemRequest.getItemId()).orElse(null);
+                if (item == null) {
+                    response.put("error", -1);
+                    response.put("message", "Item with ID " + itemRequest.getItemId() + " not found");
+                    response.set("data", null);
+                    return ResponseEntity.status(404).body(response);
+                }
 
-                    // Update shop wallet
-                    User shop = orderDetail.getItem().getUser();
-                    shop.setUserWallet(shop.getUserWallet() + orderDetail.getPriceForShop());
-                    userRepo.save(shop);
+                if (item.getQuantity() < itemRequest.getQuantity()) {
+                    response.put("error", -1);
+                    response.put("message", "Insufficient quantity for item with ID " + itemRequest.getItemId());
+                    response.set("data", null);
+                    return ResponseEntity.status(400).body(response);
+                }
 
-                    // Clear cart item
-                    cartRepository.delete(cartItem);
+                float itemTotal = item.getItemPrice() * itemRequest.getQuantity();
+                OrderDetail orderDetail = OrderDetail.builder()
+                        .item(item)
+                        .quantity(itemRequest.getQuantity())
+                        .price(itemTotal)
+                        .priceForShop(itemTotal - (itemTotal * fee))
+                        .order(order)
+                        .build();
+                orderDetails.add(orderDetail);
 
-                    return orderDetail;
-                }).collect(Collectors.toList());
+                int currentBuyCount = (item.getQuantityCount() == null) ? 0 : item.getQuantityCount();
+                item.setQuantityCount(currentBuyCount + itemRequest.getQuantity());
+                item.setQuantity(item.getQuantity() - itemRequest.getQuantity());
+                itemRepo.save(item);
 
-                // Generate order code
-                String currentTimeString = String.valueOf(new Date().getTime());
-                int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
-
-                List<ItemData> itemList = orderDetails.stream().map(orderDetail -> new ItemData(
-                        orderDetail.getItem().getItemName(),
-                        orderDetail.getQuantity(),
-                        (int) orderDetail.getPrice()
-                )).collect(Collectors.toList());
-
-                PaymentData paymentData = new PaymentData(orderCode, (int) order.getTotal(), description, itemList, cancelUrl, returnUrl);
-
-                JsonNode data = payOS.createPaymentLink(paymentData);
-
-                response.put("error", 0);
-                response.put("message", "success");
-                response.set("data", data);
-
-                return ResponseEntity.ok(response);
-            } else {
-                response.put("error", -1);
-                response.put("message", "Cart is empty");
-                response.set("data", null);
-                return ResponseEntity.status(404).body(response);
+                User shop = orderDetail.getItem().getUser();
+                shop.setUserWallet(shop.getUserWallet() + orderDetail.getPriceForShop());
+                userRepo.save(shop);
             }
+
+            // Save order details
+            orderDetailRepo.saveAll(orderDetails);
+
+            // Generate order code
+            String currentTimeString = String.valueOf(new Date().getTime());
+            int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
+
+            List<ItemData> itemList = orderDetails.stream().map(orderDetail -> new ItemData(
+                    orderDetail.getItem().getItemName(),
+                    orderDetail.getQuantity(),
+                    (int) orderDetail.getPrice()
+            )).collect(Collectors.toList());
+
+            PaymentData paymentData = new PaymentData(orderCode, (int) order.getTotal(), description, itemList, cancelUrl, returnUrl);
+
+            JsonNode data = payOS.createPaymentLink(paymentData);
+
+            response.put("error", 0);
+            response.put("message", "success");
+            response.set("data", data);
+
+            return ResponseEntity.status(200).body(response);
+
         } catch (Exception e) {
             e.printStackTrace();
             response.put("error", -1);
@@ -159,6 +165,7 @@ public class PayOSServiceImplement implements PayOSService {
             return ResponseEntity.status(500).body(response);
         }
     }
+
 
 
     @Override
