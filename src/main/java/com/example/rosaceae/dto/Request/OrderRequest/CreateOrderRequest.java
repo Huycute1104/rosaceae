@@ -15,6 +15,9 @@ public class CreateOrderRequest {
     private float total;
     private int voucherId;
     private int customerId;
+    private String customerPhone;
+    private String customerAddress;
+    private String customerName;
     private List<OrderItemRequest> items;
 
     @Data

@@ -18,6 +18,9 @@ public class CreatePaymentLinkRequestBody {
   private float total;
   private int voucherId;
   private int customerId;
+  private String customerPhone;
+  private String customerAddress;
+  private String customerName;
   private List<CreateOrderRequest.OrderItemRequest> items;
 
   @Data

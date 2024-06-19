@@ -31,6 +31,15 @@ public class Order {
     @Column(name = "Total")
     private float total;
 
+    @Column(name = "CustomerPhone")
+    private String customerPhone;
+
+    @Column(name = "CustomerAddress")
+    private String customerAddress;
+
+    @Column(name = "CustomerName")
+    private String customerName;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "OrderStatus", nullable = false)
     private OrderStatus orderStatus;

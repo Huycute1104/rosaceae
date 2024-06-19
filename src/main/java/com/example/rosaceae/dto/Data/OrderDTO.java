@@ -17,5 +17,7 @@ public class OrderDTO {
     private float total;
     private String orderStatus;
     private Set<OrderDetailDTO> orderDetails;
-    private String CustomerName;
+    private String customerPhone;
+    private String customerAddress;
+    private String customerName;
 }
