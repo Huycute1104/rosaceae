@@ -1,5 +1,6 @@
 package com.example.rosaceae.model;
 
+import com.example.rosaceae.enums.BookingStatus;
 import com.example.rosaceae.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -45,7 +46,8 @@ public class Booking {
     @JsonBackReference
     private TimeBooking timeBooking;
 
-    private OrderStatus status;
+    @Enumerated(EnumType.STRING)
+    private BookingStatus status;
 
 
 }
