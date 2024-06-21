@@ -8,6 +8,7 @@ import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.dto.Response.OrderDetailResponse.OrderDetailResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
+import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.Order;
 import com.example.rosaceae.service.OrderDetailService;
 import com.example.rosaceae.service.OrderService;
@@ -59,5 +60,18 @@ public class OrderController {
 
         Pageable pageable = PageRequest.of(page, size);
         return orderService.getOrderDetailsByItemUserId(userId, pageable);
+    }
+
+    @GetMapping("/orderCount/{shopId}")
+    public long countOrdersByUserId(@PathVariable int shopId) {
+        return orderService.countOrdersByUserId(shopId);
+    }
+    @GetMapping("/countByOrderStatus")
+    public long countOrdersByOrderStatus(@RequestParam OrderStatus orderStatus) {
+        return orderService.countOrdersByOrderStatus(orderStatus);
+    }
+    @GetMapping("/countOrderByStatusForShop")
+    public long countOrdersByOrderStatusAndShopOwnerId(@RequestParam OrderStatus orderStatus, @RequestParam int shopOwnerId) {
+        return orderService.countOrdersByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
     }
 }

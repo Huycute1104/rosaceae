@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface OrderDetailRepo extends JpaRepository<OrderDetail,Integer> {
     @Query("SELECT od FROM OrderDetail od JOIN od.item i WHERE i.user.usersID = :userId")
     Page<OrderDetail> findByItemUserId(@Param("userId") int userId, Pageable pageable);
+    long countByItemUserUsersID(int userId);
 }
