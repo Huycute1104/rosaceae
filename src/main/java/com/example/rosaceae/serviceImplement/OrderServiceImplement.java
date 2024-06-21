@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +78,7 @@ public class OrderServiceImplement implements OrderService {
                 .build();
 
     }
-
+    @Transactional
     @Override
     public OrderResponse createOrderWithDetails(CreateOrderRequest request) {
         var user = userRepo.findUserByUsersID(request.getCustomerId()).orElse(null);
@@ -135,7 +136,7 @@ public class OrderServiceImplement implements OrderService {
         if (voucher != null) {
             calculatedTotal -= (calculatedTotal * voucher.getValue()) / 100;
         }
-//        System.out.println(calculatedTotal);
+        System.out.println(calculatedTotal);
 
 
         if (request.getTotal() <= 0

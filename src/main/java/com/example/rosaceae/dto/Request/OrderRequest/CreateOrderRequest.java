@@ -21,6 +21,7 @@ public class CreateOrderRequest {
     private List<OrderItemRequest> items;
 
     @Data
+    @Builder
     public static class OrderItemRequest {
         private int itemId;
         private int quantity;
