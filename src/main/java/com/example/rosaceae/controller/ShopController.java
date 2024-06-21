@@ -2,6 +2,7 @@ package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Data.UserDTO;
 import com.example.rosaceae.model.User;
+import com.example.rosaceae.service.ItemService;
 import com.example.rosaceae.service.ShopService;
 import com.example.rosaceae.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ public class ShopController {
     private UserService userService;
     @Autowired
     private ShopService shopService;
+    @Autowired
+    private ItemService itemService;
 //    @GetMapping("")
 //    public Page<User> getAllUser(
 //            @RequestParam(defaultValue = "0") int page,
@@ -53,5 +56,10 @@ public class ShopController {
     @GetMapping("")
     public Page<User> getAllShops(Pageable pageable) {
         return shopService.getAllUser(pageable);
+    }
+
+    @GetMapping("/countItem/{shopId}")
+    public long countItemsByUserId(@PathVariable int shopId) {
+        return itemService.countItemsByUserId(shopId);
     }
 }

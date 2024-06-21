@@ -23,5 +23,5 @@ ItemResponse createItemWithImages(ItemRequest itemRequest);
     public ItemResponse DeleteItem(int id);
     Page<ItemDTO> getItemsByUserId(int userId, int page, int size);
     public Page<ItemDTO> getItems(Specification<Item> spec, Pageable pageable);
-
+    long countItemsByUserId(int userId);
 }
