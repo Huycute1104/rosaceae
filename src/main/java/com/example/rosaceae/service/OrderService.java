@@ -19,4 +19,5 @@ public interface OrderService {
     Page<OrderDTO> getOrderForCustomer(int id, Pageable pageable);
     long countOrdersByUserId(int userId);
     long countOrdersByOrderStatus(OrderStatus orderStatus);
+    long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
 }

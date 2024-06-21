@@ -70,4 +70,8 @@ public class OrderController {
     public long countOrdersByOrderStatus(@RequestParam OrderStatus orderStatus) {
         return orderService.countOrdersByOrderStatus(orderStatus);
     }
+    @GetMapping("/countOrderByStatusForShop")
+    public long countOrdersByOrderStatusAndShopOwnerId(@RequestParam OrderStatus orderStatus, @RequestParam int shopOwnerId) {
+        return orderService.countOrdersByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
+    }
 }

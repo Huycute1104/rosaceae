@@ -20,4 +20,7 @@ public interface OrderRepo extends JpaRepository<Order,Integer> {
     @Query("SELECT DISTINCT o FROM Order o JOIN o.orderDetails od JOIN od.item i WHERE i.user.usersID = :userId")
     Page<Order> findByItemUserId(@Param("userId") int userId, Pageable pageable);
     long countByOrderStatus(OrderStatus orderStatus);
+
+    @Query("SELECT COUNT(o) FROM Order o JOIN o.orderDetails od JOIN od.item i WHERE o.orderStatus = :orderStatus AND i.user.usersID = :shopOwnerId")
+    long countByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
 }

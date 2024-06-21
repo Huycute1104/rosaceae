@@ -208,4 +208,9 @@ public class OrderServiceImplement implements OrderService {
     public long countOrdersByOrderStatus(OrderStatus orderStatus) {
         return orderRepo.countByOrderStatus(orderStatus);
     }
+
+    @Override
+    public long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId) {
+        return orderRepo.countByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
+    }
 }
