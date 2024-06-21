@@ -1,5 +1,6 @@
 package com.example.rosaceae.repository;
 
+import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.Order;
 import com.example.rosaceae.model.OrderDetail;
 import org.springframework.data.domain.Page;
@@ -18,4 +19,5 @@ public interface OrderRepo extends JpaRepository<Order,Integer> {
     Page<Order> findByCustomerUsersID(int id, Pageable pageable);
     @Query("SELECT DISTINCT o FROM Order o JOIN o.orderDetails od JOIN od.item i WHERE i.user.usersID = :userId")
     Page<Order> findByItemUserId(@Param("userId") int userId, Pageable pageable);
+    long countByOrderStatus(OrderStatus orderStatus);
 }

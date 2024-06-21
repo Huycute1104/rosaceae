@@ -203,4 +203,9 @@ public class OrderServiceImplement implements OrderService {
     public long countOrdersByUserId(int userId) {
         return  orderDetailRepo.countByItemUserUsersID(userId);
     }
+
+    @Override
+    public long countOrdersByOrderStatus(OrderStatus orderStatus) {
+        return orderRepo.countByOrderStatus(orderStatus);
+    }
 }
