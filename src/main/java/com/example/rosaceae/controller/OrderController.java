@@ -60,4 +60,9 @@ public class OrderController {
         Pageable pageable = PageRequest.of(page, size);
         return orderService.getOrderDetailsByItemUserId(userId, pageable);
     }
+
+    @GetMapping("/orderCount/{shopId}")
+    public long countOrdersByUserId(@PathVariable int shopId) {
+        return orderService.countOrdersByUserId(shopId);
+    }
 }

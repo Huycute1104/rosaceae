@@ -198,4 +198,9 @@ public class OrderServiceImplement implements OrderService {
         return orderRepo.findByCustomerUsersID(id, pageable)
                 .map(OrderMapper::toOrderDTO);
     }
+
+    @Override
+    public long countOrdersByUserId(int userId) {
+        return  orderDetailRepo.countByItemUserUsersID(userId);
+    }
 }

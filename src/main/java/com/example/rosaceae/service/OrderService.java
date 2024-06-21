@@ -16,4 +16,5 @@ public interface OrderService {
     public OrderResponse createOrderWithDetails(CreateOrderRequest request);
     Page<OrderDetailDTO> getOrderDetailsByItemUserId(int userId, Pageable pageable);
     Page<OrderDTO> getOrderForCustomer(int id, Pageable pageable);
+    long countOrdersByUserId(int userId);
 }
