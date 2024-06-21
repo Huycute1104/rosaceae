@@ -104,7 +104,7 @@ public class RosaceaeApplication {
         return "Wat sup my nigga !";
     }
 
-	@Bean
+/*	@Bean
 	public CommandLineRunner commandLineRunner2(
 
 	) {
@@ -1515,6 +1515,6 @@ public class RosaceaeApplication {
 
 //			feeService.createFee(3);
 		};
-	}
+	}*/
 
 }
