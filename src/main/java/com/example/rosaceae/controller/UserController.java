@@ -30,7 +30,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('admin:read')")
+//    @PreAuthorize("hasAuthority('admin:read')")
     public Page<User> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "100000") int size) {
@@ -38,7 +38,7 @@ public class UserController {
         return userService.getAllUser(pageable);
     }
     @PutMapping("/toggle-status/{userId}")
-    @PreAuthorize("hasAuthority('admin:update')")
+//    @PreAuthorize("hasAuthority('admin:update')")
     public UserResponse toggleUserStatus(@PathVariable int userId) {
         return userService.toggleUserStatus(userId);
     }

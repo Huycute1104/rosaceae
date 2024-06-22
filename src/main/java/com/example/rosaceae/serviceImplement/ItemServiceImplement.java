@@ -326,6 +326,12 @@ private String uploadImageToCloudinary(MultipartFile file) {
         return itemRepo.findAll(spec, pageable).map(this::convertToDTO);
     }
 
+    @Override
+    public long countItemsByUserId(int userId) {
+        return itemRepo.countByUserUsersID(userId);
+    }
+
+
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
                 .itemId(item.getItemId())

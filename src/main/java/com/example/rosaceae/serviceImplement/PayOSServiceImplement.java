@@ -90,6 +90,9 @@ public class PayOSServiceImplement implements PayOSService {
                     .total(total)
                     .orderStatus(OrderStatus.PENDING)
                     .customer(user)
+                    .customerAddress(body.getCustomerAddress())
+                    .customerName(body.getCustomerName())
+                    .customerPhone(body.getCustomerPhone())
                     .voucher(voucher)
                     .build();
             orderRepo.save(order);
@@ -114,7 +117,9 @@ public class PayOSServiceImplement implements PayOSService {
                     return ResponseEntity.status(400).body(response);
                 }
 
-                float itemTotal = item.getItemPrice() * itemRequest.getQuantity();
+                float discount = (float) item.getDiscount() /100;
+                float itemDiscount = item.getItemPrice() * discount;
+                float itemTotal = (item.getItemPrice()-itemDiscount) * itemRequest.getQuantity();
                 OrderDetail orderDetail = OrderDetail.builder()
                         .item(item)
                         .quantity(itemRequest.getQuantity())

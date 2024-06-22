@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +78,7 @@ public class OrderServiceImplement implements OrderService {
                 .build();
 
     }
-
+    @Transactional
     @Override
     public OrderResponse createOrderWithDetails(CreateOrderRequest request) {
         var user = userRepo.findUserByUsersID(request.getCustomerId()).orElse(null);
@@ -117,8 +118,9 @@ public class OrderServiceImplement implements OrderService {
                         .orderDetails(null)
                         .build();
             }
-
-            float itemTotal = item.getItemPrice() * itemRequest.getQuantity();
+            float discount = (float) item.getDiscount() /100;
+            float itemDiscount = item.getItemPrice() * discount;
+            float itemTotal = (item.getItemPrice()-itemDiscount) * itemRequest.getQuantity();
             calculatedTotal += itemTotal;
 
             OrderDetail orderDetail = OrderDetail.builder()
@@ -134,9 +136,11 @@ public class OrderServiceImplement implements OrderService {
         if (voucher != null) {
             calculatedTotal -= (calculatedTotal * voucher.getValue()) / 100;
         }
+        System.out.println(calculatedTotal);
+
 
         if (request.getTotal() <= 0
-//                || request.getTotal() != calculatedTotal
+                || request.getTotal() != calculatedTotal
         ) {
             return OrderResponse.builder()
                     .status("Invalid total value")
@@ -151,6 +155,9 @@ public class OrderServiceImplement implements OrderService {
                 .total(calculatedTotal)
                 .orderStatus(OrderStatus.PENDING)
                 .customer(user)
+                .customerPhone(request.getCustomerPhone())
+                .customerName(request.getCustomerName())
+                .customerAddress(request.getCustomerAddress())
                 .voucher(voucher)
                 .build();
         orderRepo.save(order);
@@ -190,5 +197,20 @@ public class OrderServiceImplement implements OrderService {
     public Page<OrderDTO> getOrderForCustomer(int id, Pageable pageable) {
         return orderRepo.findByCustomerUsersID(id, pageable)
                 .map(OrderMapper::toOrderDTO);
+    }
+
+    @Override
+    public long countOrdersByUserId(int userId) {
+        return  orderDetailRepo.countByItemUserUsersID(userId);
+    }
+
+    @Override
+    public long countOrdersByOrderStatus(OrderStatus orderStatus) {
+        return orderRepo.countByOrderStatus(orderStatus);
+    }
+
+    @Override
+    public long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId) {
+        return orderRepo.countByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
     }
 }
