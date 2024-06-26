@@ -32,6 +32,7 @@ public class OrderMapper {
                 .itemId(orderDetail.getItem().getItemId())
                 .itemName(orderDetail.getItem().getItemName())
                 .CustomerName(orderDetail.getOrder().getCustomerName())
+                .itemTypeId(orderDetail.getItem().getItemType().getItemTypeId())
                 .build();
     }
 }

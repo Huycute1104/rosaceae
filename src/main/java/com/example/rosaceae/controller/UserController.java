@@ -33,7 +33,7 @@ public class UserController {
 //    @PreAuthorize("hasAuthority('admin:read')")
     public Page<User> getAll(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "100000") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return userService.getAllUser(pageable);
     }
