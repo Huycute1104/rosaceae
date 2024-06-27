@@ -5,14 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateBookingRequest {
-    private int usersId;
+    private String email;
     private int itemId;
+    private int timeBookingId;
     private long datetime;
 }

@@ -5,7 +5,6 @@ import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusReques
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.enums.BookingStatus;
-import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.Booking;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.TimeBooking;
@@ -42,8 +41,9 @@ public class BookingServiceImplement implements BookingService {
     @Override
     public BookingResponse createBooking(CreateBookingRequest request) {
         // Step 1: Check if user and item exist
-        Optional<User> user = userRepo.findById(request.getUsersId());
+        Optional<User> user = userRepo.findByEmail(request.getEmail());
         Optional<Item> item = itemRepo.findById(request.getItemId());
+        System.out.println(request.getEmail());
 
         if (user.isEmpty()) {
             return BookingResponse.builder()
@@ -68,36 +68,36 @@ public class BookingServiceImplement implements BookingService {
                     .build();
         }
 
-        // Step 4: Extract hour from bookingDate to determine timeID
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(bookingDate);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-
-        // Step 5: Determine TimeID based on hour
-        int timeID;
-        switch (hour) {
-            case 7: timeID = 1; break;
-            case 8: timeID = 2; break;
-            case 9: timeID = 3; break;
-            case 10: timeID = 4; break;
-            case 11: timeID = 5; break;
-            case 12: timeID = 6; break;
-            case 13: timeID = 7; break;
-            case 14: timeID = 8; break;
-            case 15: timeID = 9; break;
-            case 16: timeID = 10; break;
-            case 17: timeID = 11; break;
-            case 18: timeID = 12; break;
-            case 19: timeID = 13; break;
-            case 20: timeID = 14; break;
-            default:
-                return BookingResponse.builder()
-                        .status("Invalid booking hour")
-                        .build();
-        }
+//        // Step 4: Extract hour from bookingDate to determine timeID
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(bookingDate);
+//        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//
+//        // Step 5: Determine TimeID based on hour
+//        int timeID;
+//        switch (hour) {
+//            case 7: timeID = 1; break;
+//            case 8: timeID = 2; break;
+//            case 9: timeID = 3; break;
+//            case 10: timeID = 4; break;
+//            case 11: timeID = 5; break;
+//            case 12: timeID = 6; break;
+//            case 13: timeID = 7; break;
+//            case 14: timeID = 8; break;
+//            case 15: timeID = 9; break;
+//            case 16: timeID = 10; break;
+//            case 17: timeID = 11; break;
+//            case 18: timeID = 12; break;
+//            case 19: timeID = 13; break;
+//            case 20: timeID = 14; break;
+//            default:
+//                return BookingResponse.builder()
+//                        .status("Invalid booking hour")
+//                        .build();
+//        }
 
         // Step 6: Find TimeBooking based on timeID
-        Optional<TimeBooking> timeBooking = timeBookingRepo.findById(timeID);
+        Optional<TimeBooking> timeBooking = timeBookingRepo.findById(request.getTimeBookingId());
         if (timeBooking.isEmpty()) {
             return BookingResponse.builder()
                     .status("TimeBooking Not Found")
@@ -105,11 +105,11 @@ public class BookingServiceImplement implements BookingService {
         }
 
         // Step 7: Extract date part from bookingDate
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        Date bookingDateOnly = calendar.getTime();
+//        calendar.set(Calendar.HOUR_OF_DAY, 0);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        calendar.set(Calendar.MILLISECOND, 0);
+        Date bookingDateOnly = new Date(request.getDatetime());
 
         // Step 8: Check if time slot is already booked for the specific day and timeID
         boolean isTimeSlotBooked = bookingRepo.existsByTimeBookingAndBookingDate(timeBooking.get(), bookingDateOnly);
