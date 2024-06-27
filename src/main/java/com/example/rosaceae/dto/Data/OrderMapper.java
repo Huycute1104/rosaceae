@@ -33,6 +33,7 @@ public class OrderMapper {
                 .itemName(orderDetail.getItem().getItemName())
                 .CustomerName(orderDetail.getOrder().getCustomerName())
                 .itemTypeId(orderDetail.getItem().getItemType().getItemTypeId())
+                .status(orderDetail.getOrder().getOrderStatus())
                 .build();
     }
 }
