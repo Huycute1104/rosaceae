@@ -14,13 +14,13 @@ import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.TimeBookingRequest.TimeBookingRequest;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
-import com.example.rosaceae.model.ItemImages;
-import com.example.rosaceae.model.Report;
-import com.example.rosaceae.repository.ReportRepo;
-import com.example.rosaceae.repository.UserRepo;
+import com.example.rosaceae.enums.BookingStatus;
+import com.example.rosaceae.model.*;
+import com.example.rosaceae.repository.*;
 import com.example.rosaceae.service.*;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.example.rosaceae.enums.Role.*;
@@ -49,6 +51,12 @@ public class RosaceaeApplication {
     @Value("${spring.mail.username}")
     private String sender;
     private final ReportRepo reportRepo;
+    @Autowired
+    private BookingRepo bookingRepo;
+    @Autowired
+    private TimeBookingRepo timeBookingRepo;
+    @Autowired
+    private ItemRepo itemRepo;
 
     public static void main(String[] args) {
         SpringApplication.run(RosaceaeApplication.class, args);
@@ -110,7 +118,6 @@ public class RosaceaeApplication {
 
     @Bean
     public CommandLineRunner commandLineRunner2(
-
     ) {
         return args -> {
             // Dummy data for reports
@@ -1581,7 +1588,52 @@ public class RosaceaeApplication {
                     .build();
             orderService.createOrderWithDetails(order2);
 //			feeService.createFee(3);
+
+            // Dummy data for booking
+            User user23 = userRepo.findById(23).orElse(null);
+            Item item9 = itemRepo.findById(9).orElse(null);
+            TimeBooking timeBooking01 = timeBookingRepo.findById(1).orElse(null);
+            User user24 = userRepo.findById(24).orElse(null);
+            Item item10 = itemRepo.findById(10).orElse(null);
+            TimeBooking timeBooking06 = timeBookingRepo.findById(6).orElse(null);
+            User user25 = userRepo.findById(25).orElse(null);
+            Item item11 = itemRepo.findById(10).orElse(null);
+            TimeBooking timeBooking08 = timeBookingRepo.findById(8).orElse(null);
+            User user26 = userRepo.findById(26).orElse(null);
+            Item item12 = itemRepo.findById(12).orElse(null);
+            TimeBooking timeBooking014 = timeBookingRepo.findById(14).orElse(null);
+            Booking booking1 = Booking.builder()
+                    .customer(user23)
+                    .service(item9)
+                    .timeBooking(timeBooking01)
+                    .bookingDate(new Date(1737736800000L))
+                    .status(BookingStatus.PENDING)
+                    .build();
+            Booking booking2 = Booking.builder()
+                    .customer(user24)
+                    .service(item10)
+                    .timeBooking(timeBooking06)
+                    .bookingDate(new Date())
+                    .status(BookingStatus.CONFIRMED)
+                    .build();
+            Booking booking3 = Booking.builder()
+                    .customer(user25)
+                    .service(item11)
+                    .timeBooking(timeBooking08)
+                    .bookingDate(new Date())
+                    .status(BookingStatus.CANCELLED)
+                    .build();
+            Booking booking4 = Booking.builder()
+                    .customer(user26)
+                    .service(item12)
+                    .timeBooking(timeBooking014)
+                    .bookingDate(new Date())
+                    .status(BookingStatus.COMPLETED)
+                    .build();
+            bookingRepo.save(booking1);
+            bookingRepo.save(booking2);
+            bookingRepo.save(booking3);
+            bookingRepo.save(booking4);
         };
     }
-
 }
