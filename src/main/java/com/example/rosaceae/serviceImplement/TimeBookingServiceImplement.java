@@ -8,6 +8,8 @@ import com.example.rosaceae.service.TimeBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TimeBookingServiceImplement implements TimeBookingService {
     @Autowired
@@ -23,5 +25,9 @@ public class TimeBookingServiceImplement implements TimeBookingService {
                 .timeBooking(timeBooking)
                 .build();
 
+    }
+
+    public List<TimeBooking> getAllBookingTime(){
+        return timeBookingRepo.findAll();
     }
 }

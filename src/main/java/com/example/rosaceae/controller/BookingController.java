@@ -5,7 +5,9 @@ import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusReques
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.model.Booking;
+import com.example.rosaceae.model.TimeBooking;
 import com.example.rosaceae.service.BookingService;
+import com.example.rosaceae.service.TimeBookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,12 +17,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/booking")
 @RequiredArgsConstructor
 public class BookingController {
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private TimeBookingService timeBookingService;
 
     @PostMapping("")
     public BookingResponse createBooking(@RequestBody CreateBookingRequest request) {
@@ -51,5 +57,9 @@ public class BookingController {
             @RequestParam(defaultValue = "10") int size) {
         Page<Booking> bookings = bookingService.getBookingsByUserId(userId, page, size);
         return ResponseEntity.ok(bookings);
+    }
+    @GetMapping("/time-booking")
+    public ResponseEntity<List<TimeBooking>> getTimeBooking() {
+        return ResponseEntity.ok(timeBookingService.getAllBookingTime());
     }
 }

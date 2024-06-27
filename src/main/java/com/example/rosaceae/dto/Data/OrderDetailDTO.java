@@ -1,5 +1,6 @@
 package com.example.rosaceae.dto.Data;
 
+import com.example.rosaceae.enums.OrderStatus;
 import lombok.*;
 
 @Data
@@ -14,4 +15,5 @@ public class OrderDetailDTO {
     private String itemName;
     private String CustomerName;
     private int itemTypeId;
+    private OrderStatus status;
 }
