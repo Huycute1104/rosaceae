@@ -16,4 +16,5 @@ public class OrderDetailDTO {
     private String CustomerName;
     private int itemTypeId;
     private OrderStatus status;
+    private String itemImages;
 }
