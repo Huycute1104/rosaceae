@@ -51,12 +51,13 @@ public class BookingController {
         return bookingService.changeBookingStatus(changeBookingStatusRequest);
     }
     @GetMapping("/customer/{userId}")
-    public ResponseEntity<Page<Booking>> getBookingsByUserId(
+    public ResponseEntity<Page<BookingDTO>> getBookingsByUserId(
             @PathVariable int userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         Page<Booking> bookings = bookingService.getBookingsByUserId(userId, page, size);
-        return ResponseEntity.ok(bookings);
+        Page<BookingDTO> bookingDTOs = bookings.map(BookingDTO::new);
+        return ResponseEntity.ok(bookingDTOs);
     }
     @GetMapping("/time-booking")
     public ResponseEntity<List<TimeBooking>> getTimeBooking() {
