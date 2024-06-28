@@ -213,7 +213,19 @@ public class RosaceaeApplication {
                     .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717326881/qxlbkep8pol7eb8w833i.png")
                     .build();
             service.register(shop2);
-
+            var shopReal = RegisterRequest.builder()
+                    .name("Bliss Nails Studio")
+                    .email("blissnail@gmail.com")
+                    .status(true)
+                    .password("123")
+                    .phone("0921592529")
+                    .role(SHOP)
+                    .enabled(true)
+                    .locationUrl("https://maps.app.goo.gl/8pS2KnuL2iNqqyiu6")
+                    .address("682/8 Đ. Quang Trung, Phường 11, Gò Vấp, Hồ Chí Minh, Việt Nam")
+                    .images("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719567543/sasg5vrajatirouzqxlo.jpg")
+                    .build();
+            service.register(shopReal);
             var shop3 = RegisterRequest.builder()
                     .name("Hơ-nie Nails & Eyelash")
                     .email("oceannail@gmail.com")
@@ -1205,7 +1217,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1220,7 +1232,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1235,7 +1247,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1250,7 +1262,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1264,7 +1276,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1278,7 +1290,7 @@ public class RosaceaeApplication {
 //					.commentCount(0)
 //					.rate(0f)
 //					.countUsage(0)
-                    .shopId(4)
+                    .shopId(5)
                     .categoryId(2)
                     .itemTypeId(2)
                     .discount(10)
@@ -1436,34 +1448,39 @@ public class RosaceaeApplication {
             var location2 = LocationRequest.builder()
                     .latitude("10.8595319")
                     .longitude("106.7648504")
-                    .shopID(5)
+                    .shopID(6)
                     .build();
             locationService.createLocation(location2);
             var location3 = LocationRequest.builder()
                     .latitude("10.8136653")
                     .longitude("106.6547022")
-                    .shopID(6)
+                    .shopID(7)
                     .build();
             locationService.createLocation(location3);
             var location4 = LocationRequest.builder()
                     .latitude("10.8143615")
                     .longitude("106.655274")
-                    .shopID(7)
+                    .shopID(8)
                     .build();
             locationService.createLocation(location4);
             var location5 = LocationRequest.builder()
                     .latitude("13.3096391")
                     .longitude("105.4040519")
-                    .shopID(8)
+                    .shopID(9)
                     .build();
             locationService.createLocation(location5);
             var location6 = LocationRequest.builder()
                     .latitude("13.4029018")
                     .longitude("105.439347")
-                    .shopID(9)
+                    .shopID(10)
                     .build();
             locationService.createLocation(location6);
-
+            var locationReal = LocationRequest.builder()
+                    .latitude("10.8410204")
+                    .longitude("106.6416241")
+                    .shopID(5)
+                    .build();
+            locationService.createLocation(locationReal);
 
             //timebooking
 
@@ -1634,6 +1651,442 @@ public class RosaceaeApplication {
             bookingRepo.save(booking2);
             bookingRepo.save(booking3);
             bookingRepo.save(booking4);
+
+
+
+            // dummy data real shop
+            var realProduct1 = ItemRequest.builder()
+                    .itemName("Cắt da tay")
+                    .quantity(0)
+                    .itemPrice(30000f)
+                    .itemDescription("Cắt da tay - 30k")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(5)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct1);
+
+            var realImage = DummyDataIImages.builder()
+                    .itemId(30)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569625/bcug5lqaapdimp1fpo4m.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage);
+            var realImage1 = DummyDataIImages.builder()
+                    .itemId(30)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569628/z43pfkwcilgwtt2ybrbn.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage1);
+            var realImage2 = DummyDataIImages.builder()
+                    .itemId(30)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569629/rrkrqdmo4cpxxzv1ddtp.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage2);
+
+            var realProduct2 = ItemRequest.builder()
+                    .itemName("Phá gel tay - chân")
+                    .quantity(100)
+                    .itemPrice(30000f)
+                    .itemDescription("Phá gel tay - chân - 30k")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(5)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct2);
+            var realImage3 = DummyDataIImages.builder()
+                    .itemId(31)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569727/mu5fzobnes2o607udksn.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage3);
+            var realImage4 = DummyDataIImages.builder()
+                    .itemId(31)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569729/wmgottsb7tczbd3qtj87.webp")
+                    .build();
+            itemImageService.CreateImage(realImage4);
+            var realImage5 = DummyDataIImages.builder()
+                    .itemId(31)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569731/us33u4fk0cnmwcvzk8mg.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage5);
+            var realProduct3 = ItemRequest.builder()
+                    .itemName("Tháo gel cứng - Móng giả")
+                    .quantity(0)
+                    .itemPrice(65000f)
+                    .itemDescription("Tháo gel cứng - Móng giả - 65k")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(5)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct3);
+            var realImage6 = DummyDataIImages.builder()
+                    .itemId(32)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569817/wm1efuouf35u0qmuxdwb.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage6);
+            var realImage7 = DummyDataIImages.builder()
+                    .itemId(32)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569818/vlkdjiadieb4to8wglgq.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage7);
+            var realImage8 = DummyDataIImages.builder()
+                    .itemId(32)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569820/nfsqyj7y8tb072pulxi4.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage8);
+
+
+
+            var realProduct4 = ItemRequest.builder()
+                    .itemName("Sơn gel")
+                    .quantity(0)
+                    .itemPrice(79000f)
+                    .itemDescription("Sơn gel - 79k")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct4);
+            var realImage9 = DummyDataIImages.builder()
+                    .itemId(33)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571295/p1g8lxj1caiflx1gism7.webp")
+                    .build();
+            itemImageService.CreateImage(realImage9);
+            var realImage10 = DummyDataIImages.builder()
+                    .itemId(33)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571297/czjvelbyhslmck5yvziw.webp")
+                    .build();
+            itemImageService.CreateImage(realImage10);
+            var realImage11 = DummyDataIImages.builder()
+                    .itemId(33)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571300/st6btx35khxp18kxao6s.png")
+                    .build();
+            itemImageService.CreateImage(realImage11);
+
+// Product 5
+            var realProduct5 = ItemRequest.builder()
+                    .itemName("Sơn mắt mèo")
+                    .quantity(0)
+                    .itemPrice(80000f)
+                    .itemDescription("Sơn mắt mèo - 80k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct5);
+
+            var realImage12 = DummyDataIImages.builder()
+                    .itemId(34)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571377/caga6chpb5idslcvddbu.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage12);
+
+            var realImage13 = DummyDataIImages.builder()
+                    .itemId(34)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571378/zwfglbabclt9s0sg1pyn.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage13);
+
+            var realImage14 = DummyDataIImages.builder()
+                    .itemId(34)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571380/ystosk0jkl7kmwqty7yx.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage14);
+
+// Product 6
+            var realProduct6 = ItemRequest.builder()
+                    .itemName("Sơn nhũ")
+                    .quantity(0)
+                    .itemPrice(80000f)
+                    .itemDescription("Sơn nhũ - 80k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct6);
+
+            var realImage15 = DummyDataIImages.builder()
+                    .itemId(35)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571464/onqzaebhctooc7cxngxq.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage15);
+
+            var realImage16 = DummyDataIImages.builder()
+                    .itemId(35)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571466/yr62buz7ejyxmbkpzq3j.webp")
+                    .build();
+            itemImageService.CreateImage(realImage16);
+
+            var realImage17 = DummyDataIImages.builder()
+                    .itemId(35)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571469/azr2ycrefrkwqmx5iayr.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage17);
+
+// Product 7
+            var realProduct7 = ItemRequest.builder()
+                    .itemName("Sơn thường")
+                    .quantity(0)
+                    .itemPrice(40000f)
+                    .itemDescription("Sơn thường 40k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct7);
+
+            var realImage18 = DummyDataIImages.builder()
+                    .itemId(36)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571649/slt1kofbj80zsafupoqf.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage18);
+
+            var realImage19 = DummyDataIImages.builder()
+                    .itemId(36)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571650/p1pnt6n5rezoqtmtasin.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage19);
+
+            var realImage20 = DummyDataIImages.builder()
+                    .itemId(36)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571652/gji7qnc33286oftk1cog.webp")
+                    .build();
+            itemImageService.CreateImage(realImage20);
+
+// Product 8
+            var realProduct8 = ItemRequest.builder()
+                    .itemName("Đá đính nails")
+                    .quantity(0)
+                    .itemPrice(15000f)
+                    .itemDescription("Đá đính nails 5-15k 1 ngón")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct8);
+
+            var realImage21 = DummyDataIImages.builder()
+                    .itemId(37)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571812/q77qfidczeuilovoccj5.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage21);
+
+            var realImage22 = DummyDataIImages.builder()
+                    .itemId(37)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571814/ugxc904ezlty5xs9wupm.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage22);
+
+            var realImage23 = DummyDataIImages.builder()
+                    .itemId(37)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571816/j9hamopmlqj1242amlom.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage23);
+
+// Product 9
+            var realProduct9 = ItemRequest.builder()
+                    .itemName("Loang cẩm thạch 2 màu")
+                    .quantity(0)
+                    .itemPrice(12000f)
+                    .itemDescription("Loang cẩm thạch 2 màu - 12k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct9);
+
+            var realImage24 = DummyDataIImages.builder()
+                    .itemId(38)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571938/zgzieoffwj303hy1cyob.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage24);
+
+            var realImage25 = DummyDataIImages.builder()
+                    .itemId(38)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571940/jxkuk59hqcmn9xyvhb3o.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage25);
+
+            var realImage26 = DummyDataIImages.builder()
+                    .itemId(38)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719571942/cnqc8yq95kkffxvrv692.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage26);
+
+// Product 10
+            var realProduct10 = ItemRequest.builder()
+                    .itemName("Ombre móng")
+                    .quantity(0)
+                    .itemPrice(180000f)
+                    .itemDescription("Ombre móng 180k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct10);
+
+            var realImage27 = DummyDataIImages.builder()
+                    .itemId(39)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572017/h1p4otxcriok7atgzwgh.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage27);
+
+            var realImage28 = DummyDataIImages.builder()
+                    .itemId(39)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572018/an73hgrtvoyh8vrztkqe.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage28);
+
+            var realImage29 = DummyDataIImages.builder()
+                    .itemId(39)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572020/ebi2ngjezhtpxisqdxpk.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage29);
+
+// Product 11
+            var realProduct11 = ItemRequest.builder()
+                    .itemName("Tráng gương")
+                    .quantity(0)
+                    .itemPrice(200000f)
+                    .itemDescription("Tráng gương 200k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct11);
+
+            var realImage30 = DummyDataIImages.builder()
+                    .itemId(40)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572074/sejl3ltzokbbaaymslrn.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage30);
+
+            var realImage31 = DummyDataIImages.builder()
+                    .itemId(40)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572075/itiycxxi1xsh5vpfxw1f.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage31);
+
+            var realImage32 = DummyDataIImages.builder()
+                    .itemId(40)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572077/mivmiwqozqtq3ja29mwu.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage32);
+
+// Product 12
+            var realProduct12 = ItemRequest.builder()
+                    .itemName("Up móng giả")
+                    .quantity(0)
+                    .itemPrice(70000f)
+                    .itemDescription("up móng giả - 70k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct12);
+
+            var realImage33 = DummyDataIImages.builder()
+                    .itemId(41)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572156/e3hgyjglex0ev5nscpfa.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage33);
+
+            var realImage34 = DummyDataIImages.builder()
+                    .itemId(41)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572158/ppuljqbx6wilpotxpelj.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage34);
+
+            var realImage35 = DummyDataIImages.builder()
+                    .itemId(41)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572160/wmcrsdododlvfniwz1kf.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage35);
+
+// Product 13
+            var realProduct13 = ItemRequest.builder()
+                    .itemName("Vân đá")
+                    .quantity(0)
+                    .itemPrice(65000f)
+                    .itemDescription("Vân đá 180k")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct13);
+
+            var realImage36 = DummyDataIImages.builder()
+                    .itemId(42)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572232/hmu4zsyavmorm2p7thzf.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage36);
+
+            var realImage37 = DummyDataIImages.builder()
+                    .itemId(42)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572234/nicq8t4jqvxfk3hwnqvr.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage37);
+
+            var realImage38 = DummyDataIImages.builder()
+                    .itemId(42)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572236/fi8cn2zzb16bqu9xdeww.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage38);
+
+// Product 14
+            var realProduct14 = ItemRequest.builder()
+                    .itemName("Vẽ móng")
+                    .quantity(0)
+                    .itemPrice(15000f)
+                    .itemDescription("vẽ móng 5-15k 1 ngón")
+                    .shopId(5)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(0)
+                    .build();
+            itemService.CreateItem(realProduct14);
+
+            var realImage39 = DummyDataIImages.builder()
+                    .itemId(43)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572307/y0ixtgj4g5you9rmndry.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage39);
+
+            var realImage40 = DummyDataIImages.builder()
+                    .itemId(43)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572309/xxrawkcqeptfqutglahq.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage40);
+
+            var realImage41 = DummyDataIImages.builder()
+                    .itemId(43)
+                    .link("https://res.cloudinary.com/dpxs39hkb/image/upload/v1719572311/j079tsey39sh6fusqnc3.jpg")
+                    .build();
+            itemImageService.CreateImage(realImage41);
+
         };
     }
 }
