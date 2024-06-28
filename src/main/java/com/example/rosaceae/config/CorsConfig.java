@@ -10,7 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000",
                         "http://localhost:5173",
-                        "https://21bc-42-117-186-213.ngrok-free.app",
+                        "https://80a9-42-117-186-213.ngrok-free.app",
                         "https://rosaceae.id.vn",
                         "https://rosaceae-admin.vercel.app",
                         "https://rosaceae.vercel.app")
