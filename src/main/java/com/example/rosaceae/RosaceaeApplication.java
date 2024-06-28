@@ -1606,6 +1606,7 @@ public class RosaceaeApplication {
             orderService.createOrderWithDetails(order2);
 //			feeService.createFee(3);
 
+            
             // Dummy data for booking
             User user23 = userRepo.findById(23).orElse(null);
             Item item9 = itemRepo.findById(9).orElse(null);
