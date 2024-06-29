@@ -1605,44 +1605,43 @@ public class RosaceaeApplication {
                     .build();
             orderService.createOrderWithDetails(order2);
 //			feeService.createFee(3);
-
             
             // Dummy data for booking
-            User user23 = userRepo.findById(23).orElse(null);
+            User user24 = userRepo.findById(24).orElse(null);
             Item item04 = itemRepo.findById(4).orElse(null);
             TimeBooking timeBooking01 = timeBookingRepo.findById(1).orElse(null);
-            User user24 = userRepo.findById(24).orElse(null);
+            User user25 = userRepo.findById(25).orElse(null);
             Item item05 = itemRepo.findById(5).orElse(null);
             TimeBooking timeBooking06 = timeBookingRepo.findById(6).orElse(null);
-            User user25 = userRepo.findById(25).orElse(null);
+            User user26 = userRepo.findById(26).orElse(null);
             Item item06 = itemRepo.findById(6).orElse(null);
             TimeBooking timeBooking08 = timeBookingRepo.findById(8).orElse(null);
-            User user26 = userRepo.findById(26).orElse(null);
+            User user27 = userRepo.findById(27).orElse(null);
             Item item07 = itemRepo.findById(7).orElse(null);
             TimeBooking timeBooking014 = timeBookingRepo.findById(14).orElse(null);
             Booking booking1 = Booking.builder()
-                    .customer(user23)
+                    .customer(user24)
                     .service(item04)
                     .timeBooking(timeBooking01)
                     .bookingDate(new Date(1737736800000L))
                     .status(BookingStatus.PENDING)
                     .build();
             Booking booking2 = Booking.builder()
-                    .customer(user24)
+                    .customer(user25)
                     .service(item05)
                     .timeBooking(timeBooking06)
                     .bookingDate(new Date())
                     .status(BookingStatus.CONFIRMED)
                     .build();
             Booking booking3 = Booking.builder()
-                    .customer(user25)
+                    .customer(user26)
                     .service(item06)
                     .timeBooking(timeBooking08)
                     .bookingDate(new Date())
                     .status(BookingStatus.CANCELLED)
                     .build();
             Booking booking4 = Booking.builder()
-                    .customer(user26)
+                    .customer(user27)
                     .service(item07)
                     .timeBooking(timeBooking014)
                     .bookingDate(new Date())
