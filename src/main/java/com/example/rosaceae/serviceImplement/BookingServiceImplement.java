@@ -20,9 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class BookingServiceImplement implements BookingService {
@@ -176,6 +174,30 @@ public class BookingServiceImplement implements BookingService {
     public Page<Booking> getBookingsByUserId(int userId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return bookingRepo.findByCustomer_UsersID(userId, pageable);
+    }
+
+    @Override
+    public Map<String, Double> getBookingStatusPercentages(int usersID) {
+        List<Item> items = itemRepo.findByUser_UsersID(usersID);
+        List<Integer> itemIds = items.stream().map(Item::getItemId).toList();
+
+        List<Booking> bookings = bookingRepo.findByService_ItemIdIn(itemIds);
+        int totalBookings = bookings.size();
+
+        Map<String, Double> statusPercentages = new HashMap<>();
+        if (totalBookings == 0) {
+            for (BookingStatus status : BookingStatus.values()) {
+                statusPercentages.put(status.name(), 0.0);
+            }
+            return statusPercentages;
+        }
+
+        for (BookingStatus status : BookingStatus.values()) {
+            long count = bookings.stream().filter(booking -> booking.getStatus() == status).count();
+            statusPercentages.put(status.name(), (count * 100.0) / totalBookings);
+        }
+
+        return statusPercentages;
     }
 
 }

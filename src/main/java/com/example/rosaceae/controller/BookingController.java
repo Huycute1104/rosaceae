@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/booking")
@@ -62,5 +63,11 @@ public class BookingController {
     @GetMapping("/time-booking")
     public ResponseEntity<List<TimeBooking>> getTimeBooking() {
         return ResponseEntity.ok(timeBookingService.getAllBookingTime());
+    }
+
+    @GetMapping("/shop/{usersID}/status-percentages")
+    public ResponseEntity<Map<String, Double>> getBookingStatusPercentages(@PathVariable int usersID) {
+        Map<String, Double> statusPercentages = bookingService.getBookingStatusPercentages(usersID);
+        return ResponseEntity.ok(statusPercentages);
     }
 }

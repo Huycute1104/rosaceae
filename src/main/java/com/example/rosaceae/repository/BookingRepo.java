@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
+import java.util.List;
 
 public interface BookingRepo extends JpaRepository<Booking, Integer> {
     Page<Booking> findAll(Pageable pageable);
@@ -14,4 +15,5 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
     Page<Booking> findByCustomer_UsersID(int userId, Pageable pageable);
     boolean existsByTimeBookingAndBookingDate(TimeBooking timeBooking, Date bookingDate);
     boolean existsByBookingDate(Date bookingDate);
+    List<Booking> findByService_ItemIdIn(List<Integer> itemIds);
 }

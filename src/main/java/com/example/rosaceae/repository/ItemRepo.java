@@ -29,4 +29,5 @@ public interface ItemRepo extends JpaRepository<Item, Integer>, JpaSpecification
                                     @Param("itemTypeName") String itemTypeName,
                                     Pageable pageable);
     long countByUserUsersID(int userId);
+    List<Item> findByUser_UsersID(int usersID);
 }
