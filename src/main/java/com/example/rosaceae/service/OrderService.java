@@ -4,6 +4,7 @@ import com.example.rosaceae.dto.Data.OrderDTO;
 import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.Order;
 import org.springframework.data.domain.Page;
@@ -20,4 +21,5 @@ public interface OrderService {
     long countOrdersByUserId(int userId);
     long countOrdersByOrderStatus(OrderStatus orderStatus);
     long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
+    TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId);
 }

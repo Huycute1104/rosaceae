@@ -5,6 +5,7 @@ import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.Fee;
 import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.*;
@@ -16,10 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -212,5 +210,16 @@ public class OrderServiceImplement implements OrderService {
     @Override
     public long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId) {
         return orderRepo.countByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
+    }
+    @Override
+    public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId) {
+        Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndCurrentMonthAndDelivered(userId);
+        if (totalPriceForShop == null) {
+            totalPriceForShop = 0f;
+        }
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1; // Calendar.MONTH is zero-based
+        int year = calendar.get(Calendar.YEAR);
+        return new TotalPriceForShopResponse(totalPriceForShop, month, year);
     }
 }

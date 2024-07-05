@@ -8,6 +8,7 @@ import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.dto.Response.OrderDetailResponse.OrderDetailResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.Order;
 import com.example.rosaceae.service.OrderDetailService;
@@ -73,5 +74,9 @@ public class OrderController {
     @GetMapping("/countOrderByStatusForShop")
     public long countOrdersByOrderStatusAndShopOwnerId(@RequestParam OrderStatus orderStatus, @RequestParam int shopOwnerId) {
         return orderService.countOrdersByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
+    }
+    @GetMapping("/{userId}/total-price-for-shop")
+    public TotalPriceForShopResponse getTotalPriceForShopByUserId(@PathVariable int userId) {
+        return orderService.getTotalPriceForShopByUserId(userId);
     }
 }
