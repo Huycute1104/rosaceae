@@ -21,5 +21,6 @@ public interface OrderService {
     long countOrdersByUserId(int userId);
     long countOrdersByOrderStatus(OrderStatus orderStatus);
     long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
-    TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId);
+    TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year);
+
 }

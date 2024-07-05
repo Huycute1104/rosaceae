@@ -211,15 +211,24 @@ public class OrderServiceImplement implements OrderService {
     public long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId) {
         return orderRepo.countByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
     }
-    @Override
-    public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId) {
-        Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndCurrentMonthAndDelivered(userId);
-        if (totalPriceForShop == null) {
-            totalPriceForShop = 0f;
-        }
-        Calendar calendar = Calendar.getInstance();
-        int month = calendar.get(Calendar.MONTH) + 1; // Calendar.MONTH is zero-based
-        int year = calendar.get(Calendar.YEAR);
-        return new TotalPriceForShopResponse(totalPriceForShop, month, year);
+//    @Override
+//    public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId) {
+//        Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndCurrentMonthAndDelivered(userId);
+//        if (totalPriceForShop == null) {
+//            totalPriceForShop = 0f;
+//        }
+//        Calendar calendar = Calendar.getInstance();
+//        int month = calendar.get(Calendar.MONTH) + 1; // Calendar.MONTH is zero-based
+//        int year = calendar.get(Calendar.YEAR);
+//        return new TotalPriceForShopResponse(totalPriceForShop, month, year);
+//    }
+@Override
+public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year) {
+    Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(userId, month, year);
+    if (totalPriceForShop == null) {
+        totalPriceForShop = 0f;
     }
+    return new TotalPriceForShopResponse(totalPriceForShop, month, year);
+}
+
 }

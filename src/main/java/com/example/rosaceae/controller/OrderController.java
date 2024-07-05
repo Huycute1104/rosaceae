@@ -75,8 +75,15 @@ public class OrderController {
     public long countOrdersByOrderStatusAndShopOwnerId(@RequestParam OrderStatus orderStatus, @RequestParam int shopOwnerId) {
         return orderService.countOrdersByOrderStatusAndShopOwnerId(orderStatus, shopOwnerId);
     }
-    @GetMapping("/{userId}/total-price-for-shop")
-    public TotalPriceForShopResponse getTotalPriceForShopByUserId(@PathVariable int userId) {
-        return orderService.getTotalPriceForShopByUserId(userId);
-    }
+//    @GetMapping("/{userId}/total-price-for-shop")
+//    public TotalPriceForShopResponse getTotalPriceForShopByUserId(@PathVariable int userId) {
+//        return orderService.getTotalPriceForShopByUserId(userId);
+//    }
+@GetMapping("/total-price-for-shop")
+public TotalPriceForShopResponse getTotalPriceForShopByUserId(
+        @RequestParam int userId,
+        @RequestParam int month,
+        @RequestParam int year) {
+    return orderService.getTotalPriceForShopByUserId(userId, month, year);
+}
 }
