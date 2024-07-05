@@ -4,6 +4,7 @@ import com.example.rosaceae.dto.Data.OrderDTO;
 import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.OrderStatus;
@@ -24,5 +25,6 @@ public interface OrderService {
     long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
     TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year);
     List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year);
+    List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year);
 
 }

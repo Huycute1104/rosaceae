@@ -34,4 +34,12 @@ public interface OrderRepo extends JpaRepository<Order,Integer> {
             @Param("userId") int userId,
             @Param("month") int month,
             @Param("year") int year);
+//    @Query("SELECT DAY(o.orderDate), SUM(od.priceForShop) " +
+//            "FROM Order o " +
+//            "JOIN o.orderDetails od " +
+//            "JOIN od.item i " +
+//            "WHERE i.user.usersID = :userId AND MONTH(o.orderDate) = :month AND YEAR(o.orderDate) = :year " +
+//            "GROUP BY DAY(o.orderDate)")
+//    List<Object[]> calculateTotalPriceForShopByDay(int userId, int month, int year);
+
 }

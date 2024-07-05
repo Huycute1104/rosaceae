@@ -6,6 +6,7 @@ import com.example.rosaceae.dto.Request.OrderDetailRequest.OrderDetailRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderDetailResponse.OrderDetailResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.OrderStatus;
@@ -91,5 +92,13 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
             @RequestParam int year) {
         List<DailyOrderCountResponse> orderCounts = orderService.getOrderCountByShopAndMonthAndYear(userId, month, year);
         return ResponseEntity.ok(orderCounts);
+    }
+    @GetMapping("/daily-price-for-shop")
+    public ResponseEntity<List<DailyPriceForShopResponse>> getDailyPriceForShop(
+            @RequestParam int userId,
+            @RequestParam int month,
+            @RequestParam int year) {
+        List<DailyPriceForShopResponse> dailyPrices = orderService.getDailyPriceForShopByUserId(userId, month, year);
+        return ResponseEntity.ok(dailyPrices);
     }
 }

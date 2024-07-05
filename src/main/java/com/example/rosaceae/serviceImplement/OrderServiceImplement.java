@@ -5,6 +5,7 @@ import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.Fee;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class OrderServiceImplement implements OrderService {
@@ -252,5 +254,67 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int mo
 
         return dailyOrderCounts;
     }
+//    @Override
+//    public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year) {
+//        List<Object[]> results = orderRepo.calculateTotalPriceForShopByDay(userId, month, year);
+//        int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+//        Map<Integer, Double> priceForShopMap = new HashMap<>();
+//
+//        for (Object[] result : results) {
+//            int day = (int) result[0];
+//            double totalPriceForShop = ((Number) result[1]).doubleValue();  // Safe cast to Double
+//            priceForShopMap.put(day, totalPriceForShop);
+//        }
+//
+//        List<DailyPriceForShopResponse> dailyPrices = new ArrayList<>();
+//        for (int day = 1; day <= daysInMonth; day++) {
+//            double totalPriceForShop = priceForShopMap.getOrDefault(day, 0.0);
+//            dailyPrices.add(new DailyPriceForShopResponse(day, (float) totalPriceForShop));  // Convert to float for response
+//        }
+//
+//        return dailyPrices;
+//    }
+//@Override
+//public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year) {
+//    List<Object[]> results = orderRepo.calculateTotalPriceForShopByDay(userId, month, year);
+//    int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+//    Map<Integer, Double> priceForShopMap = new HashMap<>();
+//
+//    for (Object[] result : results) {
+//        int day = (int) result[0];
+//        double totalPriceForShop = ((Number) result[1]).doubleValue();  // Safe cast to double
+//        priceForShopMap.put(day, totalPriceForShop);
+//    }
+//
+//    List<DailyPriceForShopResponse> dailyPrices = new ArrayList<>();
+//    for (int day = 1; day <= daysInMonth; day++) {
+//        double totalPriceForShop = priceForShopMap.getOrDefault(day, 0.0);
+//        dailyPrices.add(new DailyPriceForShopResponse(day, totalPriceForShop));  // Keep as double
+//    }
+//    return dailyPrices;
+//}
+@Override
+public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year) {
+    List<Object[]> results = orderDetailRepo.calculateTotalPriceForShopByDay(userId, month, year);
+    int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+    Map<Integer, Double> priceForShopMap = new HashMap<>();
+
+    for (Object[] result : results) {
+        int day = (int) result[0];
+        double totalPriceForShop = ((Number) result[1]).doubleValue();  // Safe cast to double
+        priceForShopMap.put(day, totalPriceForShop);
+    }
+
+    List<DailyPriceForShopResponse> dailyPrices = new ArrayList<>();
+    for (int day = 1; day <= daysInMonth; day++) {
+        double totalPriceForShop = priceForShopMap.getOrDefault(day, 0.0);
+        dailyPrices.add(new DailyPriceForShopResponse(day, totalPriceForShop));  // Keep as double
+    }
+
+    return dailyPrices;
+}
+
+
+
 
 }
