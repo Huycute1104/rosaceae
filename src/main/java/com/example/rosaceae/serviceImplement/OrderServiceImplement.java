@@ -4,6 +4,7 @@ import com.example.rosaceae.dto.Data.OrderDTO;
 import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
+import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.Fee;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.YearMonth;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -230,5 +232,25 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int mo
     }
     return new TotalPriceForShopResponse(totalPriceForShop, month, year);
 }
+    @Override
+    public List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year) {
+        List<Object[]> results = orderRepo.countOrdersByShopAndMonthAndYearGroupedByDay(userId, month, year);
+        int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+        Map<Integer, Long> orderCountMap = new HashMap<>();
+
+        for (Object[] result : results) {
+            int day = (int) result[0];
+            long count = (long) result[1];
+            orderCountMap.put(day, count);
+        }
+
+        List<DailyOrderCountResponse> dailyOrderCounts = new ArrayList<>();
+        for (int day = 1; day <= daysInMonth; day++) {
+            long count = orderCountMap.getOrDefault(day, 0L);
+            dailyOrderCounts.add(new DailyOrderCountResponse(day, count));
+        }
+
+        return dailyOrderCounts;
+    }
 
 }

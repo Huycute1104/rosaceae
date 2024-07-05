@@ -2,15 +2,13 @@ package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Data.OrderDTO;
 import com.example.rosaceae.dto.Data.OrderDetailDTO;
-import com.example.rosaceae.dto.Request.CategoryRequest.CreateCategoryRequest;
 import com.example.rosaceae.dto.Request.OrderDetailRequest.OrderDetailRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
-import com.example.rosaceae.dto.Response.CategoryResponse.CategoryResponse;
 import com.example.rosaceae.dto.Response.OrderDetailResponse.OrderDetailResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
 import com.example.rosaceae.enums.OrderStatus;
-import com.example.rosaceae.model.Order;
 import com.example.rosaceae.service.OrderDetailService;
 import com.example.rosaceae.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -86,4 +84,12 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
         @RequestParam int year) {
     return orderService.getTotalPriceForShopByUserId(userId, month, year);
 }
+    @GetMapping("/order-count-by-day")
+    public ResponseEntity<List<DailyOrderCountResponse>> getOrderCountByShopAndMonthAndYear(
+            @RequestParam int userId,
+            @RequestParam int month,
+            @RequestParam int year) {
+        List<DailyOrderCountResponse> orderCounts = orderService.getOrderCountByShopAndMonthAndYear(userId, month, year);
+        return ResponseEntity.ok(orderCounts);
+    }
 }
