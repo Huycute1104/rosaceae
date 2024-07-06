@@ -15,6 +15,7 @@ import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.TimeBookingRequest.TimeBookingRequest;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.enums.BookingStatus;
+import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.*;
 import com.example.rosaceae.repository.*;
 import com.example.rosaceae.service.*;
@@ -1604,6 +1605,74 @@ public class RosaceaeApplication {
                     .items(orderItems2)
                     .build();
             orderService.createOrderWithDetails(order2);
+
+            List<CreateOrderRequest.OrderItemRequest> orderItems3 = List.of(
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(15)
+                            .quantity(1)
+                            .build(),
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(26)
+                            .quantity(1)
+                            .build()
+            );
+            var order3 = CreateOrderRequest.builder()
+                    .total(243000)
+                    .customerId(23)
+                    .customerName("Tuyết Nhi")
+                    .customerAddress("Bình Duong")
+                    .customerPhone("0392295836")
+                    .items(orderItems3)
+                    .build();
+            orderService.createOrderWithDetails(order3);
+
+            List<CreateOrderRequest.OrderItemRequest> orderItems4 = List.of(
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(28)
+                            .quantity(2)
+                            .build(),
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(8)
+                            .quantity(3)
+                            .build()
+            );
+            var order4 = CreateOrderRequest.builder()
+                    .total(972000)
+                    .customerId(24)
+                    .customerName("Gia Hân")
+                    .customerAddress("HCM")
+                    .customerPhone("0325985965")
+                    .items(orderItems4)
+                    .build();
+            orderService.createOrderWithDetails(order4);
+
+            List<CreateOrderRequest.OrderItemRequest> orderItems5 = List.of(
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(25)
+                            .quantity(2)
+                            .build(),
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(26)
+                            .quantity(5)
+                            .build(),
+                    CreateOrderRequest.OrderItemRequest.builder()
+                            .itemId(27)
+                            .quantity(1)
+                            .build()
+            );
+            var order5 = CreateOrderRequest.builder()
+                    .total(1926000)
+                    .customerId(25)
+                    .customerName("Minh Tri")
+                    .customerAddress("HCM")
+                    .customerPhone("0958986689")
+                    .items(orderItems5)
+                    .build();
+            orderService.createOrderWithDetails(order5);
+
+            orderService.changeStatus(4, OrderStatus.DELIVERED);
+            orderService.changeStatus(5, OrderStatus.DELIVERED);
+            orderService.changeStatus(6, OrderStatus.DELIVERED);
 //			feeService.createFee(3);
             
             // Dummy data for booking

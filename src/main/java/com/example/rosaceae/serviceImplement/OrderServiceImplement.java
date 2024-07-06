@@ -4,6 +4,7 @@ import com.example.rosaceae.dto.Data.OrderDTO;
 import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
+import com.example.rosaceae.dto.Request.OrderRequest.UpdateStatus;
 import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
 import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
@@ -314,7 +315,23 @@ public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, 
     return dailyPrices;
 }
 
+    @Override
+    public OrderResponse changeStatus(int orderId, OrderStatus status) {
+        var order = orderRepo.findByOrderId(orderId).orElse(null);
+        if (order == null) {
+            return  OrderResponse.builder()
+                    .status("Order Not Found")
+                    .order(null)
+                    .build();
+        }
+        order.setOrderStatus(status);
+        orderRepo.save(order);
+        return OrderResponse.builder()
+                .status("Status Updated Successfully")
+                .order(order)
+                .build();
 
+    }
 
 
 }
