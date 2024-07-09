@@ -25,6 +25,7 @@ public interface OrderService {
     TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year);
     TotalPriceForAdminResponse getTotalPriceForAdmin(int month, int year);
     List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year);
+    List<DailyOrderCountResponse> getOrderCountByMonthAndYearForAdmin(int month, int year);
     List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year);
     public OrderResponse changeStatus(int orderId, OrderStatus status);
 
