@@ -193,6 +193,18 @@ public class PayOSServiceImplement implements PayOSService {
         } else {
             order.setOrderStatus(OrderStatus.CANCELLED);
             orderRepo.save(order);
+            List<OrderDetail> list = order.getOrderDetails().stream().toList();
+            for (OrderDetail orderDetail : list) {
+                int quantity = orderDetail.getQuantity();
+                float priceForShop = orderDetail.getPriceForShop();
+                var shop = orderDetail.getItem().getUser();
+                var item = orderDetail.getItem();
+                item.setQuantity(item.getQuantity() + quantity);
+                item.setQuantityCount(item.getQuantityCount() - quantity);
+                shop.setUserWallet(shop.getUserWallet() - priceForShop);
+                userRepo.save(shop);
+                itemRepo.save(item);
+            }
             return ResponseEntity.ok(new PayOSCancel("Cancel Order Success"));
         }
     }
