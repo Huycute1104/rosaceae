@@ -1,6 +1,7 @@
 package com.example.rosaceae.serviceImplement;
 
 
+import com.example.rosaceae.Util.PasswordValidator;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
@@ -97,11 +98,15 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public UserResponse changePassword(int userId, String newPassword) {
+        // Validate the new password
+        PasswordValidator.validate(newPassword);
+
         var user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepo.save(user);
-        return null;
+        return new UserResponse("Change password successful");
     }
+
 
     @Override
     public List<User> searchByAccountNameOrPhone(String keyword) {

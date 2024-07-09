@@ -4,6 +4,7 @@ package com.example.rosaceae.controller;
 import com.example.rosaceae.dto.Request.UserRequest.ChangePasswordRequest;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
+import com.example.rosaceae.dto.Response.UserResponse.ErrorResponse;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
@@ -77,6 +78,8 @@ public class UserController {
         try {
             UserResponse response = userService.changePassword(userId, request.getNewPassword());
             return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new UserResponse(e.getMessage()));
         } catch (RuntimeException e) {
             return ResponseEntity.status(404).body(null);
         }
