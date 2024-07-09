@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,8 @@ public class UserServiceImplement implements UserService {
     CategoryRepo categoryRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
     @Override
     public Page<User> getAllUser(Pageable pageable) {
         return userRepo.findAll(pageable);
@@ -91,6 +94,15 @@ public class UserServiceImplement implements UserService {
 
         return UserResponse.builder().status("Cập nhật thành công").build();
     }
+
+    @Override
+    public UserResponse changePassword(int userId, String newPassword) {
+        var user = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepo.save(user);
+        return null;
+    }
+
     @Override
     public List<User> searchByAccountNameOrPhone(String keyword) {
         return userRepo.searchByAccountNameOrPhone(keyword);

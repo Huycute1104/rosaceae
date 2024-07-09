@@ -1,6 +1,7 @@
 package com.example.rosaceae.controller;
 
 
+import com.example.rosaceae.dto.Request.UserRequest.ChangePasswordRequest;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,5 +71,14 @@ public class UserController {
     @GetMapping("/get-user-by-email")
     public AuthenticationResponse getUserByEmail(@RequestParam(name = "email") String email) {
         return userService.getUserByEmail(email);
+    }
+    @PutMapping("/change-password/{userId}")
+    public ResponseEntity<UserResponse> changePassword(@PathVariable int userId, @RequestBody ChangePasswordRequest request) {
+        try {
+            UserResponse response = userService.changePassword(userId, request.getNewPassword());
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(null);
+        }
     }
 }

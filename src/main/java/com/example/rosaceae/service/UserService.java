@@ -20,6 +20,7 @@ public interface UserService {
     boolean emailVerify(String token);
     UserResponse toggleUserStatus(int userId);
     UserResponse updateUserDetails(UserRequest updateUserRequest);
+    UserResponse changePassword(int userId, String newPassword);
     List<User> searchByAccountNameOrPhone(String keyword);
     Optional<User> getUserById(int userId);
     Optional<User> getUserByToken(String token);
