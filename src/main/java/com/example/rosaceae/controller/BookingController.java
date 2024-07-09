@@ -70,4 +70,9 @@ public class BookingController {
         Map<String, Double> statusPercentages = bookingService.getBookingStatusPercentages(usersID);
         return ResponseEntity.ok(statusPercentages);
     }
+    @GetMapping("/admin/status-percentages")
+    public ResponseEntity<Map<String, Double>> getAllBookingStatusPercentages() {
+        Map<String, Double> statusPercentages = bookingService.getAllBookingStatusPercentages();
+        return ResponseEntity.ok(statusPercentages);
+    }
 }

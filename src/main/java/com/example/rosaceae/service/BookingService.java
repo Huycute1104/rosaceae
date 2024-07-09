@@ -17,4 +17,5 @@ public interface BookingService {
     String changeBookingStatus(ChangeBookingStatusRequest changeBookingStatusRequest);
     Page<Booking> getBookingsByUserId(int userId, int page, int size);
     Map<String, Double> getBookingStatusPercentages(int shopId);
+    Map<String, Double> getAllBookingStatusPercentages();  // New method for admin
 }

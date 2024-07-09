@@ -199,5 +199,25 @@ public class BookingServiceImplement implements BookingService {
 
         return statusPercentages;
     }
+    @Override
+    public Map<String, Double> getAllBookingStatusPercentages() {
+        List<Booking> bookings = bookingRepo.findAll();
+        int totalBookings = bookings.size();
+
+        Map<String, Double> statusPercentages = new HashMap<>();
+        if (totalBookings == 0) {
+            for (BookingStatus status : BookingStatus.values()) {
+                statusPercentages.put(status.name(), 0.0);
+            }
+            return statusPercentages;
+        }
+
+        for (BookingStatus status : BookingStatus.values()) {
+            long count = bookings.stream().filter(booking -> booking.getStatus() == status).count();
+            statusPercentages.put(status.name(), (count * 100.0) / totalBookings);
+        }
+
+        return statusPercentages;
+    }
 
 }
