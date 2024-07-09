@@ -53,6 +53,7 @@ public class PayOSServiceImplement implements PayOSService {
             final String description = body.getDescription();
             final String returnUrl = body.getReturnUrl();
             final String cancelUrl = body.getCancelUrl();
+            final int orderID;
 
             var user = userRepo.findUserByUsersID(body.getCustomerId()).orElse(null);
             if (user == null) {
@@ -96,6 +97,7 @@ public class PayOSServiceImplement implements PayOSService {
                     .voucher(voucher)
                     .build();
             orderRepo.save(order);
+            orderID = order.getOrderId();
 
             // Handle order details
             float fee = Fee.SHOP_FEE.getFee() / 100;
@@ -144,8 +146,8 @@ public class PayOSServiceImplement implements PayOSService {
 
             // Generate order code
             String currentTimeString = String.valueOf(new Date().getTime());
-            int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
-
+            //int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
+            int orderCode = orderID;
             List<ItemData> itemList = orderDetails.stream().map(orderDetail -> new ItemData(
                     orderDetail.getItem().getItemName(),
                     orderDetail.getQuantity(),
