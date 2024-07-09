@@ -5,10 +5,7 @@ import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Data.OrderMapper;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.UpdateStatus;
-import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.*;
 import com.example.rosaceae.enums.Fee;
 import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.model.*;
@@ -235,6 +232,14 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int mo
     }
     return new TotalPriceForShopResponse(totalPriceForShop, month, year);
 }
+    @Override
+    public TotalPriceForAdminResponse getTotalPriceForAdmin(int month, int year) {
+        Float totalPriceForAdmin = orderDetailRepo.findTotalPriceForAdminByMonthAndYearAndDelivered(month, year);
+        if (totalPriceForAdmin == null) {
+            totalPriceForAdmin = 0f;
+        }
+        return new TotalPriceForAdminResponse(totalPriceForAdmin, month, year);
+    }
     @Override
     public List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year) {
         List<Object[]> results = orderRepo.countOrdersByShopAndMonthAndYearGroupedByDay(userId, month, year);

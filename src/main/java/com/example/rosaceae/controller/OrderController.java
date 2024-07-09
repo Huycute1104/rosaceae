@@ -5,10 +5,7 @@ import com.example.rosaceae.dto.Data.OrderDetailDTO;
 import com.example.rosaceae.dto.Request.OrderDetailRequest.OrderDetailRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Response.OrderDetailResponse.OrderDetailResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.DailyOrderCountResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.DailyPriceForShopResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.OrderResponse;
-import com.example.rosaceae.dto.Response.OrderResponse.TotalPriceForShopResponse;
+import com.example.rosaceae.dto.Response.OrderResponse.*;
 import com.example.rosaceae.enums.OrderStatus;
 import com.example.rosaceae.service.OrderDetailService;
 import com.example.rosaceae.service.OrderService;
@@ -85,6 +82,12 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
         @RequestParam int year) {
     return orderService.getTotalPriceForShopByUserId(userId, month, year);
 }
+    @GetMapping("/total-price-for-admin")
+    public TotalPriceForAdminResponse getTotalPriceForAdmin(
+            @RequestParam int month,
+            @RequestParam int year) {
+        return orderService.getTotalPriceForAdmin(month, year);
+    }
     @GetMapping("/order-count-by-day")
     public ResponseEntity<List<DailyOrderCountResponse>> getOrderCountByShopAndMonthAndYear(
             @RequestParam int userId,

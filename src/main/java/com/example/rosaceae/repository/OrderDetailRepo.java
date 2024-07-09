@@ -31,6 +31,14 @@ Float findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(
         @Param("month") int month,
         @Param("year") int year);
 
+    @Query("SELECT SUM(od.price) FROM OrderDetail od " +
+            "WHERE od.order.orderStatus = 'DELIVERED' " +
+            "AND MONTH(od.order.orderDate) = :month " +
+            "AND YEAR(od.order.orderDate) = :year")
+    Float findTotalPriceForAdminByMonthAndYearAndDelivered(
+            @Param("month") int month,
+            @Param("year") int year);
+
 //    @Query("SELECT DAY(o.orderDate), SUM(od.priceForShop) " +
 //            "FROM Order o " +
 //            "JOIN o.orderDetails od " +
