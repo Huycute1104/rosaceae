@@ -8,6 +8,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface PayOSService {
     public ResponseEntity<ObjectNode> createOrderQR(CreatePaymentLinkRequestBody body);
-    public ResponseEntity<PayOSSuccess> Success(int orderId);
-    public ResponseEntity<PayOSCancel> Cancel(int orderId);
+    public ResponseEntity<PayOSSuccess> Success(int orderCode);
+    public ResponseEntity<PayOSCancel> Cancel(int orderCode);
 }

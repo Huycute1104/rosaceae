@@ -16,6 +16,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepo extends JpaRepository<Order,Integer> {
     Optional<Order> findByOrderId(int id);
+    Optional<Order> findByOrderCode(int orderCode);
     Page<Order> findByCustomerUsersID(int id, Pageable pageable);
     @Query("SELECT DISTINCT o FROM Order o JOIN o.orderDetails od JOIN od.item i WHERE i.user.usersID = :userId")
     Page<Order> findByItemUserId(@Param("userId") int userId, Pageable pageable);

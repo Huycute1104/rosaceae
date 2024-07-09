@@ -63,4 +63,6 @@ public class Order {
     @JsonBackReference
     private User customer;
 
+    private int orderCode;
+
 }

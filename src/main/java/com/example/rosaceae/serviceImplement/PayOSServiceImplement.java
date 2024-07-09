@@ -146,8 +146,8 @@ public class PayOSServiceImplement implements PayOSService {
 
             // Generate order code
             String currentTimeString = String.valueOf(new Date().getTime());
-            //int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
-            int orderCode = orderID;
+            int orderCode = Integer.parseInt(currentTimeString.substring(currentTimeString.length() - 6));
+
             List<ItemData> itemList = orderDetails.stream().map(orderDetail -> new ItemData(
                     orderDetail.getItem().getItemName(),
                     orderDetail.getQuantity(),
@@ -162,6 +162,8 @@ public class PayOSServiceImplement implements PayOSService {
             response.put("message", "success");
             response.set("data", data);
 
+            order.setOrderCode(orderCode);
+            orderRepo.save(order);
             return ResponseEntity.status(200).body(response);
 
         } catch (Exception e) {
@@ -176,8 +178,8 @@ public class PayOSServiceImplement implements PayOSService {
 
 
     @Override
-    public ResponseEntity<PayOSSuccess> Success(int orderId) {
-        var order = orderRepo.findById(orderId).orElse(null);
+    public ResponseEntity<PayOSSuccess> Success(int orderCode) {
+        var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
             return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found"));
         } else {
@@ -188,8 +190,8 @@ public class PayOSServiceImplement implements PayOSService {
     }
 
     @Override
-    public ResponseEntity<PayOSCancel> Cancel(int orderId) {
-        var order = orderRepo.findById(orderId).orElse(null);
+    public ResponseEntity<PayOSCancel> Cancel(int orderCode) {
+        var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
             return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found"));
         } else {
