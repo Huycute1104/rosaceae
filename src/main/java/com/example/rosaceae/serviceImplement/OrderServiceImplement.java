@@ -339,6 +339,27 @@ public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, 
 
     return dailyPrices;
 }
+    @Override
+    public List<DailyPriceForAdminResponse> getDailyPriceForAdmin(int month, int year) {
+        List<Object[]> results = orderDetailRepo.calculateTotalPriceForAdminByDay(month, year);
+        int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+        Map<Integer, Double> priceForAdminMap = new HashMap<>();
+
+        for (Object[] result : results) {
+            int day = (int) result[0];
+            double totalPriceForAdmin = ((Number) result[1]).doubleValue();  // Safe cast to double
+            priceForAdminMap.put(day, totalPriceForAdmin);
+        }
+
+        List<DailyPriceForAdminResponse> dailyPrices = new ArrayList<>();
+        for (int day = 1; day <= daysInMonth; day++) {
+            double totalPriceForAdmin = priceForAdminMap.getOrDefault(day, 0.0);
+            dailyPrices.add(new DailyPriceForAdminResponse(day, totalPriceForAdmin));  // Keep as double
+        }
+
+        return dailyPrices;
+    }
+
 
     @Override
     public OrderResponse changeStatus(int orderId, OrderStatus status) {

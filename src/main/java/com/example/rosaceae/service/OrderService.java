@@ -27,6 +27,7 @@ public interface OrderService {
     List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year);
     List<DailyOrderCountResponse> getOrderCountByMonthAndYearForAdmin(int month, int year);
     List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, int month, int year);
+    List<DailyPriceForAdminResponse> getDailyPriceForAdmin(int month, int year);
     public OrderResponse changeStatus(int orderId, OrderStatus status);
 
 }

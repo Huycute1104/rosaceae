@@ -57,4 +57,15 @@ Float findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(
             "AND o.orderStatus = 'DELIVERED' " +
             "GROUP BY DAY(o.orderDate)")
     List<Object[]> calculateTotalPriceForShopByDay(@Param("userId") int userId, @Param("month") int month, @Param("year") int year);
+
+    @Query("SELECT DAY(o.orderDate), SUM(od.price) " +
+            "FROM Order o " +
+            "JOIN o.orderDetails od " +
+            "WHERE MONTH(o.orderDate) = :month " +
+            "AND YEAR(o.orderDate) = :year " +
+            "AND o.orderStatus = 'DELIVERED' " +
+            "GROUP BY DAY(o.orderDate)")
+    List<Object[]> calculateTotalPriceForAdminByDay(@Param("month") int month, @Param("year") int year);
+
+
 }
