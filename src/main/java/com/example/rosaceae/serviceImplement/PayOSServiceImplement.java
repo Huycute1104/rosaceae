@@ -183,7 +183,7 @@ public class PayOSServiceImplement implements PayOSService {
         if (order == null) {
             return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found"));
         } else {
-            order.setOrderStatus(OrderStatus.SHIPPED);
+            order.setOrderStatus(OrderStatus.DELIVERED);
             orderRepo.save(order);
             return ResponseEntity.ok(new PayOSSuccess("Conform Order Success"));
         }
