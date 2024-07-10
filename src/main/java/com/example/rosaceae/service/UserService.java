@@ -12,6 +12,7 @@ import com.example.rosaceae.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,4 +29,5 @@ public interface UserService {
     Page<User> getUser(Specification<User> spec, Pageable pageable);
     public Optional<UserDTO> getUserDTO(int userId, int page, int size, Double minPrice, Double maxPrice, String categoryName, String itemTypeName) ;
     ShopResponse createShop(ShopRequest shopRequest);
+    ShopResponse changeCoverImages(int shopId, MultipartFile coverImage);
 }

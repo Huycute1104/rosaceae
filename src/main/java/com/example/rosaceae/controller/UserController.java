@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,13 @@ public class UserController {
     @PostMapping("/create-shop")
     public ResponseEntity<ShopResponse> createShop(@RequestBody ShopRequest shopRequest) {
         ShopResponse response = userService.createShop(shopRequest);
+        return ResponseEntity.status(response.getStatus()).body(response);
+    }
+    @PutMapping("/changeCoverImage")
+    public ResponseEntity<ShopResponse> changeCoverImages(
+            @RequestParam("shopId") int shopId,
+            @RequestParam("coverImage") MultipartFile coverImage) {
+        ShopResponse response = userService.changeCoverImages(shopId, coverImage);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 }

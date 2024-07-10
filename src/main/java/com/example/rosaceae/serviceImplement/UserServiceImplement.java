@@ -1,6 +1,8 @@
 package com.example.rosaceae.serviceImplement;
 
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Data.*;
 import com.example.rosaceae.dto.Request.UserRequest.ShopRequest;
@@ -22,8 +24,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +48,20 @@ public class UserServiceImplement implements UserService {
     private UserRepo userRepo;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private Cloudinary cloudinary;
+
+    public String uploadImageToCloudinary(MultipartFile file) {
+        try {
+            // Upload image to Cloudinary
+            Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            // Get the URL of the uploaded image from Cloudinary response
+            return (String) uploadResult.get("url");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     @Override
     public Page<User> getAllUser(Pageable pageable) {
         return userRepo.findAll(pageable);
@@ -184,6 +203,26 @@ public class UserServiceImplement implements UserService {
                 .userInfo(user)
                 .build();
     }
+
+    @Override
+    public ShopResponse changeCoverImages(int shopId, MultipartFile coverImage) {
+        var user = userRepo.findById(shopId).orElse(null);
+        if(user == null){
+            return ShopResponse.builder()
+                    .msg("User not found.")
+                    .status(404)
+                    .build();
+        }
+        String url = uploadImageToCloudinary(coverImage);
+        user.setCoverImages(url);
+        userRepo.save(user);
+        return ShopResponse.builder()
+                .msg("Change cover images successfully.")
+                .status(200)
+                .userInfo(user)
+                .build();
+    }
+
     private boolean isValidEmail(String email) {
         // check valid email
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
