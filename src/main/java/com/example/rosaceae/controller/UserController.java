@@ -1,8 +1,10 @@
 package com.example.rosaceae.controller;
 
 
+import com.example.rosaceae.dto.Request.UserRequest.ShopRequest;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
 import com.example.rosaceae.auth.AuthenticationResponse;
+import com.example.rosaceae.dto.Response.UserResponse.ShopResponse;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -69,5 +72,10 @@ public class UserController {
     @GetMapping("/get-user-by-email")
     public AuthenticationResponse getUserByEmail(@RequestParam(name = "email") String email) {
         return userService.getUserByEmail(email);
+    }
+    @PostMapping("/create-shop")
+    public ResponseEntity<ShopResponse> createShop(@RequestBody ShopRequest shopRequest) {
+        ShopResponse response = userService.createShop(shopRequest);
+        return ResponseEntity.status(response.getStatus()).body(response);
     }
 }

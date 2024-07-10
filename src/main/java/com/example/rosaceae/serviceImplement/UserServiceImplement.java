@@ -3,8 +3,11 @@ package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.auth.AuthenticationResponse;
 import com.example.rosaceae.dto.Data.*;
+import com.example.rosaceae.dto.Request.UserRequest.ShopRequest;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
+import com.example.rosaceae.dto.Response.UserResponse.ShopResponse;
 import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
+import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
 import com.example.rosaceae.repository.CategoryRepo;
@@ -17,11 +20,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static com.example.rosaceae.Util.StringHanlder.randomStringGenerator;
 
 @Service
 public class UserServiceImplement implements UserService {
@@ -33,6 +41,8 @@ public class UserServiceImplement implements UserService {
     CategoryRepo categoryRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Page<User> getAllUser(Pageable pageable) {
         return userRepo.findAll(pageable);
@@ -141,6 +151,46 @@ public class UserServiceImplement implements UserService {
         }
     }
 
+    @Override
+    public ShopResponse createShop(ShopRequest request) {
+        String email = request.getEmail();
+        if(!isValidEmail(email)){
+            return ShopResponse.builder()
+                    .msg("Invalid email format.")
+                    .status(400)
+                    .build();
+        }
+        if(userRepo.findUserByEmail(request.getEmail()).isPresent()){
+            return ShopResponse.builder()
+                    .msg("There already a user with this email.")
+                    .status(400)
+                    .build();
+        }
+
+        var user = User.builder()
+                .email(request.getEmail())
+                .accountName(request.getName())
+                .password(passwordEncoder.encode("123456789"))
+                .phone(request.getPhone())
+                .address(request.getAddress())
+                .userStatus(true)
+                .role(Role.SHOP)
+                .build();
+        user.setEnabled(true);
+        userRepo.save(user);
+        return ShopResponse.builder()
+                .msg("Created new shop successfully.")
+                .status(200)
+                .userInfo(user)
+                .build();
+    }
+    private boolean isValidEmail(String email) {
+        // check valid email
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
     private ItemDTO convertToDTO(Item item) {
         return ItemDTO.builder()
                 .itemId(item.getItemId())
