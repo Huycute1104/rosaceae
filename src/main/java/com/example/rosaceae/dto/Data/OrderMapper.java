@@ -35,6 +35,7 @@ public class OrderMapper {
                 .itemTypeId(orderDetail.getItem().getItemType().getItemTypeId())
                 .status(orderDetail.getOrder().getOrderStatus())
                 .itemImages(orderDetail.getItem().getItemImages().get(1).getImageUrl())
+                .orderDate(orderDetail.getOrder().getOrderDate())
                 .build();
     }
 }
