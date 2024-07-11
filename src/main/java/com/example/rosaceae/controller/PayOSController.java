@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.lib.payos.PayOS;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +26,21 @@ public class PayOSController {
     public ResponseEntity<ObjectNode> createOrderQR(@RequestBody CreatePaymentLinkRequestBody body) {
         return payOSService.createOrderQR(body);
     }
-    @PutMapping("/success/{id}")
-    public ResponseEntity<PayOSSuccess> confirmOrderSuccess(@PathVariable int id) {
-        return payOSService.Success(id);
+    @GetMapping("/success")
+    public ResponseEntity<PayOSSuccess> confirmOrderSuccess(@RequestParam int orderCode) {
+        try {
+            return payOSService.Success(orderCode);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-    @PutMapping("/cancel/{id}")
-    public ResponseEntity<PayOSCancel> confirmOrderCancel(@PathVariable int id) {
-        return payOSService.Cancel(id);
+
+    @GetMapping("/cancel")
+    public ResponseEntity<PayOSCancel> confirmOrderCancel(@RequestParam int orderCode) {
+        try {
+            return payOSService.Cancel(orderCode);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
