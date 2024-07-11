@@ -4,15 +4,11 @@ import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
+import com.example.rosaceae.dto.Response.BookingResponse.CompleteBooking;
 import com.example.rosaceae.enums.BookingStatus;
-import com.example.rosaceae.model.Booking;
-import com.example.rosaceae.model.Item;
-import com.example.rosaceae.model.TimeBooking;
-import com.example.rosaceae.model.User;
-import com.example.rosaceae.repository.BookingRepo;
-import com.example.rosaceae.repository.ItemRepo;
-import com.example.rosaceae.repository.TimeBookingRepo;
-import com.example.rosaceae.repository.UserRepo;
+import com.example.rosaceae.enums.OrderStatus;
+import com.example.rosaceae.model.*;
+import com.example.rosaceae.repository.*;
 import com.example.rosaceae.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,6 +31,9 @@ public class BookingServiceImplement implements BookingService {
 
     @Autowired
     private TimeBookingRepo timeBookingRepo;
+
+    @Autowired
+    private OrderRepo orderRepo;
 
     @Override
     public BookingResponse createBooking(CreateBookingRequest request) {
@@ -166,6 +165,59 @@ public class BookingServiceImplement implements BookingService {
             return "Booking not found";
         }
     }
+
+    @Override
+    public CompleteBooking completeBooking(int bookingId) {
+        var booking = bookingRepo.findById(bookingId).orElse(null);
+        if (booking == null) {
+            return CompleteBooking.builder()
+                    .booking(null)
+                    .status(404)
+                    .message("Booking not found")
+                    .build();
+        }
+        if (!booking.getStatus().equals(BookingStatus.CONFIRMED)) {
+            return CompleteBooking.builder()
+                    .booking(null)
+                    .status(400)
+                    .message("Booking not confirmed yet or is cancel")
+                    .build();
+        }
+        booking.setStatus(BookingStatus.COMPLETED);
+        bookingRepo.save(booking);
+
+        // create order
+        Order order = Order.builder()
+                .customerPhone(booking.getCustomer().getPhone())
+                .customerName(booking.getCustomer().getAccountName())
+                .customerAddress(booking.getCustomer().getAddress())
+                .orderDate(new Date())
+                .total(booking.getService().getItemPrice())
+                .orderStatus(OrderStatus.BOOKING_COMPLETED)
+                .orderDetails(null)
+                .orderCode(0)
+                .customer(booking.getCustomer())
+                .build();
+        Set<OrderDetail> orderDetails = new HashSet<>();
+        OrderDetail orderDetail = OrderDetail.builder()
+                .quantity(1)
+                .price(booking.getService().getItemPrice())
+                .priceForShop(booking.getService().getItemPrice())
+                .item(booking.getService())
+                .order(order)
+                .build();
+        orderDetails.add(orderDetail);
+        order.setOrderDetails(orderDetails);
+
+        orderRepo.save(order);
+        return CompleteBooking.builder()
+                .booking(booking)
+                .status(200)
+                .message("Booking completed")
+                .build();
+    }
+
+
     @Override
     public Page<Booking> getBookingsByUserId(int userId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);

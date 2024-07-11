@@ -4,6 +4,7 @@ import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
+import com.example.rosaceae.dto.Response.BookingResponse.CompleteBooking;
 import com.example.rosaceae.model.Booking;
 import com.example.rosaceae.model.TimeBooking;
 import com.example.rosaceae.service.BookingService;
@@ -74,5 +75,10 @@ public class BookingController {
     public ResponseEntity<Map<String, Double>> getAllBookingStatusPercentages() {
         Map<String, Double> statusPercentages = bookingService.getAllBookingStatusPercentages();
         return ResponseEntity.ok(statusPercentages);
+    }
+    @PutMapping("complete/{bookingId}")
+    public ResponseEntity<CompleteBooking> completeBooking(@PathVariable int bookingId) {
+        CompleteBooking result = bookingService.completeBooking(bookingId);
+        return ResponseEntity.status(result.getStatus()).body(result);
     }
 }
