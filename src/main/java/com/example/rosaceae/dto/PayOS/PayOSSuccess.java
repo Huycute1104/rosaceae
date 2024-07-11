@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PayOSSuccess {
     private String status;
+    private String message;
 }

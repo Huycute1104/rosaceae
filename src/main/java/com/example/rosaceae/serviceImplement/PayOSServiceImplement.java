@@ -181,11 +181,11 @@ public class PayOSServiceImplement implements PayOSService {
     public ResponseEntity<PayOSSuccess> Success(int orderCode) {
         var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
-            return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found"));
+            return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found","https://rosaceae.id.vn/order"));
         } else {
             order.setOrderStatus(OrderStatus.DELIVERED);
             orderRepo.save(order);
-            return ResponseEntity.ok(new PayOSSuccess("Conform Order Success"));
+            return ResponseEntity.ok(new PayOSSuccess("Order is successfully delivered","https://rosaceae.id.vn/order"));
         }
     }
 
@@ -193,7 +193,7 @@ public class PayOSServiceImplement implements PayOSService {
     public ResponseEntity<PayOSCancel> Cancel(int orderCode) {
         var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
-            return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found"));
+            return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found","https://rosaceae.id.vn/"));
         } else {
             order.setOrderStatus(OrderStatus.CANCELLED);
             orderRepo.save(order);
@@ -209,7 +209,7 @@ public class PayOSServiceImplement implements PayOSService {
                 userRepo.save(shop);
                 itemRepo.save(item);
             }
-            return ResponseEntity.ok(new PayOSCancel("Cancel Order Success"));
+            return ResponseEntity.ok(new PayOSCancel("Order Cancelled","https://rosaceae.id.vn/"));
         }
     }
 }
