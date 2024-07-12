@@ -2248,6 +2248,498 @@ public class RosaceaeApplication {
                     .build();
             itemImageService.CreateImage(realImage41);
 
+            //dummydata shop Hơ-nie Nails & Eyelash
+
+            var itemH1 = ItemRequest.builder()
+                    .itemName("Liệu trình da nhiễm Corticoid")
+                    .quantity(100)
+                    .itemPrice(1000000f)
+                    .itemDescription("Da nhiễm Corticoid là một tình trạng xảy ra khá phổ biến hiện nay, để điều trị dứt điểm vấn đề này không hề dễ dàng và nhanh chóng được. Bạn phải cần thời gian kiên trì điều trị để lấy lại làn da tươi khỏe. Hãy cùng tham khảo qua liệu trình điều trị da nhiễm Corticoid tại Gà Spa nhé!")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(13)
+                    .build();
+            itemService.CreateItem(itemH1);
+            var itemH2 = ItemRequest.builder()
+                    .itemName("Công nghệ điều trị nám sạm Laser Toning")
+                    .quantity(100)
+                    .itemPrice(500000f)
+                    .itemDescription("Laser Toning là một công nghệ hàng đầu với độ an toàn cao, đã được FDA (Cục quản lý Thực phẩm – Dược phẩm Hoa Kỳ – US Food and Drug Administration) kiểm duyệt và chứng nhận. Laser Toning được biết đến là công nghệ điều trị nám da sâu và nám hỗn hợp, đặc biệt là nám da sâu rất hiệu quả")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH2);
+            var itemH3 = ItemRequest.builder()
+                    .itemName("Liệu trình điều trị Mụn lưng – viêm nang lông với công nghệ IPL")
+                    .quantity(100)
+                    .itemPrice(300000f)
+                    .itemDescription("IPL là tên đầy đủ của nó là Intense Pulsed Light hay gọi theo tiếng Việt là  “máy ánh sáng xung nhiệt”. Đây là một thiết bị này sử dụng xung động ánh sáng với bước sóng phù hợp để giúp điều trị một số bệnh về da. Trong đó, IPL được áp dụng phổ biến trong điều trị mụn lưng, viêm nang lông, da nhờn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(2)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH3);
+            var itemH4 = ItemRequest.builder()
+                    .itemName("Dịch vụ cắt móng và chăm sóc cơ bản")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Cắt, dũa móng tay/móng chân.\n" +
+                            "Làm sạch lớp biểu bì.\n" +
+                            "Massage tay/chân.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH4);
+            var itemH5 = ItemRequest.builder()
+                    .itemName("Sơn móng tay/móng chân")
+                    .quantity(100)
+                    .itemPrice(130000f)
+                    .itemDescription("Sơn bóng.\n" +
+                            "Sơn màu.\n" +
+                            "Sơn gel (gel polish).")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH5);
+
+            var itemH6 = ItemRequest.builder()
+                    .itemName("Gội đầu dưỡng sinh")
+                    .quantity(100)
+                    .itemPrice(100000f)
+                    .itemDescription("Kết hợp các kỹ thuật massage trị liệu.\n" +
+                            "Sử dụng các sản phẩm thảo dược hoặc tinh dầu để dưỡng tóc và da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(4)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH6);
+            var itemH7 = ItemRequest.builder()
+                    .itemName("Gội đầu trị liệu")
+                    .quantity(100)
+                    .itemPrice(200000f)
+                    .itemDescription("Sử dụng các sản phẩm đặc trị cho các vấn đề về tóc và da đầu như gàu, tóc dầu, tóc khô, và tóc hư tổn.\n" +
+                            "Kết hợp các phương pháp trị liệu da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(2)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemH7);
+            //product
+            var pro1 = ItemRequest.builder()
+                    .itemName("Dầu dưỡng móng")
+                    .quantity(100)
+                    .itemPrice(100000f)
+                    .itemDescription("Giúp làm mềm và dưỡng ẩm vùng da quanh móng.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro1);
+
+            var pro2 = ItemRequest.builder()
+                    .itemName("Kem dưỡng da tay/móng")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Giúp da tay và móng mềm mại hơn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro2);
+
+            var pro3 = ItemRequest.builder()
+                    .itemName("Sơn gel")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Giữ màu lâu, cần đèn UV hoặc LED để khô.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro3);
+            var pro4 = ItemRequest.builder()
+                    .itemName("Neutrogena Oil-Free Acne Wash")
+                    .quantity(100)
+                    .itemPrice(250000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro4);
+            var pro5 = ItemRequest.builder()
+                    .itemName("La Roche-Posay Effaclar")
+                    .quantity(100)
+                    .itemPrice(350000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro5);
+            var pro6 = ItemRequest.builder()
+                    .itemName("Cetaphil Gentle Skin Cleanser")
+                    .quantity(100)
+                    .itemPrice(300000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro6);
+
+            var pro7 = ItemRequest.builder()
+                    .itemName("Thayers Witch Hazel Toner")
+                    .quantity(100)
+                    .itemPrice(350000f)
+                    .itemDescription("Giúp cân bằng độ pH cho da và làm sạch sâu hơn sau khi rửa mặt")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro7);
+
+            var pro8 = ItemRequest.builder()
+                    .itemName("Kiehl’s Calendula Herbal Extract Toner")
+                    .quantity(100)
+                    .itemPrice(10000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro8);
+            var pro9 = ItemRequest.builder()
+                    .itemName("Simple Soothing Facial Toner")
+                    .quantity(100)
+                    .itemPrice(250000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(6)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro9);
+
+
+            //Dummy data for item Images
+            var imageh1 = DummyDataIImages.builder()
+                    .itemId(44)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717403332/fccuc8itceb81wuyhddk.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh1);
+            var imageh2 = DummyDataIImages.builder()
+                    .itemId(44)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404152/occqnbyew0zbbp4q0qof.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh2);
+            var imageh3 = DummyDataIImages.builder()
+                    .itemId(44)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404220/m1zuiipuz4jiiaa0isp8.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh3);
+            var imageh4 = DummyDataIImages.builder()
+                    .itemId(45)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404321/stmgig7r3r4lxfzqpii2.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh4);
+            var imageh5 = DummyDataIImages.builder()
+                    .itemId(45)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404368/is2upg0xehiuhtqflswa.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh5);
+            var imageh6 = DummyDataIImages.builder()
+                    .itemId(45)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404448/zk2lfxazyya5rxeffmic.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh6);
+            var imageh7 = DummyDataIImages.builder()
+                    .itemId(46)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404518/fdcngdp2pkebjsqj3cve.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh7);
+            var imageh8 = DummyDataIImages.builder()
+                    .itemId(46)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404519/e3k7cn3v2tnazds3iqm8.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh8);
+
+            var imageh9 = DummyDataIImages.builder()
+                    .itemId(46)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404730/gdlcwbp6sznt26f84hpg.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh9);
+
+            var imageh10 = DummyDataIImages.builder()
+                    .itemId(47)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405874/axg6kguzesa08uy8nno0.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh10);
+            var imageh11 = DummyDataIImages.builder()
+                    .itemId(47)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405875/ezagnxvayoxzqidzqcgl.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh11);
+            var imageh12 = DummyDataIImages.builder()
+                    .itemId(47)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405876/tc0ya3zt13ytgzg8iuc9.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh12);
+
+            var imageh13 = DummyDataIImages.builder()
+                    .itemId(48)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406038/ef2a7zbfvrycu7hvkdab.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh13);
+            var imageh14 = DummyDataIImages.builder()
+                    .itemId(48)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406039/owbchzs8fvctz0sfg86r.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh14);
+            var imageh15 = DummyDataIImages.builder()
+                    .itemId(48)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406040/seuob8pbnuh2zvqedim8.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh15);
+
+            var imageh16 = DummyDataIImages.builder()
+                    .itemId(49)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406182/cvnjvugpp8h7uwf1wutg.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh16);
+            var imageh17 = DummyDataIImages.builder()
+                    .itemId(49)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406183/t7zzoernv9rj10d95y3c.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh17);
+            var imageh18 = DummyDataIImages.builder()
+                    .itemId(49)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406185/tkl5uifbtxwgxiwwoh8v.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh18);
+
+            var imageh19 = DummyDataIImages.builder()
+                    .itemId(50)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407449/myu5soyzf4dzkzhzobpm.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh19);
+            var imageh20 = DummyDataIImages.builder()
+                    .itemId(50)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407450/vauykv2hwfhxwbzfqnt8.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh20);
+            var imageh21 = DummyDataIImages.builder()
+                    .itemId(50)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407451/u1n7zcciljozymfinjgs.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh21);
+
+            var imageh22 = DummyDataIImages.builder()
+                    .itemId(51)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407584/yt3hzmncu9vsxphbowus.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh22);
+            var imageh23 = DummyDataIImages.builder()
+                    .itemId(51)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407583/rgwbol6p9hlmlyy9yipm.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh23);
+            var imageh24 = DummyDataIImages.builder()
+                    .itemId(51)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407581/zbjbqrxgbcamfr7kkewb.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh4);
+
+            var imageh25 = DummyDataIImages.builder()
+                    .itemId(52)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407641/rvjbd8mxvcoulnqgpura.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh25);
+            var imageh26 = DummyDataIImages.builder()
+                    .itemId(52)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407643/u5ppburzgfjoujbrfqbe.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh26);
+            var imageh27 = DummyDataIImages.builder()
+                    .itemId(52)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407645/hgavl24cypkurmx8yg0j.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh27);
+
+            var imageh28 = DummyDataIImages.builder()
+                    .itemId(53)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407914/h0k0sqmzuqppu3n35hrc.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh28);
+            var imageh29 = DummyDataIImages.builder()
+                    .itemId(53)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407916/d3a7q9psyt6xpyhzf10h.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh29);
+            var imageh30 = DummyDataIImages.builder()
+                    .itemId(53)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407918/ystsi2mpkx6g15kvaz39.webp")
+                    .build();
+            itemImageService.CreateImage(imageh30);
+
+            var imageh31 = DummyDataIImages.builder()
+                    .itemId(54)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408282/cayn8wyo8njiqmzkgoxd.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh31);
+            var imageh32 = DummyDataIImages.builder()
+                    .itemId(54)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408286/os2wouvnawsunvxl73nx.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh32);
+            var imageh33 = DummyDataIImages.builder()
+                    .itemId(54)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408289/szfpklbfaytwr31ymnbo.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh33);
+
+            var imageh34 = DummyDataIImages.builder()
+                    .itemId(55)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408363/b9r1vyzallw5n8vhuvot.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh34);
+            var imageh35 = DummyDataIImages.builder()
+                    .itemId(55)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408367/e3thzlxppovudvpbsv86.webp")
+                    .build();
+            itemImageService.CreateImage(imageh35);
+            var imageh36 = DummyDataIImages.builder()
+                    .itemId(55)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408370/ezeeydkwyraikjluqfq1.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh36);
+            var imageh37 = DummyDataIImages.builder()
+                    .itemId(56)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408506/i6gs63l3vstdfyrfnw7o.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh37);
+            var imageh38 = DummyDataIImages.builder()
+                    .itemId(56)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408509/nobkks3stb136ydtym1s.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh38);
+            var imageh39 = DummyDataIImages.builder()
+                    .itemId(56)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408513/vz5zm3bedq6birscplaf.webp")
+                    .build();
+            itemImageService.CreateImage(imageh39);
+            var imageh40 = DummyDataIImages.builder()
+                    .itemId(57)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408604/biiypkrvaz0tt0mv0g4s.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh40);
+            var imageh41 = DummyDataIImages.builder()
+                    .itemId(57)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408607/w3atftgeh1gxiotiqdia.jp")
+                    .build();
+            itemImageService.CreateImage(imageh41);
+            var imageh42 = DummyDataIImages.builder()
+                    .itemId(57)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408612/k8pfq970we0y8nsphdhe.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh42);
+            var imageh43 = DummyDataIImages.builder()
+                    .itemId(58)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408680/mudj9a9wczteonfvdl82.png")
+                    .build();
+            itemImageService.CreateImage(imageh43);
+            var imageh44 = DummyDataIImages.builder()
+                    .itemId(58)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408683/v02cb5higxe7mkz36rim.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh44);
+            var imageh45 = DummyDataIImages.builder()
+                    .itemId(58)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408685/ajpkkwrjylpgdixmxrch.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh45);
+            var imageh46 = DummyDataIImages.builder()
+                    .itemId(59)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408766/xtruyz145i0dprcqeux2.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh46);
+            var imageh47 = DummyDataIImages.builder()
+                    .itemId(59)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408769/xixzy0md10mwrnwtdnin.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh47);
+            var imageh48 = DummyDataIImages.builder()
+                    .itemId(59)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408771/r3auog8egqaihujnl7r4.jpg")
+                    .build();
+            itemImageService.CreateImage(imageh48);
+
         };
     }
 }
