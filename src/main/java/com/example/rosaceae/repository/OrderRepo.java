@@ -74,6 +74,19 @@ List<Object[]> countOrdersByMonthAndYearGroupedByDayForAdmin(
             "GROUP BY DAY(o.orderDate)")
     List<Object[]> sumTotalPriceByDayWithItemType(@Param("month") int month, @Param("year") int year);
 
-
+    @Query("SELECT DAY(o.orderDate) as day, SUM(od.priceForShop) as totalPriceForShop " +
+            "FROM Order o " +
+            "JOIN o.orderDetails od " +
+            "JOIN od.item i " +
+            "JOIN i.user u " +
+            "WHERE o.orderStatus = com.example.rosaceae.enums.OrderStatus.BOOKING_COMPLETED " +
+            "AND u.usersID = :userId " +
+            "AND MONTH(o.orderDate) = :month " +
+            "AND YEAR(o.orderDate) = :year " +
+            "AND i.itemType.itemTypeId = 1 " +
+            "GROUP BY DAY(o.orderDate)")
+    List<Object[]> sumTotalPriceByDayForShop(@Param("userId") int userId, @Param("month") int month, @Param("year") int year);
 }
+
+
 

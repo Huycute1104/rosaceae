@@ -132,4 +132,13 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
         List<DailyPriceForAdminResponse> totalPrices = orderService.getTotalPriceByDayWithItemType(month, year);
         return ResponseEntity.ok(totalPrices);
     }
+    @GetMapping("/total-price-by-day-onlyService-forShop")
+    public ResponseEntity<List<DailyPriceForShopResponse>> getTotalPriceByDayForShop(
+            @RequestParam int userId,
+            @RequestParam int month,
+            @RequestParam int year) {
+        List<DailyPriceForShopResponse> totalPrices = orderService.getTotalPriceByDayForShop(userId, month, year);
+        return ResponseEntity.ok(totalPrices);
+    }
+
 }

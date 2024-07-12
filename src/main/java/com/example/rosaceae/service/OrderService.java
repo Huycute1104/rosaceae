@@ -31,5 +31,6 @@ public interface OrderService {
     public OrderResponse changeStatus(int orderId, OrderStatus status);
     List<DailyOrderCountResponse> getCompletedOrderCountByDayWithItemType(int month, int year);
     List<DailyPriceForAdminResponse> getTotalPriceByDayWithItemType(int month, int year);
+    List<DailyPriceForShopResponse> getTotalPriceByDayForShop(int userId, int month, int year);
 
 }
