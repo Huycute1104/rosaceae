@@ -240,7 +240,58 @@ public class RosaceaeApplication {
                     .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810522/wjwijr686epskqqfqamp.jpg")
                     .build();
             service.register(shop3);
-
+            var shop8 = RegisterRequest.builder()
+                    .name("Lily Nail")
+                    .email("LilyNail@gmail.com")
+                    .status(true)
+                    .password("123")
+                    .phone("0938070872")
+                    .role(SHOP)
+                    .enabled(true)
+                    .locationUrl("https://maps.app.goo.gl/6Py4NFKCxZf8NhZe7")
+                    .address("377 Đ. Man Thiện, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh 71010, Việt Nam")
+                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810925/w0nt15j2xmpbsyeng4p3.jpg")
+                    .build();
+            service.register(shop8);
+            var shop10 = RegisterRequest.builder()
+                    .name("Shine Nails & Beauty")
+                    .email("ShineNailsBeauty@gmail.com")
+                    .status(true)
+                    .password("123")
+                    .phone("0909985329")
+                    .role(SHOP)
+                    .enabled(true)
+                    .locationUrl("https://maps.app.goo.gl/8n7W23y1YBmZSwmW8")
+                    .address("264 Lê Văn Việt, Tăng Nhơn Phú B, Quận 9, Thành phố Hồ Chí Minh, Việt Nam")
+                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811027/ch70tcxyg83ajddmxwuz.jpg")
+                    .build();
+            service.register(shop10);
+            var shop11 = RegisterRequest.builder()
+                    .name(" Spa gội đầu dưỡng sinh Mộc Nhiên")
+                    .email("mocnhien@gmail.com")
+                    .status(true)
+                    .password("123")
+                    .phone(" 0906234226")
+                    .role(SHOP)
+                    .enabled(true)
+                    .locationUrl("https://maps.app.goo.gl/67bzyJvRmNQkfdwN9")
+                    .address("166/2 Đ. Nguyễn Hữu Cảnh, Phường 22, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam")
+                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811097/znlmr5zfbn3bdggqptox.png")
+                    .build();
+            service.register(shop11);
+            var shop12 = RegisterRequest.builder()
+                    .name("Hi Beauty Spa")
+                    .email("HiBeautySpa@gmail.com")
+                    .status(true)
+                    .password("123")
+                    .phone("0906234226")
+                    .role(SHOP)
+                    .enabled(true)
+                    .locationUrl("https://maps.app.goo.gl/cFELDNEotW7jkqd2A")
+                    .address("108 đường D3 phường Phước Long B Quận 9, Thủ Đức, Thành phố Hồ Chí Minh 71210, Việt Nam")
+                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811176/hvd3du9g3p0m7tcjxppf.jpg")
+                    .build();
+            service.register(shop12);
             var shop4 = RegisterRequest.builder()
                     .name("Serene Spa")
                     .email("serensepa@gmail.com")
@@ -293,19 +344,7 @@ public class RosaceaeApplication {
                     .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810756/qff61icaqlxci1xvmddr.png")
                     .build();
             service.register(shop7);
-            var shop8 = RegisterRequest.builder()
-                    .name("Lily Nail")
-                    .email("LilyNail@gmail.com")
-                    .status(true)
-                    .password("123")
-                    .phone("0938070872")
-                    .role(SHOP)
-                    .enabled(true)
-                    .locationUrl("https://maps.app.goo.gl/6Py4NFKCxZf8NhZe7")
-                    .address("377 Đ. Man Thiện, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh 71010, Việt Nam")
-                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810925/w0nt15j2xmpbsyeng4p3.jpg")
-                    .build();
-            service.register(shop8);
+
             var shop9 = RegisterRequest.builder()
                     .name("Chang Beauty")
                     .email("ChangBeauty@gmail.com")
@@ -319,45 +358,7 @@ public class RosaceaeApplication {
                     .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717810988/ga0fd6zu5xyeqfh2dvrw.png")
                     .build();
             service.register(shop9);
-            var shop10 = RegisterRequest.builder()
-                    .name("Shine Nails & Beauty")
-                    .email("ShineNailsBeauty@gmail.com")
-                    .status(true)
-                    .password("123")
-                    .phone("0909985329")
-                    .role(SHOP)
-                    .enabled(true)
-                    .locationUrl("https://maps.app.goo.gl/8n7W23y1YBmZSwmW8")
-                    .address("264 Lê Văn Việt, Tăng Nhơn Phú B, Quận 9, Thành phố Hồ Chí Minh, Việt Nam")
-                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811027/ch70tcxyg83ajddmxwuz.jpg")
-                    .build();
-            service.register(shop10);
-            var shop11 = RegisterRequest.builder()
-                    .name(" Spa gội đầu dưỡng sinh Mộc Nhiên")
-                    .email("mocnhien@gmail.com")
-                    .status(true)
-                    .password("123")
-                    .phone(" 0906234226")
-                    .role(SHOP)
-                    .enabled(true)
-                    .locationUrl("https://maps.app.goo.gl/67bzyJvRmNQkfdwN9")
-                    .address("166/2 Đ. Nguyễn Hữu Cảnh, Phường 22, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam")
-                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811097/znlmr5zfbn3bdggqptox.png")
-                    .build();
-            service.register(shop11);
-            var shop12 = RegisterRequest.builder()
-                    .name("Hi Beauty Spa")
-                    .email("HiBeautySpa@gmail.com")
-                    .status(true)
-                    .password("123")
-                    .phone("0906234226")
-                    .role(SHOP)
-                    .enabled(true)
-                    .locationUrl("https://maps.app.goo.gl/cFELDNEotW7jkqd2A")
-                    .address("108 đường D3 phường Phước Long B Quận 9, Thủ Đức, Thành phố Hồ Chí Minh 71210, Việt Nam")
-                    .images("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717811176/hvd3du9g3p0m7tcjxppf.jpg")
-                    .build();
-            service.register(shop12);
+
             var shop13 = RegisterRequest.builder()
                     .name("Lady Mom Spa")
                     .email("LadyMomSpa@gmail.com")
@@ -1435,8 +1436,8 @@ public class RosaceaeApplication {
             itemImageService.CreateImage(image87);
 
             var location = LocationRequest.builder()
-                    .latitude("10.8618393")
-                    .longitude("106.7580455")
+                    .latitude("10.860796")
+                    .longitude("106.7587657")
                     .shopID(3)
                     .build();
             locationService.createLocation(location);
@@ -1446,42 +1447,133 @@ public class RosaceaeApplication {
                     .shopID(4)
                     .build();
             locationService.createLocation(location1);
+            var locaShop3 = LocationRequest.builder()
+                    .latitude("10.8410204")
+                    .longitude("106.6416241")
+                    .shopID(5)
+                    .build();
+            locationService.createLocation(locaShop3);
             var location2 = LocationRequest.builder()
                     .latitude("10.8595319")
                     .longitude("106.7648504")
                     .shopID(6)
                     .build();
+
             locationService.createLocation(location2);
             var location3 = LocationRequest.builder()
-                    .latitude("10.8136653")
-                    .longitude("106.6547022")
+                    .latitude("10.8569978")
+                    .longitude("106.7887626")
                     .shopID(7)
                     .build();
             locationService.createLocation(location3);
             var location4 = LocationRequest.builder()
-                    .latitude("10.8143615")
-                    .longitude("106.655274")
+                    .latitude("10.8593625")
+                    .longitude("106.7731649")
                     .shopID(8)
                     .build();
             locationService.createLocation(location4);
             var location5 = LocationRequest.builder()
-                    .latitude("13.3096391")
-                    .longitude("105.4040519")
+                    .latitude("10.8277732")
+                    .longitude("106.7219345")
                     .shopID(9)
                     .build();
             locationService.createLocation(location5);
             var location6 = LocationRequest.builder()
-                    .latitude("13.4029018")
-                    .longitude("105.439347")
+                    .latitude("10.834671")
+                    .longitude("106.7485605")
                     .shopID(10)
                     .build();
             locationService.createLocation(location6);
             var locationReal = LocationRequest.builder()
-                    .latitude("10.8410204")
-                    .longitude("106.6416241")
-                    .shopID(5)
+                    .latitude("10.8143615")
+                    .longitude("106.6547022")
+                    .shopID(11)
                     .build();
             locationService.createLocation(locationReal);
+
+            var locaShop12 = LocationRequest.builder()
+                    .latitude("10.8143615")
+                    .longitude("106.655274")
+                    .shopID(12)
+                    .build();
+            locationService.createLocation(locaShop12);
+
+            var locaShop13 = LocationRequest.builder()
+                    .latitude("13.3096391")
+                    .longitude("105.4040519")
+                    .shopID(13)
+                    .build();
+            locationService.createLocation(locaShop13);
+
+            var locaShop14 = LocationRequest.builder()
+                    .latitude("13.4029018")
+                    .longitude("105.439347")
+                    .shopID(14)
+                    .build();
+            locationService.createLocation(locaShop14);
+
+            var locaShop15 = LocationRequest.builder()
+                    .latitude("10.7995117")
+                    .longitude("106.6677683")
+                    .shopID(15)
+                    .build();
+            locationService.createLocation(locaShop15);
+
+            var locaShop16 = LocationRequest.builder()
+                    .latitude("10.8484814")
+                    .longitude("106.7691607")
+                    .shopID(16)
+                    .build();
+            locationService.createLocation(locaShop16);
+
+            var locaShop17 = LocationRequest.builder()
+                    .latitude("10.8232907")
+                    .longitude("106.7413115")
+                    .shopID(17)
+                    .build();
+            locationService.createLocation(locaShop17);
+
+            var locaShop18 = LocationRequest.builder()
+                    .latitude("10.8543164")
+                    .longitude("106.7887626")
+                    .shopID(18)
+                    .build();
+            locationService.createLocation(locaShop18);
+
+            var locaShop19 = LocationRequest.builder()
+                    .latitude("10.8338193")
+                    .longitude("106.7525647")
+                    .shopID(19)
+                    .build();
+            locationService.createLocation(locaShop19);
+
+            var locaShop20 = LocationRequest.builder()
+                    .latitude("10.8457294")
+                    .longitude("106.7691607")
+                    .shopID(20)
+                    .build();
+            locationService.createLocation(locaShop20);
+
+            var locaShop21 = LocationRequest.builder()
+                    .latitude("8555891")
+                    .longitude("106.7830531")
+                    .shopID(21)
+                    .build();
+            locationService.createLocation(locaShop21);
+
+            var locaShop22 = LocationRequest.builder()
+                    .latitude("10.8555891")
+                    .longitude("106.7830531")
+                    .shopID(22)
+                    .build();
+            locationService.createLocation(locaShop22);
+
+            var locaShop23 = LocationRequest.builder()
+                    .latitude("10.8472606")
+                    .longitude("106.7691607")
+                    .shopID(23)
+                    .build();
+            locationService.createLocation(locaShop23);
 
             //timebooking
 
