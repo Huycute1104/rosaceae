@@ -380,4 +380,6 @@ public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, 
     }
 
 
+
+
 }

@@ -3,6 +3,7 @@ package com.example.rosaceae.serviceImplement;
 import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
+import com.example.rosaceae.dto.Response.BookingResponse.BookingCountResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.CompleteBooking;
 import com.example.rosaceae.enums.BookingStatus;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.YearMonth;
 import java.util.*;
 
 @Service
@@ -267,5 +269,30 @@ public class BookingServiceImplement implements BookingService {
 
         return statusPercentages;
     }
+
+    @Override
+    public List<BookingCountResponse> getCompletedBookingCountByDay(int month, int year) {
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int daysInMonth = yearMonth.lengthOfMonth();
+        List<BookingCountResponse> dailyBookingCounts = new ArrayList<>();
+
+        // Initialize the list with all days of the month set to zero count
+        for (int day = 1; day <= daysInMonth; day++) {
+            dailyBookingCounts.add(new BookingCountResponse(day, 0));
+        }
+
+        // Get the actual booking counts from the repository
+        List<Object[]> results = bookingRepo.countCompletedBookingsByDay(month, year);
+
+        // Update the count for each day based on the query results
+        for (Object[] result : results) {
+            int day = (int) result[0];
+            long count = (long) result[1];
+            dailyBookingCounts.set(day - 1, new BookingCountResponse(day, count));
+        }
+
+        return dailyBookingCounts;
+    }
+
 
 }

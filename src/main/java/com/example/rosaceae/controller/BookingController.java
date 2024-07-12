@@ -3,6 +3,7 @@ package com.example.rosaceae.controller;
 import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
+import com.example.rosaceae.dto.Response.BookingResponse.BookingCountResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.CompleteBooking;
 import com.example.rosaceae.model.Booking;
@@ -81,4 +82,12 @@ public class BookingController {
         CompleteBooking result = bookingService.completeBooking(bookingId);
         return ResponseEntity.status(result.getStatus()).body(result);
     }
+    @GetMapping("/completed-booking-count-by-day/admin")
+    public ResponseEntity<List<BookingCountResponse>> getCompletedBookingCountByDay(
+            @RequestParam int month,
+            @RequestParam int year) {
+        List<BookingCountResponse> bookingCounts = bookingService.getCompletedBookingCountByDay(month, year);
+        return ResponseEntity.ok(bookingCounts);
+    }
+
 }

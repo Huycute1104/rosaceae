@@ -3,12 +3,14 @@ package com.example.rosaceae.service;
 import com.example.rosaceae.dto.Data.BookingDTO;
 import com.example.rosaceae.dto.Request.BookingRequest.ChangeBookingStatusRequest;
 import com.example.rosaceae.dto.Request.BookingRequest.CreateBookingRequest;
+import com.example.rosaceae.dto.Response.BookingResponse.BookingCountResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.BookingResponse;
 import com.example.rosaceae.dto.Response.BookingResponse.CompleteBooking;
 import com.example.rosaceae.model.Booking;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BookingService {
@@ -20,4 +22,6 @@ public interface BookingService {
     Page<Booking> getBookingsByUserId(int userId, int page, int size);
     Map<String, Double> getBookingStatusPercentages(int shopId);
     Map<String, Double> getAllBookingStatusPercentages();  // New method for admin
+    List<BookingCountResponse> getCompletedBookingCountByDay(int month, int year);
+
 }

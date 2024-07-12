@@ -55,3 +55,4 @@ List<Object[]> countOrdersByMonthAndYearGroupedByDayForAdmin(
         @Param("year") int year);
 
 }
+
