@@ -402,4 +402,28 @@ public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, 
         return dailyOrderCounts;
     }
 
+    @Override
+    public List<DailyPriceForAdminResponse> getTotalPriceByDayWithItemType(int month, int year) {
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int daysInMonth = yearMonth.lengthOfMonth();
+        List<DailyPriceForAdminResponse> dailyTotalPrices = new ArrayList<>();
+
+        // Initialize the list with all days of the month set to zero total price
+        for (int day = 1; day <= daysInMonth; day++) {
+            dailyTotalPrices.add(new DailyPriceForAdminResponse(day, 0.0));
+        }
+
+        // Get the actual total prices from the repository
+        List<Object[]> results = orderRepo.sumTotalPriceByDayWithItemType(month, year);
+
+        // Update the total price for each day based on the query results
+        for (Object[] result : results) {
+            int day = (int) result[0];
+            double totalPrice = (double) result[1];
+            dailyTotalPrices.set(day - 1, new DailyPriceForAdminResponse(day, totalPrice));
+        }
+
+        return dailyTotalPrices;
+    }
+
 }
