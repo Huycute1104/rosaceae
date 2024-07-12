@@ -450,5 +450,29 @@ public List<DailyPriceForShopResponse> getDailyPriceForShopByUserId(int userId, 
         return dailyTotalPrices;
     }
 
+    @Override
+    public List<DailyOrderCountResponse> getCompletedOrderCountByDayForShop(int userId, int month, int year) {
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int daysInMonth = yearMonth.lengthOfMonth();
+        List<DailyOrderCountResponse> dailyOrderCounts = new ArrayList<>();
+
+        // Initialize the list with all days of the month set to zero count
+        for (int day = 1; day <= daysInMonth; day++) {
+            dailyOrderCounts.add(new DailyOrderCountResponse(day, 0));
+        }
+
+        // Get the actual order counts from the repository
+        List<Object[]> results = orderRepo.countCompletedOrdersByDayForShop(userId, month, year);
+
+        // Update the count for each day based on the query results
+        for (Object[] result : results) {
+            int day = (int) result[0];
+            long count = (long) result[1];
+            dailyOrderCounts.set(day - 1, new DailyOrderCountResponse(day, count));
+        }
+
+        return dailyOrderCounts;
+    }
+
 
 }
