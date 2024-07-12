@@ -89,7 +89,7 @@ public class AuthenticationService {
         saveUserToken(save, jwtToken);
         try{
             String[] arr = HTMLFormat.EmailVerificationHTML.split("######");
-            String verificationURL = "http://localhost:5173/verify?token=" + randomEmailToken;
+            String verificationURL = "https://rosaceae.id.vn/verify?token=" + randomEmailToken;
             if (arr.length == 2) {
                 result = arr[0] + verificationURL + arr[1];
             }
