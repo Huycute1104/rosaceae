@@ -2740,6 +2740,488 @@ public class RosaceaeApplication {
                     .build();
             itemImageService.CreateImage(imageh48);
 
+
+            //Dummy data for order shop
+            var itemj1 = ItemRequest.builder()
+                    .itemName("Liệu trình da nhiễm Corticoid")
+                    .quantity(100)
+                    .itemPrice(1000000f)
+                    .itemDescription("Da nhiễm Corticoid là một tình trạng xảy ra khá phổ biến hiện nay, để điều trị dứt điểm vấn đề này không hề dễ dàng và nhanh chóng được. Bạn phải cần thời gian kiên trì điều trị để lấy lại làn da tươi khỏe. Hãy cùng tham khảo qua liệu trình điều trị da nhiễm Corticoid tại Gà Spa nhé!")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(8)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(13)
+                    .build();
+            itemService.CreateItem(itemj1);
+
+            var imagej1 = DummyDataIImages.builder()
+                    .itemId(60)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717403332/fccuc8itceb81wuyhddk.jpg")
+                    .build();
+            itemImageService.CreateImage(imagej1);
+            var imagej2 = DummyDataIImages.builder()
+                    .itemId(60)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404152/occqnbyew0zbbp4q0qof.jpg")
+                    .build();
+            itemImageService.CreateImage(imagej2);
+            var imagej3 = DummyDataIImages.builder()
+                    .itemId(60)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404220/m1zuiipuz4jiiaa0isp8.jpg")
+                    .build();
+            itemImageService.CreateImage(imagej3);
+
+            var itemJ2 = ItemRequest.builder()
+                    .itemName("Công nghệ điều trị nám sạm Laser Toning")
+                    .quantity(100)
+                    .itemPrice(500000f)
+                    .itemDescription("Laser Toning là một công nghệ hàng đầu với độ an toàn cao, đã được FDA (Cục quản lý Thực phẩm – Dược phẩm Hoa Kỳ – US Food and Drug Administration) kiểm duyệt và chứng nhận. Laser Toning được biết đến là công nghệ điều trị nám da sâu và nám hỗn hợp, đặc biệt là nám da sâu rất hiệu quả")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(8)
+                    .categoryId(1)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ2);
+            var imageJ4 = DummyDataIImages.builder()
+                    .itemId(61)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404321/stmgig7r3r4lxfzqpii2.jpg")
+                    .build();
+            itemImageService.CreateImage(imageJ4);
+            var imageJ5 = DummyDataIImages.builder()
+                    .itemId(61)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404368/is2upg0xehiuhtqflswa.jpg")
+                    .build();
+            itemImageService.CreateImage(imageJ5);
+            var imageJ6 = DummyDataIImages.builder()
+                    .itemId(61)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404448/zk2lfxazyya5rxeffmic.jpg")
+                    .build();
+            itemImageService.CreateImage(imageJ6);
+            var itemJ3 = ItemRequest.builder()
+                    .itemName("Liệu trình điều trị Mụn lưng – viêm nang lông với công nghệ IPL")
+                    .quantity(100)
+                    .itemPrice(300000f)
+                    .itemDescription("IPL là tên đầy đủ của nó là Intense Pulsed Light hay gọi theo tiếng Việt là  “máy ánh sáng xung nhiệt”. Đây là một thiết bị này sử dụng xung động ánh sáng với bước sóng phù hợp để giúp điều trị một số bệnh về da. Trong đó, IPL được áp dụng phổ biến trong điều trị mụn lưng, viêm nang lông, da nhờn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(9)
+                    .categoryId(2)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ3);
+            var imagej7 = DummyDataIImages.builder()
+                    .itemId(62)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404518/fdcngdp2pkebjsqj3cve.jpg")
+                    .build();
+            itemImageService.CreateImage(imagej7);
+            var imagehj8 = DummyDataIImages.builder()
+                    .itemId(62)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404519/e3k7cn3v2tnazds3iqm8.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj8);
+
+            var imagehj9 = DummyDataIImages.builder()
+                    .itemId(62)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717404730/gdlcwbp6sznt26f84hpg.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj9);
+            var itemJ4 = ItemRequest.builder()
+                    .itemName("Dịch vụ cắt móng và chăm sóc cơ bản")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Cắt, dũa móng tay/móng chân.\n" +
+                            "Làm sạch lớp biểu bì.\n" +
+                            "Massage tay/chân.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(9)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ4);
+
+            var imagehj10 = DummyDataIImages.builder()
+                    .itemId(63)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405874/axg6kguzesa08uy8nno0.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj10);
+            var imagehj11 = DummyDataIImages.builder()
+                    .itemId(63)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405875/ezagnxvayoxzqidzqcgl.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj11);
+            var imagehj12 = DummyDataIImages.builder()
+                    .itemId(63)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717405876/tc0ya3zt13ytgzg8iuc9.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj12);
+            var itemJ5 = ItemRequest.builder()
+                    .itemName("Sơn móng tay/móng chân")
+                    .quantity(100)
+                    .itemPrice(130000f)
+                    .itemDescription("Sơn bóng.\n" +
+                            "Sơn màu.\n" +
+                            "Sơn gel (gel polish).")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(10)
+                    .categoryId(3)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ5);
+            var imagehj13 = DummyDataIImages.builder()
+                    .itemId(64)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406038/ef2a7zbfvrycu7hvkdab.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj13);
+            var imagehj14 = DummyDataIImages.builder()
+                    .itemId(64)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406039/owbchzs8fvctz0sfg86r.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj14);
+            var imagehj15 = DummyDataIImages.builder()
+                    .itemId(64)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406040/seuob8pbnuh2zvqedim8.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj15);
+            var itemJ6 = ItemRequest.builder()
+                    .itemName("Gội đầu dưỡng sinh")
+                    .quantity(100)
+                    .itemPrice(100000f)
+                    .itemDescription("Kết hợp các kỹ thuật massage trị liệu.\n" +
+                            "Sử dụng các sản phẩm thảo dược hoặc tinh dầu để dưỡng tóc và da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(10)
+                    .categoryId(4)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ6);
+            var imagehj16 = DummyDataIImages.builder()
+                    .itemId(65)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406182/cvnjvugpp8h7uwf1wutg.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj16);
+            var imagehj17 = DummyDataIImages.builder()
+                    .itemId(65)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406183/t7zzoernv9rj10d95y3c.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj17);
+            var imagehj18 = DummyDataIImages.builder()
+                    .itemId(65)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406185/tkl5uifbtxwgxiwwoh8v.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj18);
+
+            var itemJ7 = ItemRequest.builder()
+                    .itemName("Gội đầu trị liệu")
+                    .quantity(100)
+                    .itemPrice(200000f)
+                    .itemDescription("Sử dụng các sản phẩm đặc trị cho các vấn đề về tóc và da đầu như gàu, tóc dầu, tóc khô, và tóc hư tổn.\n" +
+                            "Kết hợp các phương pháp trị liệu da đầu.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(11)
+                    .categoryId(2)
+                    .itemTypeId(1)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(itemJ7);
+            var imagehj19 = DummyDataIImages.builder()
+                    .itemId(66)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407449/myu5soyzf4dzkzhzobpm.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj19);
+            var imagehj20 = DummyDataIImages.builder()
+                    .itemId(66)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407450/vauykv2hwfhxwbzfqnt8.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj20);
+            var imagehj21 = DummyDataIImages.builder()
+                    .itemId(66)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407451/u1n7zcciljozymfinjgs.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj21);
+            //product
+            var pro12 = ItemRequest.builder()
+                    .itemName("Dầu dưỡng móng")
+                    .quantity(100)
+                    .itemPrice(100000f)
+                    .itemDescription("Giúp làm mềm và dưỡng ẩm vùng da quanh móng.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(12)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro12);
+            var imagehj22 = DummyDataIImages.builder()
+                    .itemId(67)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407584/yt3hzmncu9vsxphbowus.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj22);
+            var imagehj23 = DummyDataIImages.builder()
+                    .itemId(67)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407583/rgwbol6p9hlmlyy9yipm.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj23);
+            var imagehj24 = DummyDataIImages.builder()
+                    .itemId(67)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407581/zbjbqrxgbcamfr7kkewb.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj24);
+            var pro13 = ItemRequest.builder()
+                    .itemName("Kem dưỡng da tay/móng")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Giúp da tay và móng mềm mại hơn.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(13)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro13);
+
+            var imagehj25 = DummyDataIImages.builder()
+                    .itemId(68)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407641/rvjbd8mxvcoulnqgpura.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj25);
+            var imagehj26 = DummyDataIImages.builder()
+                    .itemId(68)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407643/u5ppburzgfjoujbrfqbe.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj26);
+            var imagehj27 = DummyDataIImages.builder()
+                    .itemId(68)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407645/hgavl24cypkurmx8yg0j.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj27);
+            var pro31 = ItemRequest.builder()
+                    .itemName("Sơn gel")
+                    .quantity(100)
+                    .itemPrice(150000f)
+                    .itemDescription("Giữ màu lâu, cần đèn UV hoặc LED để khô.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(14)
+                    .categoryId(3)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro31);
+            var imagehj28 = DummyDataIImages.builder()
+                    .itemId(69)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407914/h0k0sqmzuqppu3n35hrc.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj28);
+            var imagehj29 = DummyDataIImages.builder()
+                    .itemId(69)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407916/d3a7q9psyt6xpyhzf10h.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj29);
+            var imagehj30 = DummyDataIImages.builder()
+                    .itemId(69)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717407918/ystsi2mpkx6g15kvaz39.webp")
+                    .build();
+            itemImageService.CreateImage(imagehj30);
+            var pro14 = ItemRequest.builder()
+                    .itemName("Neutrogena Oil-Free Acne Wash")
+                    .quantity(100)
+                    .itemPrice(250000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(15)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro14);
+            var imagehj31 = DummyDataIImages.builder()
+                    .itemId(70)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408282/cayn8wyo8njiqmzkgoxd.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj31);
+            var imagehj32 = DummyDataIImages.builder()
+                    .itemId(70)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408286/os2wouvnawsunvxl73nx.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj32);
+            var imagehj33 = DummyDataIImages.builder()
+                    .itemId(70)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408289/szfpklbfaytwr31ymnbo.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj33);
+            var pro15 = ItemRequest.builder()
+                    .itemName("La Roche-Posay Effaclar")
+                    .quantity(100)
+                    .itemPrice(350000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(16)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro15);
+            var imagehj34 = DummyDataIImages.builder()
+                    .itemId(71)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408363/b9r1vyzallw5n8vhuvot.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj34);
+            var imagehj35 = DummyDataIImages.builder()
+                    .itemId(71)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408367/e3thzlxppovudvpbsv86.webp")
+                    .build();
+            itemImageService.CreateImage(imagehj35);
+            var imagehj36 = DummyDataIImages.builder()
+                    .itemId(71)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408370/ezeeydkwyraikjluqfq1.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj36);
+            var pro16 = ItemRequest.builder()
+                    .itemName("Cetaphil Gentle Skin Cleanser")
+                    .quantity(100)
+                    .itemPrice(300000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(17)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro16);
+            var imagehj37 = DummyDataIImages.builder()
+                    .itemId(72)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408506/i6gs63l3vstdfyrfnw7o.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj37);
+            var imagehj38 = DummyDataIImages.builder()
+                    .itemId(72)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408509/nobkks3stb136ydtym1s.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj38);
+            var imagehj39 = DummyDataIImages.builder()
+                    .itemId(72)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408513/vz5zm3bedq6birscplaf.webp")
+                    .build();
+            itemImageService.CreateImage(imagehj39);
+            var pro17 = ItemRequest.builder()
+                    .itemName("Thayers Witch Hazel Toner")
+                    .quantity(100)
+                    .itemPrice(350000f)
+                    .itemDescription("Giúp cân bằng độ pH cho da và làm sạch sâu hơn sau khi rửa mặt")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(18)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro17);
+            var imagehj40 = DummyDataIImages.builder()
+                    .itemId(73)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408604/biiypkrvaz0tt0mv0g4s.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj40);
+            var imagehj41 = DummyDataIImages.builder()
+                    .itemId(73)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408607/w3atftgeh1gxiotiqdia.jp")
+                    .build();
+            itemImageService.CreateImage(imagehj41);
+            var imagehj42 = DummyDataIImages.builder()
+                    .itemId(73)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408612/k8pfq970we0y8nsphdhe.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj42);
+            var pro18 = ItemRequest.builder()
+                    .itemName("Kiehl’s Calendula Herbal Extract Toner")
+                    .quantity(100)
+                    .itemPrice(10000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(19)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+
+            itemService.CreateItem(pro18);
+            var imagehj43 = DummyDataIImages.builder()
+                    .itemId(74)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408680/mudj9a9wczteonfvdl82.png")
+                    .build();
+            itemImageService.CreateImage(imagehj43);
+            var imagehj44 = DummyDataIImages.builder()
+                    .itemId(74)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408683/v02cb5higxe7mkz36rim.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj44);
+            var imagehj45 = DummyDataIImages.builder()
+                    .itemId(74)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408685/ajpkkwrjylpgdixmxrch.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj45);
+            var pro19 = ItemRequest.builder()
+                    .itemName("Simple Soothing Facial Toner")
+                    .quantity(100)
+                    .itemPrice(250000f)
+                    .itemDescription("Dùng để làm sạch da mặt, loại bỏ bụi bẩn và dầu thừa.")
+//					.commentCount(0)
+//					.rate(0f)
+//					.countUsage(0)
+                    .shopId(20)
+                    .categoryId(1)
+                    .itemTypeId(2)
+                    .discount(10)
+                    .build();
+            itemService.CreateItem(pro19);
+
+            var imagehj46 = DummyDataIImages.builder()
+                    .itemId(75)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408766/xtruyz145i0dprcqeux2.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj46);
+            var imagehj47 = DummyDataIImages.builder()
+                    .itemId(75)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408769/xixzy0md10mwrnwtdnin.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj47);
+            var imagehj48 = DummyDataIImages.builder()
+                    .itemId(75)
+                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717408771/r3auog8egqaihujnl7r4.jpg")
+                    .build();
+            itemImageService.CreateImage(imagehj48);
+
         };
     }
 }
