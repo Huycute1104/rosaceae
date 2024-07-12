@@ -22,11 +22,23 @@ public interface OrderDetailRepo extends JpaRepository<OrderDetail,Integer> {
 //            "AND MONTH(od.order.orderDate) = MONTH(CURRENT_DATE) " +
 //            "AND YEAR(od.order.orderDate) = YEAR(CURRENT_DATE)")
 //    Float findTotalPriceForShopByUserIdAndCurrentMonthAndDelivered(@Param("userId") int userId);
+    //sum cũ
+//    @Query("SELECT SUM(od.priceForShop) FROM OrderDetail od JOIN od.item i JOIN i.user u " +
+//        "WHERE u.usersID = :userId AND od.order.orderStatus = 'DELIVERED' " +
+//        "AND MONTH(od.order.orderDate) = :month " +
+//        "AND YEAR(od.order.orderDate) = :year")
+//Float findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(
+//        @Param("userId") int userId,
+//        @Param("month") int month,
+//        @Param("year") int year);
+//kết thúc sum cũ
+
+    //sum mới
 @Query("SELECT SUM(od.priceForShop) FROM OrderDetail od JOIN od.item i JOIN i.user u " +
-        "WHERE u.usersID = :userId AND od.order.orderStatus = 'DELIVERED' " +
+        "WHERE u.usersID = :userId AND (od.order.orderStatus = 'DELIVERED' OR od.order.orderStatus = 'BOOKING_COMPLETED') " +
         "AND MONTH(od.order.orderDate) = :month " +
         "AND YEAR(od.order.orderDate) = :year")
-Float findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(
+Float findTotalPriceForShopByUserIdAndMonthAndYearAndStatus(
         @Param("userId") int userId,
         @Param("month") int month,
         @Param("year") int year);

@@ -224,14 +224,24 @@ public class OrderServiceImplement implements OrderService {
 //        int year = calendar.get(Calendar.YEAR);
 //        return new TotalPriceForShopResponse(totalPriceForShop, month, year);
 //    }
-@Override
-public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year) {
-    Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(userId, month, year);
-    if (totalPriceForShop == null) {
-        totalPriceForShop = 0f;
+
+    //sum cũ
+//@Override
+//public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year) {
+//    Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(userId, month, year);
+//    if (totalPriceForShop == null) {
+//        totalPriceForShop = 0f;
+//    }
+//    return new TotalPriceForShopResponse(totalPriceForShop, month, year);
+//}
+//kết thúc sum cũ
+    public TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year) {
+        Float totalPriceForShop = orderDetailRepo.findTotalPriceForShopByUserIdAndMonthAndYearAndStatus(userId, month, year);
+        if (totalPriceForShop == null) {
+            totalPriceForShop = 0f;
+        }
+        return new TotalPriceForShopResponse(totalPriceForShop, month, year);
     }
-    return new TotalPriceForShopResponse(totalPriceForShop, month, year);
-}
     @Override
     public TotalPriceForAdminResponse getTotalPriceForAdmin(int month, int year) {
         Float totalPriceForAdmin = orderDetailRepo.findTotalPriceForAdminByMonthAndYearAndDelivered(month, year);
