@@ -54,5 +54,16 @@ List<Object[]> countOrdersByMonthAndYearGroupedByDayForAdmin(
         @Param("month") int month,
         @Param("year") int year);
 
+    @Query("SELECT DAY(o.orderDate) as day, COUNT(o) as count " +
+            "FROM Order o " +
+            "JOIN o.orderDetails od " +
+            "WHERE o.orderStatus = com.example.rosaceae.enums.OrderStatus.BOOKING_COMPLETED " +
+            "AND od.item.itemType.itemTypeId = 1 " +
+            "AND MONTH(o.orderDate) = :month " +
+            "AND YEAR(o.orderDate) = :year " +
+            "GROUP BY DAY(o.orderDate)")
+    List<Object[]> countCompletedOrdersByDayWithItemType(@Param("month") int month, @Param("year") int year);
+
+
 }
 

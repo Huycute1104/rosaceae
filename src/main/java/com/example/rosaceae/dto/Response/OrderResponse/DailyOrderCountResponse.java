@@ -8,4 +8,5 @@ import lombok.Data;
 public class DailyOrderCountResponse {
     private int day;
     private long count;
+
 }

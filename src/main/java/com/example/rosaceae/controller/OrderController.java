@@ -118,4 +118,11 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
         List<DailyPriceForAdminResponse> dailyPrices = orderService.getDailyPriceForAdmin(month, year);
         return ResponseEntity.ok(dailyPrices);
     }
+    @GetMapping("/completed-order-count-by-day-forAdmin")
+    public ResponseEntity<List<DailyOrderCountResponse>> getCompletedOrderCountByDayWithItemType(
+            @RequestParam int month,
+            @RequestParam int year) {
+        List<DailyOrderCountResponse> orderCounts = orderService.getCompletedOrderCountByDayWithItemType(month, year);
+        return ResponseEntity.ok(orderCounts);
+    }
 }
