@@ -5,6 +5,9 @@ import com.example.rosaceae.dto.Response.UserResponse.ShopPayResponse;
 import com.example.rosaceae.service.ShopPayService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +21,13 @@ public class AdminController {
     private ShopPayService shopPayService;
 
     @GetMapping("/shopPay")
-    public List<ShopUserDTO> getShopUsersByMonthAndYear(
+    public Page<ShopUserDTO> getShopUsersByMonthAndYear(
             @RequestParam int month,
-            @RequestParam int year) {
-        return shopPayService.getShopUsersByMonthAndYear(month, year);
+            @RequestParam int year,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return shopPayService.getShopUsersByMonthAndYear(month, year, pageable);
     }
     @PutMapping("/confirm/{shopPayId}")
     public ResponseEntity<ShopPayResponse> confirmPayForShop(@PathVariable int shopPayId) {
