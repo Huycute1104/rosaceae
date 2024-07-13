@@ -22,6 +22,8 @@ public class ShopPay {
 
     private float money;
 
+    private boolean status;
+
     @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "UsersID")
     @EqualsAndHashCode.Exclude
