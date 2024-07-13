@@ -104,6 +104,16 @@ public class User implements UserDetails {
     @JsonManagedReference
     private List<Location> locations;
 
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<UserBank> userBanks;
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonManagedReference
+    private List<ShopPay> shopPays;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
