@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +45,8 @@ public class PayOSServiceImplement implements PayOSService {
     private CartRepo cartRepository;
     @Autowired
     private ItemRepo itemRepo;
+    @Autowired
+    private ShopPayRepo shopPayRepo;
 
     @Override
     public ResponseEntity<ObjectNode> createOrderQR(CreatePaymentLinkRequestBody body) {
@@ -98,6 +102,14 @@ public class PayOSServiceImplement implements PayOSService {
                     .build();
             orderRepo.save(order);
             orderID = order.getOrderId();
+            LocalDateTime orderDate = order.getOrderDate().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDateTime();
+
+            // Lấy tháng và năm
+            int month = orderDate.getMonthValue();
+            int year = orderDate.getYear();
+
 
             // Handle order details
             float fee = Fee.SHOP_FEE.getFee() / 100;
@@ -119,9 +131,9 @@ public class PayOSServiceImplement implements PayOSService {
                     return ResponseEntity.status(400).body(response);
                 }
 
-                float discount = (float) item.getDiscount() /100;
+                float discount = (float) item.getDiscount() / 100;
                 float itemDiscount = item.getItemPrice() * discount;
-                float itemTotal = (item.getItemPrice()-itemDiscount) * itemRequest.getQuantity();
+                float itemTotal = (item.getItemPrice() - itemDiscount) * itemRequest.getQuantity();
                 OrderDetail orderDetail = OrderDetail.builder()
                         .item(item)
                         .quantity(itemRequest.getQuantity())
@@ -130,7 +142,7 @@ public class PayOSServiceImplement implements PayOSService {
                         .order(order)
                         .build();
                 orderDetails.add(orderDetail);
-
+                System.out.println(orderDetail.getPriceForShop());
                 int currentBuyCount = (item.getQuantityCount() == null) ? 0 : item.getQuantityCount();
                 item.setQuantityCount(currentBuyCount + itemRequest.getQuantity());
                 item.setQuantity(item.getQuantity() - itemRequest.getQuantity());
@@ -139,6 +151,21 @@ public class PayOSServiceImplement implements PayOSService {
                 User shop = orderDetail.getItem().getUser();
                 shop.setUserWallet(shop.getUserWallet() + orderDetail.getPriceForShop());
                 userRepo.save(shop);
+                var shopPay = shopPayRepo.findByMonthAndYearAndUser(month, year,shop).orElse(null);
+                if (shopPay != null) {
+                    shopPay.setMoney(shopPay.getMoney() + orderDetail.getPriceForShop());
+                    shopPayRepo.save(shopPay);
+                } else {
+                    ShopPay newPay = ShopPay.builder()
+                            .month(month)
+                            .year(year)
+                            .money(orderDetail.getPriceForShop())
+                            .status(false)
+                            .user(orderDetail.getItem().getUser())
+                            .build();
+                    shopPayRepo.save(newPay);
+                }
+
             }
 
             // Save order details
@@ -176,16 +203,15 @@ public class PayOSServiceImplement implements PayOSService {
     }
 
 
-
     @Override
     public ResponseEntity<PayOSSuccess> Success(int orderCode) {
         var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
-            return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found","https://rosaceae.id.vn/order"));
+            return ResponseEntity.status(404).body(new PayOSSuccess("Order Not Found", "https://rosaceae.id.vn/order"));
         } else {
             order.setOrderStatus(OrderStatus.DELIVERED);
             orderRepo.save(order);
-            return ResponseEntity.ok(new PayOSSuccess("Order is successfully delivered","https://rosaceae.id.vn/order"));
+            return ResponseEntity.ok(new PayOSSuccess("Order is successfully delivered", "https://rosaceae.id.vn/order"));
         }
     }
 
@@ -193,23 +219,41 @@ public class PayOSServiceImplement implements PayOSService {
     public ResponseEntity<PayOSCancel> Cancel(int orderCode) {
         var order = orderRepo.findByOrderCode(orderCode).orElse(null);
         if (order == null) {
-            return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found","https://rosaceae.id.vn/"));
+            return ResponseEntity.status(404).body(new PayOSCancel("Order Not Found", "https://rosaceae.id.vn/"));
         } else {
-            order.setOrderStatus(OrderStatus.CANCELLED);
-            orderRepo.save(order);
-            List<OrderDetail> list = order.getOrderDetails().stream().toList();
-            for (OrderDetail orderDetail : list) {
-                int quantity = orderDetail.getQuantity();
-                float priceForShop = orderDetail.getPriceForShop();
-                var shop = orderDetail.getItem().getUser();
-                var item = orderDetail.getItem();
-                item.setQuantity(item.getQuantity() + quantity);
-                item.setQuantityCount(item.getQuantityCount() - quantity);
-                shop.setUserWallet(shop.getUserWallet() - priceForShop);
-                userRepo.save(shop);
-                itemRepo.save(item);
+            if (order.getOrderStatus().equals(OrderStatus.CANCELLED)) {
+                return ResponseEntity.ok(new PayOSCancel("Order Cancelled", "https://rosaceae.id.vn/"));
+            } else {
+                order.setOrderStatus(OrderStatus.CANCELLED);
+                orderRepo.save(order);
+                List<OrderDetail> list = order.getOrderDetails().stream().toList();
+                for (OrderDetail orderDetail : list) {
+
+                    int quantity = orderDetail.getQuantity();
+                    float priceForShop = orderDetail.getPriceForShop();
+                    var shop = orderDetail.getItem().getUser();
+                    var item = orderDetail.getItem();
+
+                    LocalDateTime orderDate = orderDetail.getOrder().getOrderDate().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime();
+                    // Lấy tháng và năm
+                    int month = orderDate.getMonthValue();
+                    int year = orderDate.getYear();
+
+                    var shopPay = shopPayRepo.findByMonthAndYearAndUser(month, year,shop).orElse(null);
+                    assert shopPay != null;
+                    shopPay.setMoney(shopPay.getMoney() - priceForShop);
+                    item.setQuantity(item.getQuantity() + quantity);
+                    item.setQuantityCount(item.getQuantityCount() - quantity);
+                    shop.setUserWallet(shop.getUserWallet() - priceForShop);
+                    shopPayRepo.save(shopPay);
+                    userRepo.save(shop);
+                    itemRepo.save(item);
+                }
+                return ResponseEntity.ok(new PayOSCancel("Order Cancelled", "https://rosaceae.id.vn/"));
             }
-            return ResponseEntity.ok(new PayOSCancel("Order Cancelled","https://rosaceae.id.vn/"));
+
         }
     }
 }
