@@ -5,4 +5,5 @@ import com.example.rosaceae.dto.Response.UserResponse.UserBankResponse;
 
 public interface UserBankService {
 public UserBankResponse addUserBank(int userId,UserBankRequest userBankRequest);
+public UserBankResponse updateUserBank(int bankId,UserBankRequest userBankRequest);
 }

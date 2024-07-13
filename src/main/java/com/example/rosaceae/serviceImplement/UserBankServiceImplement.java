@@ -56,4 +56,25 @@ public class UserBankServiceImplement implements UserBankService {
                 .message("Shop bankAccount has been added")
                 .build();
     }
+
+    @Override
+    public UserBankResponse updateUserBank(int bankId, UserBankRequest userBankRequest) {
+        var bank = userBankRepo.findById(bankId).orElse(null);
+        if (bank == null) {
+            return UserBankResponse.builder()
+                    .userBank(null)
+                    .status(404)
+                    .message("Bank account not found")
+                    .build();
+        }
+
+        bank.setBankName(userBankRequest.getBankName());
+        bank.setBankAccountNumber(userBankRequest.getBankAccountNumber());
+        userBankRepo.save(bank);
+        return UserBankResponse.builder()
+                .userBank(bank)
+                .status(200)
+                .message("Shop bankAccount has been update")
+                .build();
+    }
 }
