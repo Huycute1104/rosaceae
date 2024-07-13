@@ -36,8 +36,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private ShopPayService  shopPayService;
+
 
     @GetMapping("")
 //    @PreAuthorize("hasAuthority('admin:read')")
@@ -103,10 +102,5 @@ public class UserController {
         ShopResponse response = userService.changeCoverImages(shopId, coverImage);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
-    @GetMapping("/shopPay")
-    public List<ShopUserDTO> getShopUsersByMonthAndYear(
-            @RequestParam int month,
-            @RequestParam int year) {
-        return shopPayService.getShopUsersByMonthAndYear(month, year);
-    }
+
 }
