@@ -1,6 +1,7 @@
 package com.example.rosaceae.controller;
 
 
+import com.example.rosaceae.dto.Data.ShopUserDTO;
 import com.example.rosaceae.dto.Request.UserRequest.ChangePasswordRequest;
 import com.example.rosaceae.dto.Request.UserRequest.ShopRequest;
 import com.example.rosaceae.dto.Request.UserRequest.UserRequest;
@@ -11,6 +12,7 @@ import com.example.rosaceae.dto.Response.UserResponse.UserResponse;
 import com.example.rosaceae.model.Category;
 import com.example.rosaceae.model.Item;
 import com.example.rosaceae.model.User;
+import com.example.rosaceae.service.ShopPayService;
 import com.example.rosaceae.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ShopPayService  shopPayService;
 
     @GetMapping("")
 //    @PreAuthorize("hasAuthority('admin:read')")
@@ -98,5 +102,11 @@ public class UserController {
             @RequestParam("coverImage") MultipartFile coverImage) {
         ShopResponse response = userService.changeCoverImages(shopId, coverImage);
         return ResponseEntity.status(response.getStatus()).body(response);
+    }
+    @GetMapping("/shopPay")
+    public List<ShopUserDTO> getShopUsersByMonthAndYear(
+            @RequestParam int month,
+            @RequestParam int year) {
+        return shopPayService.getShopUsersByMonthAndYear(month, year);
     }
 }
