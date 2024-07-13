@@ -13,7 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
                         "https://joint-socially-pipefish.ngrok-free.app",
                         "https://rosaceae.id.vn",
                         "https://rosaceae-admin.vercel.app",
-                        "https://rosaceae.vercel.app")
+                        "https://rosaceae.vercel.app",
+                        "https://rosaceaeadmin.id.vn")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
