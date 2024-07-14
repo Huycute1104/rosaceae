@@ -82,6 +82,13 @@ public TotalPriceForShopResponse getTotalPriceForShopByUserId(
         @RequestParam int year) {
     return orderService.getTotalPriceForShopByUserId(userId, month, year);
 }
+    @GetMapping("/total-price-for-shop2")
+    public TotalPriceForShopResponse getTotalPriceForShopByUserId2(
+            @RequestParam int userId,
+            @RequestParam int month,
+            @RequestParam int year) {
+        return orderService.getTotalPriceForShopByUserId2(userId, month, year);
+    }
     @GetMapping("/total-price-for-admin")
     public TotalPriceForAdminResponse getTotalPriceForAdmin(
             @RequestParam int month,

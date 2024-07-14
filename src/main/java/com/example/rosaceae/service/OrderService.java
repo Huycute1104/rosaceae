@@ -23,6 +23,7 @@ public interface OrderService {
     long countOrdersByOrderStatus(OrderStatus orderStatus);
     long countOrdersByOrderStatusAndShopOwnerId(OrderStatus orderStatus, int shopOwnerId);
     TotalPriceForShopResponse getTotalPriceForShopByUserId(int userId, int month, int year);
+    TotalPriceForShopResponse getTotalPriceForShopByUserId2(int userId, int month, int year);
     TotalPriceForAdminResponse getTotalPriceForAdmin(int month, int year);
     List<DailyOrderCountResponse> getOrderCountByShopAndMonthAndYear(int userId, int month, int year);
     List<DailyOrderCountResponse> getOrderCountByMonthAndYearForAdmin(int month, int year);
