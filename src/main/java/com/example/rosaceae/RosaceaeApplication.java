@@ -199,7 +199,7 @@ public class RosaceaeApplication {
 
             //shop
             var shop = RegisterRequest.builder()
-                    .name("Gà Spa")
+                    .name("Gà Spa (Bản thử nghiệm)")
                     .email("gaspa@gmail.com")
                     .status(true)
                     .password("123")
@@ -213,7 +213,7 @@ public class RosaceaeApplication {
             System.out.println("Shop token :" + service.register(shop).getAccessToken());
 
             var shop2 = RegisterRequest.builder()
-                    .name("Seoul Center")
+                    .name("Seoul Center (Bản thử nghiệm) ")
                     .email("seoulcenter@gmail.com")
                     .status(true)
                     .password("123")
@@ -226,7 +226,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop2);
             var shopReal = RegisterRequest.builder()
-                    .name("Bliss Nails Studio")
+                    .name("Bliss Nails Studio ✔")
                     .email("blissnail@gmail.com")
                     .status(true)
                     .password("123")
@@ -239,7 +239,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shopReal);
             var shop3 = RegisterRequest.builder()
-                    .name("Hơ-nie Nails & Eyelash")
+                    .name("Hơ-nie Nails & Eyelash ✔ ")
                     .email("oceannail@gmail.com")
                     .status(true)
                     .password("123")

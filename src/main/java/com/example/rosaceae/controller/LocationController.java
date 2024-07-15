@@ -1,6 +1,7 @@
 package com.example.rosaceae.controller;
 
 import com.example.rosaceae.dto.Data.LocationDTO;
+import com.example.rosaceae.dto.Data.ShopLocation;
 import com.example.rosaceae.dto.Response.LocationResponse.LocationResponse;
 import com.example.rosaceae.model.Location;
 import com.example.rosaceae.model.User;
@@ -45,11 +46,17 @@ public class LocationController {
         return service.findAll();
     }
 
+    @GetMapping("shopLocation/{shopId}")
+    public ResponseEntity<List<ShopLocation>> viewLocationOfShop(@PathVariable int shopId) {
+        List<ShopLocation> locations = service.ViewLocationOfShop(shopId);
+        return ResponseEntity.ok(locations);
+    }
+
     @GetMapping("/nearby-spa")
     public List<LocationDTO> getNearbyLocations(
             @RequestParam double latitude,
             @RequestParam double longitude,
-            @RequestParam(defaultValue = "5") double radiusKm) {
+            @RequestParam(defaultValue = "50") double radiusKm) {
         return service.findUsersNearby(latitude, longitude, radiusKm);
     }
     @PostMapping("/add-coordinates")

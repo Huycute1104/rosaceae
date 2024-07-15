@@ -1,9 +1,11 @@
 package com.example.rosaceae.serviceImplement;
 
 import com.example.rosaceae.dto.Data.LocationDTO;
+import com.example.rosaceae.dto.Data.ShopLocation;
 import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Response.LocationResponse.LocationResponse;
 
+import com.example.rosaceae.enums.Role;
 import com.example.rosaceae.model.Location;
 import com.example.rosaceae.repository.LocationRepo;
 import com.example.rosaceae.repository.UserRepo;
@@ -16,6 +18,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -95,6 +98,14 @@ public class LocationServiceImplement implements LocationService {
                 .rate(location.getUser().getRate())
                 .userStatus(location.getUser().isUserStatus())
                 .coverImages(location.getUser().getCoverImages())
+                .locationUrl(location.getUser().getLocationUrl())
+                .build();
+    }
+    private ShopLocation mapToDTO2(Location location) {
+        return ShopLocation.builder()
+                .locationID(location.getLocationID())
+                .usersID(location.getUser().getUsersID())
+                .accountName(location.getUser().getAccountName())
                 .locationUrl(location.getUser().getLocationUrl())
                 .build();
     }
@@ -190,6 +201,17 @@ public class LocationServiceImplement implements LocationService {
                 .status("Update Location Successful")
                 .location(location)
                 .build();
+    }
+
+    @Override
+    public List<ShopLocation> ViewLocationOfShop(int shopId) {
+        var shop = userRepo.findUserByUsersID(shopId).orElse(null);
+        if(shop == null || !shop.getRole().equals(Role.SHOP)){
+            return Collections.emptyList();
+        }
+        return locationRepo.findByUserUsersID(shopId).stream()
+                .map(this::mapToDTO2)
+                .collect(Collectors.toList());
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.rosaceae.service;
 
 import com.example.rosaceae.dto.Data.LocationDTO;
+import com.example.rosaceae.dto.Data.ShopLocation;
 import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Response.LocationResponse.LocationResponse;
 import com.example.rosaceae.model.Location;
@@ -14,4 +15,5 @@ public interface LocationService {
     public List<LocationDTO> findUsersNearby(double currentLat, double currentLon, double radiusKm);
     public LocationResponse AddCoordinates(String url, int userId) throws IOException;
     public LocationResponse UpdateLocationForShop(String url, int userId) throws IOException;
+    List<ShopLocation> ViewLocationOfShop(int shopId);
 }
