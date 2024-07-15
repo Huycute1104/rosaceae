@@ -252,7 +252,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop3);
             var shop8 = RegisterRequest.builder()
-                    .name("Lily Nail")
+                    .name("Lily Nail (Bản thử nghiệm)")
                     .email("LilyNail@gmail.com")
                     .status(true)
                     .password("123")
@@ -265,7 +265,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop8);
             var shop10 = RegisterRequest.builder()
-                    .name("Shine Nails & Beauty")
+                    .name("Shine Nails & Beauty (Bản thử nghiệm)")
                     .email("ShineNailsBeauty@gmail.com")
                     .status(true)
                     .password("123")
@@ -278,7 +278,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop10);
             var shop11 = RegisterRequest.builder()
-                    .name(" Spa gội đầu dưỡng sinh Mộc Nhiên")
+                    .name(" Spa gội đầu dưỡng sinh Mộc Nhiên(Bản thử nghiệm)")
                     .email("mocnhien@gmail.com")
                     .status(true)
                     .password("123")
@@ -291,7 +291,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop11);
             var shop12 = RegisterRequest.builder()
-                    .name("Hi Beauty Spa")
+                    .name("Hi Beauty Spa(Bản thử nghiệm)")
                     .email("HiBeautySpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -305,7 +305,7 @@ public class RosaceaeApplication {
             service.register(shop12);
             var shop4 = RegisterRequest.builder()
                     .name("Serene Spa")
-                    .email("serensepa@gmail.com")
+                    .email("serensepa@gmail.com(Bản thử nghiệm)")
                     .status(true)
                     .password("123")
                     .phone("0254859865")
@@ -317,7 +317,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop4);
             var shop5 = RegisterRequest.builder()
-                    .name("HerbalSpa")
+                    .name("HerbalSpa(Bản thử nghiệm)")
                     .email("HerbalSpa11@gmail.com")
                     .status(true)
                     .password("123")
@@ -330,7 +330,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop5);
             var shop6 = RegisterRequest.builder()
-                    .name("Coral Spa")
+                    .name("Coral Spa(Bản thử nghiệm)")
                     .email("CoralSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -343,7 +343,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop6);
             var shop7 = RegisterRequest.builder()
-                    .name("La Belle Vie Spa")
+                    .name("La Belle Vie Spa(Bản thử nghiệm)")
                     .email("LaBelleVieSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -357,7 +357,7 @@ public class RosaceaeApplication {
             service.register(shop7);
 
             var shop9 = RegisterRequest.builder()
-                    .name("Chang Beauty")
+                    .name("Chang Beauty(Bản thử nghiệm)")
                     .email("ChangBeauty@gmail.com")
                     .status(true)
                     .password("123")
@@ -371,7 +371,7 @@ public class RosaceaeApplication {
             service.register(shop9);
 
             var shop13 = RegisterRequest.builder()
-                    .name("Lady Mom Spa")
+                    .name("Lady Mom Spa(Bản thử nghiệm)")
                     .email("LadyMomSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -384,7 +384,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop13);
             var shop14 = RegisterRequest.builder()
-                    .name("Spa Ngọc Hân")
+                    .name("Spa Ngọc Hân(Bản thử nghiệm)")
                     .email("NgocHanSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -397,7 +397,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop14);
             var shop15 = RegisterRequest.builder()
-                    .name("LAN HOUSE SPA")
+                    .name("LAN HOUSE SPA(Bản thử nghiệm)")
                     .email("LANHOUSESPA@gmail.com")
                     .status(true)
                     .password("123")
@@ -410,7 +410,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop15);
             var shop16 = RegisterRequest.builder()
-                    .name("Tana Spa")
+                    .name("Tana Spa(Bản thử nghiệm)")
                     .email("TanaSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -423,7 +423,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop16);
             var shop17 = RegisterRequest.builder()
-                    .name("Mỹ Ngọc  Spa")
+                    .name("Mỹ Ngọc  Spa(Bản thử nghiệm)")
                     .email("MyNgocSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -436,7 +436,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop17);
             var shop18 = RegisterRequest.builder()
-                    .name("LiDoSpa")
+                    .name("LiDoSpa(Bản thử nghiệm)")
                     .email("LiDoSpa@gmail.com")
                     .status(true)
                     .password("123")
@@ -449,7 +449,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop18);
             var shop19 = RegisterRequest.builder()
-                    .name("Nắng Mai spa")
+                    .name("Nắng Mai spa(Bản thử nghiệm)")
                     .email("Nangmai@gmail.com")
                     .status(true)
                     .password("123")
@@ -462,7 +462,7 @@ public class RosaceaeApplication {
                     .build();
             service.register(shop19);
             var shop20 = RegisterRequest.builder()
-                    .name("LAVENDER MEDICAL SPA")
+                    .name("LAVENDER MEDICAL SPA(Bản thử nghiệm)")
                     .email("LAVENDERMEDICAL@gmail.com")
                     .status(true)
                     .password("123")
