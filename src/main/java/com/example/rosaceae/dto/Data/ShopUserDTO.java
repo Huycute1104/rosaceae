@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShopUserDTO {
     private int userId;
+    private int shopPayId;
     private String email;
     private String accountName;
     private String bankName;

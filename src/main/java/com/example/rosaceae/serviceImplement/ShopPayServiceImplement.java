@@ -36,6 +36,7 @@ public class ShopPayServiceImplement implements ShopPayService {
 
             return new ShopUserDTO(
                     user.getUsersID(),
+                    shopPay.getShopPayID(),
                     user.getEmail(),
                     user.getAccountName(),
                     bankName,
