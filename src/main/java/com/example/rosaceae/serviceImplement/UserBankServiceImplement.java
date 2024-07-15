@@ -10,6 +10,9 @@ import com.example.rosaceae.service.UserBankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class UserBankServiceImplement implements UserBankService {
 
@@ -77,4 +80,15 @@ public class UserBankServiceImplement implements UserBankService {
                 .message("Shop bankAccount has been update")
                 .build();
     }
+
+    @Override
+    public List<UserBank> getUserBank(int userId) {
+        List<UserBank> userBanks = userBankRepo.findUserBankByUserUsersID(userId);
+        if (userBanks == null || userBanks.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return userBanks;
+    }
+
+
 }
