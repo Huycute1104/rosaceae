@@ -13,6 +13,7 @@ import com.example.rosaceae.dto.Request.LocationRequest.LocationRequest;
 import com.example.rosaceae.dto.Request.OrderRequest.CreateOrderRequest;
 import com.example.rosaceae.dto.Request.RankMemberRequest.CreateRankRequet;
 import com.example.rosaceae.dto.Request.TimeBookingRequest.TimeBookingRequest;
+import com.example.rosaceae.dto.Request.UserRequest.UserBankRequest;
 import com.example.rosaceae.dto.Response.ItemTypeResponse.ItemTypeRequest;
 import com.example.rosaceae.enums.BookingStatus;
 import com.example.rosaceae.enums.OrderStatus;
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import static com.example.rosaceae.enums.Role.*;
 
@@ -117,6 +119,14 @@ public class RosaceaeApplication {
         return "Wat sup my nigga !";
     }
 
+    private static String generateRandomAccountNumber(Random random) {
+        StringBuilder accountNumber = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            accountNumber.append(random.nextInt(10));
+        }
+        return accountNumber.toString();
+    }
+
     @Bean
     public CommandLineRunner commandLineRunner2(
     ) {
@@ -140,7 +150,8 @@ public class RosaceaeApplication {
             ItemImageService itemImageService,
             LocationService locationService,
             TimeBookingService timeBookingService,
-            OrderService orderService
+            OrderService orderService,
+            UserBankService userBankService
 //			FeeService feeService
     ) {
         return args -> {
@@ -513,6 +524,24 @@ public class RosaceaeApplication {
                     .build();
             service.register(customer4);
 
+
+            String[] bankNames = {
+                    "Vietcombank", "VietinBank", "BIDV", "Agribank", "Techcombank",
+                    "ACB", "Sacombank", "VPBank", "MB Bank", "TPBank",
+                    "Eximbank", "HDBank", "SCB", "SeABank", "SHB",
+                    "VIB", "ABBank", "OceanBank", "NCB", "MSB"
+            };
+            Random random = new Random();
+            for (int userId = 3; userId <= 23; userId++) {
+                String bankAccountNumber = generateRandomAccountNumber(random);
+                String bankName = bankNames[random.nextInt(bankNames.length)];
+
+                UserBankRequest bank = UserBankRequest.builder()
+                        .bankAccountNumber(bankAccountNumber)
+                        .bankName(bankName)
+                        .build();
+                userBankService.addUserBank(userId, bank);
+            }
             //dummy data category
             var category = CreateCategoryRequest.builder()
                     .categoryName("Chăm sóc da")
@@ -1766,7 +1795,7 @@ public class RosaceaeApplication {
             orderService.changeStatus(5, OrderStatus.DELIVERED);
             orderService.changeStatus(6, OrderStatus.DELIVERED);
 //			feeService.createFee(3);
-            
+
             // Dummy data for booking
             User user24 = userRepo.findById(24).orElse(null);
             Item item04 = itemRepo.findById(4).orElse(null);
@@ -1812,7 +1841,6 @@ public class RosaceaeApplication {
             bookingRepo.save(booking2);
             bookingRepo.save(booking3);
             bookingRepo.save(booking4);
-
 
 
             // dummy data real shop
@@ -1905,7 +1933,6 @@ public class RosaceaeApplication {
                     .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1719569820/nfsqyj7y8tb072pulxi4.jpg")
                     .build();
             itemImageService.CreateImage(realImage8);
-
 
 
             var realProduct4 = ItemRequest.builder()
@@ -2716,7 +2743,7 @@ public class RosaceaeApplication {
             itemImageService.CreateImage(imageh43);
             var imageh44 = DummyDataIImages.builder()
                     .itemId(58)
-                    .link("http://res.cloudinary.com/dpxs39hkb/image/upload/v1717406039/owbchzs8fvctz0sfg86r.jpg")
+                    .link("ht tp://res.cloudinary.com/dpxs39hkb/image/upload/v1717406039/owbchzs8fvctz0sfg86r.jpg")
                     .build();
             itemImageService.CreateImage(imageh44);
             var imageh45 = DummyDataIImages.builder()
@@ -2836,7 +2863,7 @@ public class RosaceaeApplication {
                     .itemName("Dịch vụ cắt móng và chăm sóc cơ bản")
                     .quantity(100)
                     .itemPrice(150000f)
-                    .itemDescription("Cắt, dũa móng tay/móng chân.\n" +
+                    .itemDescription("Cắt, dũa móng tay/móng chân.         \n" +
                             "Làm sạch lớp biểu bì.\n" +
                             "Massage tay/chân.")
 //					.commentCount(0)
@@ -3223,5 +3250,6 @@ public class RosaceaeApplication {
             itemImageService.CreateImage(imagehj48);
 
         };
+
     }
 }
