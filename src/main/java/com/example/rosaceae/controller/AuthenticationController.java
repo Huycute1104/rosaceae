@@ -23,6 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -58,6 +59,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(@RequestBody CreateUserRequest request) {
         return ResponseEntity.ok(authenticationService.createUser(request));
     }
+//    @PostMapping("/register")
+//    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody CreateUserRequest request) {
+//        AuthenticationResponse response = authenticationService.createUser(request);
+//        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+//    }
 
     @PostMapping("/forgot-password")
     public ResponseEntity<String> forgotPassword(@RequestBody JsonNode request){
