@@ -39,7 +39,7 @@ public class OrderServiceImplement implements OrderService {
 
     @Override
     public Page<Order> findAll(Pageable pageable) {
-        return null;
+        return orderRepo.findAll(pageable);
     }
 
     @Override
@@ -192,7 +192,11 @@ public class OrderServiceImplement implements OrderService {
         return orderDetailRepo.findByItemUserId(userId, pageable)
                 .map(OrderMapper::toOrderDetailDTO);
     }
-
+    @Override
+    public Page<OrderDetailDTO> getAllOrderDetails(Pageable pageable) {
+        return orderDetailRepo.findAllOrderDetails(pageable)
+                .map(OrderMapper::toOrderDetailDTO);
+    }
     @Override
     public Page<OrderDTO> getOrderForCustomer(int id, Pageable pageable) {
         return orderRepo.findByCustomerUsersID(id, pageable)

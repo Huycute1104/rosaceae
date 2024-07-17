@@ -58,6 +58,14 @@ public class OrderController {
         Pageable pageable = PageRequest.of(page, size);
         return orderService.getOrderDetailsByItemUserId(userId, pageable);
     }
+    @GetMapping("/details")
+    public Page<OrderDetailDTO> getAllOrderDetails(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        return orderService.getAllOrderDetails(pageable);
+    }
 
     @GetMapping("/orderCount/{shopId}")
     public long countOrdersByUserId(@PathVariable int shopId) {

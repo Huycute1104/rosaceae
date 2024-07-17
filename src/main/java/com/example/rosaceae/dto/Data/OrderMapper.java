@@ -32,6 +32,8 @@ public class OrderMapper {
                 .itemId(orderDetail.getItem().getItemId())
                 .itemName(orderDetail.getItem().getItemName())
                 .CustomerName(orderDetail.getOrder().getCustomerName())
+                .CustomerAddress(orderDetail.getOrder().getCustomerAddress())
+                .CustomerPhone(orderDetail.getOrder().getCustomerPhone())
                 .itemTypeId(orderDetail.getItem().getItemType().getItemTypeId())
                 .status(orderDetail.getOrder().getOrderStatus())
                 .itemImages(orderDetail.getItem().getItemImages().get(1).getImageUrl())

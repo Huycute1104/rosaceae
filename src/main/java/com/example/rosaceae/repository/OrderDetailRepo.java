@@ -88,5 +88,6 @@ Float findTotalPriceForShopByUserIdAndMonthAndYearAndDelivered(
             "GROUP BY DAY(o.orderDate)")
     List<Object[]> calculateTotalPriceForAdminByDay(@Param("month") int month, @Param("year") int year);
 
-
+    @Query("SELECT od FROM OrderDetail od")
+    Page<OrderDetail> findAllOrderDetails(Pageable pageable);
 }

@@ -17,9 +17,11 @@ public class OrderDetailDTO {
     private int itemId;
     private String itemName;
     private String CustomerName;
+    private String CustomerAddress;
+    private String CustomerPhone;
     private int itemTypeId;
     private OrderStatus status;
     private String itemImages;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Ho_Chi_Minh")
     private Date orderDate;
 }

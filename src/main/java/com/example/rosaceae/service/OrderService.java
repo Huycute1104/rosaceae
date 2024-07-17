@@ -34,5 +34,5 @@ public interface OrderService {
     List<DailyPriceForAdminResponse> getTotalPriceByDayWithItemType(int month, int year);
     List<DailyPriceForShopResponse> getTotalPriceByDayForShop(int userId, int month, int year);
     List<DailyOrderCountResponse> getCompletedOrderCountByDayForShop(int userId, int month, int year);
-
+    public Page<OrderDetailDTO> getAllOrderDetails(Pageable pageable);
 }
